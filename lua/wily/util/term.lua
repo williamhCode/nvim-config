@@ -1,0 +1,18 @@
+local map = vim.keymap.set
+local toggleterm = require("toggleterm")
+
+local M = {}
+
+M.set_build_cmd = function(cmd)
+  map('n', "<leader>b", function()
+    toggleterm.exec(vim.fn.expandcmd(args), vim.v.count)
+  end, { buffer = true })
+end
+
+M.set_run_cmd = function(cmd)
+  map('n', "<leader>r", function()
+    toggleterm.exec(vim.fn.expandcmd(args), vim.v.count)
+  end, { buffer = true })
+end
+
+return M

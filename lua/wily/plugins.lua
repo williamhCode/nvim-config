@@ -13,30 +13,41 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   -- themes
-  { 
-    "navarasu/onedark.nvim",
-    config = function()
-      require('onedark').load()
-    end
-  },
+  { "navarasu/onedark.nvim" },
 
   -- coding
+  { "numToStr/Comment.nvim" },
+  { "Vimjas/vim-python-pep8-indent" }, -- cython indentation
 
   -- editor
   { 
     "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons",
-      "MunifTanjim/nui.nvim"
-    }
+      "MunifTanjim/nui.nvim",
+    },
   },
+
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
-      "nvim-lua/plenary.nvim"
+      "nvim-lua/plenary.nvim",
     },
-    branch = "0.1.x"
-  }
+    branch = "0.1.x",
+  },
+
+  {
+    "akinsho/toggleterm.nvim",
+    tag = "*",
+  },
+
+  -- treesitter
+  {
+    "nvim-treesitter/nvim-treesitter",
+    version = false, -- last release is way too old and doesn't work on Windows
+    build = ":TSUpdate",
+  },
 })
 
