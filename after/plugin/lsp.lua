@@ -20,7 +20,7 @@ lsp.on_attach(function(client, bufnr)
 
     if client.server_capabilities.documentHighlightProvider then
         local group = vim.api.nvim_create_augroup("lsp_document_highlight", { clear = false })
-        vim.api.nvim_clear_autocmds { buffer = bufnr, group = group }
+        vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
         vim.api.nvim_create_autocmd("CursorHold", {
             callback = vim.lsp.buf.document_highlight,
             buffer = bufnr,

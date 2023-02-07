@@ -62,3 +62,12 @@ map("x", "<M-s>]", ">gv")
 -- terminal
 map("t", "<Esc>", "<C-\\><C-n>")
 
+-- toggle options
+map("n", "<leader>tw", function()
+  vim.opt.wrap = not vim.o.wrap
+end)
+
+map("n", "<leader>th", function()
+  vim.opt.hlsearch = not vim.o.hlsearch
+end)
+
