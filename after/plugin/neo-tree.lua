@@ -20,7 +20,6 @@ require("neo-tree").setup({
   },
   window = {
     mappings = {
-      ["l"] = "none",
       ["h"] = "close_node",
       ["l"] = "open",
       ["<TAB>"] = function(state)

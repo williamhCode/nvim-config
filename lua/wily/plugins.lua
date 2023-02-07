@@ -12,14 +12,22 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  -- Themes
+  ----------------- Colors and UI ----------------
+  -- Colors
   { "navarasu/onedark.nvim" },
 
-  -- Coding
+  -- UI
+  {
+    "goolord/alpha-nvim",
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    -- commit = "21a0f2520ad3a7c32c0822f943368dc063a569fb"
+  },
+
+  ------------------- Coding ---------------------
+  -- General
   { "numToStr/Comment.nvim" },
   { "Vimjas/vim-python-pep8-indent" }, -- cython indentation
 
-  -- Lsp --------------------------------
   -- Lsp Support
   { "neovim/nvim-lspconfig" },
   { "williamboman/mason.nvim" },
@@ -39,9 +47,25 @@ require("lazy").setup({
 
   -- Signature Help
   { "Issafalcon/lsp-overloads.nvim" },
-  ---------------------------------------
 
-  -- Editor
+  -- Treesitter
+  {
+    "nvim-treesitter/nvim-treesitter",
+    version = false, -- last release is way too old and doesn't work on Windows
+    build = ":TSUpdate",
+  },
+  {
+    "m-demare/hlargs.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      require('hlargs').setup({
+        color = "#e86671"
+      })
+    end
+  },
+
+  -------------------- Editor --------------------
+  -- File Tree
   {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v2.x",
@@ -51,6 +75,8 @@ require("lazy").setup({
       "MunifTanjim/nui.nvim",
     },
   },
+
+  -- Fuzzy Finder
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
@@ -58,16 +84,11 @@ require("lazy").setup({
     },
     branch = "0.1.x",
   },
+
+  -- Terminal
   {
     "akinsho/toggleterm.nvim",
     tag = "2.3.0",
-  },
-
-  -- treesitter
-  {
-    "nvim-treesitter/nvim-treesitter",
-    version = false, -- last release is way too old and doesn't work on Windows
-    build = ":TSUpdate",
   },
 })
 

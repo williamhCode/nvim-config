@@ -5,13 +5,13 @@ local M = {}
 
 M.set_build_cmd = function(cmd)
   map('n', "<leader>b", function()
-    toggleterm.exec(vim.fn.expandcmd(args), vim.v.count)
+    toggleterm.exec(vim.fn.expandcmd(cmd), vim.v.count)
   end, { buffer = true })
 end
 
 M.set_run_cmd = function(cmd)
   map('n', "<leader>r", function()
-    toggleterm.exec(vim.fn.expandcmd(args), vim.v.count)
+    toggleterm.exec(vim.fn.expandcmd(cmd), vim.v.count)
   end, { buffer = true })
 end
 
