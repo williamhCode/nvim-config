@@ -19,7 +19,7 @@ opt.sidescrolloff = 10
 opt.splitright = true
 opt.splitbelow = true
 
-opt.termguicolors = true 
+opt.termguicolors = true
 opt.cursorline = true
 opt.showmode = false
 opt.wrap = false
