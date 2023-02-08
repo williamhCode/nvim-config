@@ -3,7 +3,7 @@ require("telescope").setup({
     layout_strategy = "flex",
     file_ignore_patterns = {
       "^%.git/",
-      "^%.git",
+      "^%.git$",
       ".DS_Store",
     },
     mappings = {
