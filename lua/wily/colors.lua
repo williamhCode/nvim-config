@@ -8,4 +8,3 @@ require("onedark").load()
 --   fg = "LightBlue",
 --   bg = "Brown"
 -- })
-

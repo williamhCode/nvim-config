@@ -1,5 +1,5 @@
 require('Comment').setup({
-    ignore = '^$'
+  ignore = '^$'
 })
 
 local map = vim.keymap.set

@@ -21,7 +21,7 @@ require("neo-tree").setup({
   },
 
   window = {
-    width = "20%",
+    width = 35,
 
     mappings = {
       ["P"] = { "toggle_preview", config = { use_float = false } },

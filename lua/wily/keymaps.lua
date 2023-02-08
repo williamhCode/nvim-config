@@ -1,8 +1,8 @@
 local map = vim.keymap.set
 
--- editing 
+-- editing
 map("n", "<M-s>a", "ggVG")
-map({"n", "i", "c"}, "<M-bs>", "<C-w>")
+map({ "n", "i", "c" }, "<M-bs>", "<C-w>")
 
 -- better deleting/cutting
 map({ "n", "x" }, "d", "\"_d")
@@ -32,19 +32,22 @@ map("x", "#", [[y?\V<C-R>=escape(@",'/\')<CR><CR>]])
 map("n", "<leader>fr", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
 map("x", "<leader>fr", 'y:%s/<C-r>"/<C-r>"/gI<Left><Left><Left>')
 
-map("n", "<leader>fc", ":,$s/\\<<C-r><C-w>\\>/<C-r><C-w>/gcI|1,''-&&<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>")
-map("x", "<leader>fc", [[y:,$s/<C-r>"/<C-r>"/gcI|1,''-&&<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>]])
+map("n", "<leader>fc",
+  ":,$s/\\<<C-r><C-w>\\>/<C-r><C-w>/gcI|1,''-&&<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>")
+map("x", "<leader>fc",
+  [[y:,$s/<C-r>"/<C-r>"/gcI|1,''-&&<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>]])
 
-map({ "n","x" }, "<leader>cn", "*Ncgn", { remap = true })
-map({ "n","x" }, "<leader>cN", "*NcgN", { remap = true })
+map({ "n", "x" }, "<leader>cn", "*Ncgn", { remap = true })
+map({ "n", "x" }, "<leader>cN", "*NcgN", { remap = true })
 
 local setup_cr = function()
-  map("n", "<CR>", ":nnoremap <buffer> <lt>Enter> @zn<CR>q:<C-u>let @z=strpart(@z,0,strlen(@z)-1)<CR>n", { buffer = true })
+  map("n", "<CR>", ":nnoremap <buffer> <lt>Enter> @zn<CR>q:<C-u>let @z=strpart(@z,0,strlen(@z)-1)<CR>n",
+    { buffer = true })
 end
 
-map({ "n", "x" }, "<leader>cq", function ()
-    setup_cr()
-    vim.cmd(":norm *Nqz")
+map({ "n", "x" }, "<leader>cq", function()
+  setup_cr()
+  vim.cmd(":norm *Nqz")
 end)
 
 -- quickfix shortcuts
@@ -70,4 +73,3 @@ end)
 map("n", "<leader>th", function()
   vim.opt.hlsearch = not vim.o.hlsearch
 end)
-

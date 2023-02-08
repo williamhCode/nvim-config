@@ -23,7 +23,7 @@ require("lazy").setup({
     -- commit = "21a0f2520ad3a7c32c0822f943368dc063a569fb"
   },
 
-  -------------------- Coding --------------------
+  ------------------- Coding --------------------
   -- General
   { "numToStr/Comment.nvim" },
   { "Vimjas/vim-python-pep8-indent" }, -- cython indentation
@@ -91,4 +91,3 @@ require("lazy").setup({
     tag = "2.3.0",
   },
 })
-

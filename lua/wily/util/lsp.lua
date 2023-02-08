@@ -43,14 +43,15 @@ M.nvim_workspace = function()
         telemetry = {
           enable = false,
         },
-        -- Doesn't work yet: https://github.com/LuaLS/lua-language-server/issues/1068
-        -- format = {
-        --   enable = true,
-        --   defaultConfig = {
-        --     indent_style = "space",
-        --     indent_size = "2",
-        --   }
-        -- },
+        -- Indent based on editor work yet: https://github.com/LuaLS/lua-language-server/issues/1068
+        format = {
+          enable = true,
+          defaultConfig = {
+            -- indent_style = "space",
+            -- indent_size = "2",
+            continuation_indent = "2",
+          }
+        },
       }
     }
   })
@@ -69,13 +70,12 @@ M.setup = function()
     local server_config = settings.configs[server] or {}
 
     server_config = vim.tbl_deep_extend("force", {
-      capabilities = capabilities,
-      on_attach = settings.on_attach,
-    }, server_config)
+        capabilities = capabilities,
+        on_attach = settings.on_attach,
+      }, server_config)
 
     require("lspconfig")[server].setup(server_config)
   end
 end
 
 return M
-
