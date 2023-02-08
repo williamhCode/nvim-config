@@ -14,7 +14,8 @@ M.on_attach = function(on_attach)
 end
 
 M.configure = function(server, config)
-  settings.configs[server] = config
+  local server_config = settings.configs[server] or {}
+  settings.configs[server] = vim.tbl_deep_extend("force", server_config, config)
 end
 
 M.nvim_workspace = function()
@@ -41,7 +42,15 @@ M.nvim_workspace = function()
         -- Do not send telemetry data containing a randomized but unique identifier
         telemetry = {
           enable = false,
-        }
+        },
+        -- Doesn't work yet: https://github.com/LuaLS/lua-language-server/issues/1068
+        -- format = {
+        --   enable = true,
+        --   defaultConfig = {
+        --     indent_style = "space",
+        --     indent_size = "2",
+        --   }
+        -- },
       }
     }
   })
@@ -66,7 +75,7 @@ M.setup = function()
 
     require("lspconfig")[server].setup(server_config)
   end
-
 end
 
 return M
+

@@ -4,9 +4,8 @@ require("onedark").setup({
 
 require("onedark").load()
 
-vim.api.nvim_set_hl(0, "Search", {
-  fg = "LightBlue",
-  bg = "Brown"
-})
+-- vim.api.nvim_set_hl(0, "Search", {
+--   fg = "LightBlue",
+--   bg = "Brown"
+-- })
 
--- ctermfg=0 ctermbg=11 guifg=#282c34 guibg=#ebd09c

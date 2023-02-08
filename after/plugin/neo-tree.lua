@@ -17,10 +17,13 @@ require("neo-tree").setup({
         ".DS_Store",
       },
     },
+    use_libuv_file_watcher = true,
   },
 
   window = {
     mappings = {
+      ["P"] = { "toggle_preview", config = { use_float = false } },
+      -- ["<C-l>"] = "focus_preview",
       ["h"] = "close_node",
       ["l"] = "open",
       ["<TAB>"] = function(state)

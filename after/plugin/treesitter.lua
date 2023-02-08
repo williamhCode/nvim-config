@@ -1,5 +1,5 @@
 require('nvim-treesitter.configs').setup({
-  ensure_installed = { 
+  ensure_installed = {
     "java",
     "python",
     "vim",
@@ -9,7 +9,7 @@ require('nvim-treesitter.configs').setup({
     "bash",
     "cpp",
     "glsl",
-    "latex" 
+    "latex"
   },
 
   highlight = {
@@ -17,7 +17,7 @@ require('nvim-treesitter.configs').setup({
     disable = { "help", "latex" },
   },
 
-  indent = { 
+  indent = {
     enable = true
   },
 
