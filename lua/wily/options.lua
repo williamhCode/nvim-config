@@ -25,7 +25,7 @@ opt.pumheight = 12
 
 opt.equalalways = false
 opt.termguicolors = true
-opt.cursorline = true
+-- opt.cursorline = true
 opt.showmode = false
 opt.wrap = false
 opt.hlsearch = false
