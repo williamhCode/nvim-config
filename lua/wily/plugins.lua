@@ -13,9 +13,10 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   ----------------- Colors and UI ----------------
-  -- Colors
-  { "navarasu/onedark.nvim" },
-
+  -- Colorschemes
+  -- { "navarasu/onedark.nvim" },
+  { "olimorris/onedarkpro.nvim" },
+  { "ellisonleao/gruvbox.nvim" },
   -- UI
   {
     "goolord/alpha-nvim",
@@ -57,18 +58,18 @@ require("lazy").setup({
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
   },
-  {
-    "m-demare/hlargs.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    config = function()
-      require('hlargs').setup({
-        color = "#e86671"
-      })
-    end
-  },
+  -- {
+  --   "m-demare/hlargs.nvim",
+  --   dependencies = { "nvim-treesitter/nvim-treesitter" },
+  --   config = function()
+  --     require('hlargs').setup({
+  --       color = "#e86671"
+  --     })
+  --   end
+  -- },
 
   -------------------- Editor --------------------
-  -- File Tree
+  -- Navigation
   {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v2.x",
@@ -77,18 +78,16 @@ require("lazy").setup({
       "nvim-tree/nvim-web-devicons",
       "MunifTanjim/nui.nvim",
     },
-  },
-
-  -- Navigation
+  }, -- File Tree
   {
-    "nvim-telescope/telescope.nvim", -- Fuzzy Finder
+    "nvim-telescope/telescope.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     branch = "0.1.x",
-  },
+  }, -- Fuzzy Finder
   {
-    "ThePrimeagen/harpoon", -- File Jumping
+    "ThePrimeagen/harpoon",
     dependencies = { "nvim-lua/plenary.nvim" },
-  },
+  }, -- File Jumping
 
   -- Terminal
   {
