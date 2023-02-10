@@ -9,6 +9,7 @@ require("onedarkpro").setup({
     all = false,
     native_lsp = true,
     treesitter = true,
+    -- neo_tree = true,
   },
   highlights = {
     ["@constructor.python"] = { fg = "${yellow}" },
@@ -32,6 +33,8 @@ require("onedarkpro").setup({
     DiagnosticVirtualTextWarn = { fg = "${yellow}", bg = util.darken(colors.yellow, 0.1, colors.bg) },
     DiagnosticVirtualTextInfo = { fg = "${blue}", bg = util.darken(colors.blue, 0.1, colors.bg) },
     DiagnosticVirtualTextHint = { fg = "${purple}", bg = util.darken(colors.purple, 0.1, colors.bg) },
+
+    NeoTreeRootName = { fg = colors.orange, style = "bold" },
   }
 })
 
