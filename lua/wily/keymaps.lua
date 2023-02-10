@@ -73,3 +73,17 @@ end)
 map("n", "<leader>th", function()
   vim.opt.hlsearch = not vim.o.hlsearch
 end)
+
+-- hydra mappings
+local Hydra = require('hydra')
+
+Hydra({
+  mode = "n",
+  body = "<C-w>",
+  heads = {
+    { "+", "<C-w>+" },
+    { "-", "<C-w>-" },
+    { "<", "<C-w>3<" },
+    { ">", "<C-w>3>" },
+  }
+})

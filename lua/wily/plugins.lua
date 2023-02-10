@@ -90,4 +90,7 @@ require("lazy").setup({
     "akinsho/toggleterm.nvim",
     tag = "2.3.0",
   },
+
+  -- Keymap Modes
+  { "anuvyklack/hydra.nvim" },
 })
