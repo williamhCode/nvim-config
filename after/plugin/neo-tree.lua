@@ -10,6 +10,15 @@ vim.fn.sign_define("DiagnosticSignHint",
   { text = "", texthl = "DiagnosticSignHint" })
 
 require("neo-tree").setup({
+  event_handlers = {
+    {
+      event = "neo_tree_buffer_enter",
+      handler = function()
+        vim.opt_local.scrolloff = 0
+        vim.opt_local.sidescrolloff = 0
+      end
+    }
+  },
   filesystem = {
     filtered_items = {
       hide_dotfiles = false,
@@ -19,7 +28,6 @@ require("neo-tree").setup({
     },
     use_libuv_file_watcher = true,
   },
-
   window = {
     width = 35,
 
@@ -40,4 +48,3 @@ vim.keymap.set('n', "<M-s>b", "<cmd>Neotree toggle<CR>")
 vim.keymap.set('n', "<leader>et", "<cmd>Neotree toggle<CR>")
 vim.keymap.set('n', "<leader>ef", "<cmd>Neotree focus<CR>")
 vim.keymap.set('n', "<leader>er", "<cmd>Neotree reveal<CR>")
-

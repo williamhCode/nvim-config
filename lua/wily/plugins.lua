@@ -81,10 +81,14 @@ require("lazy").setup({
   -- Fuzzy Finder
   {
     "nvim-telescope/telescope.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
+    dependencies = { "nvim-lua/plenary.nvim" },
     branch = "0.1.x",
+  },
+
+  -- File Marks
+  {
+    "ThePrimeagen/harpoon",
+    dependencies = { "nvim-lua/plenary.nvim" },
   },
 
   -- Terminal
