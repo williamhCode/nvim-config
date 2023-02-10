@@ -20,18 +20,25 @@ require("lazy").setup({
   {
     "goolord/alpha-nvim",
     dependencies = { 'nvim-tree/nvim-web-devicons' },
-    -- commit = "21a0f2520ad3a7c32c0822f943368dc063a569fb"
   },
 
   ------------------- Coding --------------------
   -- General
-  { "numToStr/Comment.nvim" },
-  { "Vimjas/vim-python-pep8-indent" }, -- cython indentation
+  { "numToStr/Comment.nvim" }, -- Commenting
+  { "Vimjas/vim-python-pep8-indent" }, -- Cython Indentation
 
   -- Lsp Support
   { "neovim/nvim-lspconfig" },
   { "williamboman/mason.nvim" },
   { "williamboman/mason-lspconfig.nvim" },
+
+  -- Lsp Extras
+  { "Issafalcon/lsp-overloads.nvim" }, -- Signature Help
+  { "folke/neodev.nvim" }, -- Nvim Workspace
+  {
+    "j-hui/fidget.nvim",
+    config = true
+  }, -- Lsp Progress
 
   -- Autocompletion
   { "hrsh7th/nvim-cmp" },
@@ -44,9 +51,6 @@ require("lazy").setup({
   -- Snippets
   { "L3MON4D3/LuaSnip" },
   { "rafamadriz/friendly-snippets" },
-
-  -- Signature Help
-  { "Issafalcon/lsp-overloads.nvim" },
 
   -- Treesitter
   {
@@ -63,9 +67,6 @@ require("lazy").setup({
     end
   },
 
-  -- Nvim Workspace
-  { "folke/neodev.nvim" },
-
   -------------------- Editor --------------------
   -- File Tree
   {
@@ -78,16 +79,14 @@ require("lazy").setup({
     },
   },
 
-  -- Fuzzy Finder
+  -- Navigation
   {
-    "nvim-telescope/telescope.nvim",
+    "nvim-telescope/telescope.nvim", -- Fuzzy Finder
     dependencies = { "nvim-lua/plenary.nvim" },
     branch = "0.1.x",
   },
-
-  -- File Marks
   {
-    "ThePrimeagen/harpoon",
+    "ThePrimeagen/harpoon", -- File Jumping
     dependencies = { "nvim-lua/plenary.nvim" },
   },
 

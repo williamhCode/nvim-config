@@ -14,8 +14,9 @@ M.on_attach = function(on_attach)
 end
 
 M.configure = function(server, config)
-  local server_config = settings.configs[server] or {}
-  settings.configs[server] = vim.tbl_deep_extend("force", server_config, config)
+  -- local server_config = settings.configs[server] or {}
+  -- settings.configs[server] = vim.tbl_deep_extend("force", server_config, config)
+  settings.configs[server] = config
 end
 
 M.nvim_workspace = function()
