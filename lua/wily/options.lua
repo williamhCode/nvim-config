@@ -23,8 +23,8 @@ opt.splitbelow = true
 opt.pumblend = 10
 opt.pumheight = 12
 
-opt.equalalways = false
 opt.termguicolors = true
+-- opt.equalalways = false
 -- opt.cursorline = true
 opt.showmode = false
 opt.wrap = false

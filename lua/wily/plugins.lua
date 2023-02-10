@@ -68,6 +68,15 @@ require("lazy").setup({
   --   end
   -- },
 
+  -- Latex support
+  {
+    "lervag/vimtex",
+    config = function()
+      vim.g.vimtex_quickfix_open_on_warning = 0
+      vim.g.vimtex_view_method = 'sioyek'
+    end
+  },
+
   -------------------- Editor --------------------
   -- Navigation
   {

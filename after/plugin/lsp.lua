@@ -4,6 +4,7 @@ lsp.ensure_installed({
   "sumneko_lua",
   "pyright",
   "clangd",
+  "jdtls",
   "omnisharp_mono",
   "bashls",
   "texlab",
@@ -14,6 +15,7 @@ lsp.on_attach(function(client, bufnr)
     require('lsp-overloads').setup(client, {
       ui = {
         close_events = { "CursorMoved", "CursorMovedI", "InsertCharPre" },
+        floating_window_above_cur_line = true,
       },
     })
   end
@@ -35,19 +37,19 @@ lsp.on_attach(function(client, bufnr)
 
   local map = vim.keymap.set
   local opts = { buffer = bufnr }
-  map('n', "gd", function() vim.lsp.buf.definition() end, opts)
-  map('n', "gD", function() vim.lsp.buf.declaration() end, opts)
-  map('n', "gh", function() vim.lsp.buf.hover() end, opts)
-  map('n', "gs", function() vim.lsp.buf.signature_help() end, opts)
-  map('i', "<M-x>", function() vim.lsp.buf.signature_help() end, opts)
-  map('n', "gr", function() vim.lsp.buf.references() end, opts)
-  map('n', "<leader>lf", function() vim.diagnostic.open_float() end, opts)
+  map('n', "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
+  map('n', "gD", vim.lsp.buf.declaration, opts)
+  map('n', "gh", vim.lsp.buf.hover, opts)
+  map('n', "gs", vim.lsp.buf.signature_help, opts)
+  map('i', "<M-x>", vim.lsp.buf.signature_help, opts)
+  map('n', "gr", "<cmd>Telescope lsp_implementations<CR>", opts)
+  map('n', "<leader>lf", vim.diagnostic.open_float, opts)
   if client.name ~= "texlab" then
-    map('n', "<leader>lca", function() vim.lsp.buf.code_action() end, opts)
-    map('n', "<leader>lrn", function() vim.lsp.buf.rename() end, opts)
+    map('n', "<leader>lca", vim.lsp.buf.code_action, opts)
+    map('n', "<leader>lrn", vim.lsp.buf.rename, opts)
   end
-  map('n', "[d", function() vim.diagnostic.goto_prev() end, opts)
-  map('n', "]d", function() vim.diagnostic.goto_next() end, opts)
+  map('n', "[d", vim.diagnostic.goto_prev, opts)
+  map('n', "]d", vim.diagnostic.goto_next, opts)
   map({ 'n', 'v' }, "<M-F>", function() vim.lsp.buf.format({ async = true }) end, opts)
 end)
 

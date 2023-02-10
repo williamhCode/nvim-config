@@ -9,7 +9,6 @@ require("onedarkpro").setup({
     all = false,
     native_lsp = true,
     treesitter = true,
-    -- neo_tree = true,
   },
   highlights = {
     ["@constructor.python"] = { fg = "${yellow}" },
@@ -35,7 +34,29 @@ require("onedarkpro").setup({
     DiagnosticVirtualTextHint = { fg = "${purple}", bg = util.darken(colors.purple, 0.1, colors.bg) },
 
     NeoTreeRootName = { fg = colors.orange, style = "bold" },
-  }
+    NeoTreeGitAdded = { fg = colors.green },
+    NeoTreeGitDeleted = { fg = colors.red },
+    NeoTreeGitModified = { fg = colors.yellow },
+    NeoTreeGitConflict = { fg = colors.red, style = "bold,italic" },
+    NeoTreeGitUntracked = { fg = colors.red, style = "italic" },
+    NeoTreeIndentMarker = { fg = colors.grey },
+    NeoTreeSymbolicLinkTarget = { fg = colors.purple },
+  },
+  styles = {
+    types = "NONE",
+    methods = "NONE",
+    numbers = "NONE",
+    strings = "NONE",
+    comments = "italic",
+    keywords = "NONE",
+    constants = "NONE",
+    functions = "NONE",
+    operators = "NONE",
+    variables = "NONE",
+    parameters = "italic",
+    conditionals = "NONE",
+    virtual_text = "NONE",
+  },
 })
 
 vim.cmd("colorscheme onedark")
