@@ -54,6 +54,21 @@ end)
 -- server setups
 lsp.nvim_workspace()
 
+lsp.configure("sumneko_lua", {
+  settings = {
+    Lua = {
+      format = {
+        enable = true,
+        defaultConfig = {
+          -- indent_style = "space",
+          -- indent_size = "2",
+          continuation_indent = "2",
+        }
+      },
+    }
+  }
+})
+
 lsp.configure("pyright", {
   settings = {
     python = {
@@ -70,4 +85,3 @@ lsp.configure("pyright", {
 })
 
 lsp.setup()
-

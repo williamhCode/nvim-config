@@ -19,42 +19,7 @@ M.configure = function(server, config)
 end
 
 M.nvim_workspace = function()
-  local runtime_path = vim.split(package.path, ';')
-  table.insert(runtime_path, 'lua/?.lua')
-  table.insert(runtime_path, 'lua/?/init.lua')
-
-  M.configure("sumneko_lua", {
-    settings = {
-      Lua = {
-        runtime = {
-          -- Tell the language server which version of Lua you"re using (most likely LuaJIT in the case of Neovim)
-          version = "LuaJIT",
-          path = runtime_path,
-        },
-        diagnostics = {
-          -- Get the language server to recognize the `vim` global
-          globals = { "vim" },
-        },
-        workspace = {
-          -- Make the server aware of Neovim runtime files
-          library = vim.api.nvim_get_runtime_file("", true),
-        },
-        -- Do not send telemetry data containing a randomized but unique identifier
-        telemetry = {
-          enable = false,
-        },
-        -- Indent based on editor work yet: https://github.com/LuaLS/lua-language-server/issues/1068
-        format = {
-          enable = true,
-          defaultConfig = {
-            -- indent_style = "space",
-            -- indent_size = "2",
-            continuation_indent = "2",
-          }
-        },
-      }
-    }
-  })
+  require("neodev").setup()
 end
 
 M.setup = function()

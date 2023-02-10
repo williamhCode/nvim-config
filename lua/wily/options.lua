@@ -20,6 +20,8 @@ opt.sidescrolloff = 10
 opt.splitright = true
 opt.splitbelow = true
 
+opt.pumblend = 10
+
 opt.termguicolors = true
 opt.cursorline = true
 opt.showmode = false
