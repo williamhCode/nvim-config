@@ -14,8 +14,9 @@ lsp.on_attach(function(client, bufnr)
   if client.server_capabilities.signatureHelpProvider then
     require('lsp-overloads').setup(client, {
       ui = {
+        border = "none",
         close_events = { "CursorMoved", "CursorMovedI", "InsertCharPre" },
-        floating_window_above_cur_line = true,
+        -- floating_window_above_cur_line = true,
       },
     })
   end
@@ -42,7 +43,7 @@ lsp.on_attach(function(client, bufnr)
   map('n', "gh", vim.lsp.buf.hover, opts)
   map('n', "gs", vim.lsp.buf.signature_help, opts)
   map('i', "<M-x>", vim.lsp.buf.signature_help, opts)
-  map('n', "gr", "<cmd>Telescope lsp_implementations<CR>", opts)
+  map('n', "gr", "<cmd>Telescope lsp_references<CR>", opts)
   map('n', "<leader>lf", vim.diagnostic.open_float, opts)
   if client.name ~= "texlab" then
     map('n', "<leader>lca", vim.lsp.buf.code_action, opts)
@@ -65,6 +66,8 @@ lsp.configure("sumneko_lua", {
           -- indent_style = "space",
           -- indent_size = "2",
           continuation_indent = "2",
+          quote_style = "double",
+          align_array_table = "false"
         }
       },
     }

@@ -17,11 +17,16 @@ require("lazy").setup({
   -- { "navarasu/onedark.nvim" },
   { "olimorris/onedarkpro.nvim" },
   { "ellisonleao/gruvbox.nvim" },
+
   -- UI
   {
     "goolord/alpha-nvim",
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-  },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  }, -- Greeter
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  }, -- Status Line
 
   ------------------- Coding --------------------
   -- General

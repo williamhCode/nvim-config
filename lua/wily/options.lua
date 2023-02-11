@@ -22,6 +22,7 @@ opt.splitbelow = true
 
 opt.pumblend = 10
 opt.pumheight = 12
+opt.winblend = 10
 
 opt.termguicolors = true
 -- opt.equalalways = false
@@ -36,3 +37,4 @@ opt.guicursor:append("a:blinkon1")
 --             \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
 --             \,sm:block-blinkwait175-blinkoff150-blinkon175
 -- ]])
+vim.cmd([[autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]])
