@@ -28,6 +28,14 @@ require("lazy").setup({
     dependencies = { "nvim-tree/nvim-web-devicons" },
   }, -- Status Line
 
+  -- Other
+  {
+    "norcalli/nvim-colorizer.lua",
+    config = function ()
+      require("colorizer").setup()
+    end
+  },
+
   ------------------- Coding --------------------
   -- General
   { "numToStr/Comment.nvim" }, -- Commenting

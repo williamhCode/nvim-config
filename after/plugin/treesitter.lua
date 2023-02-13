@@ -9,12 +9,13 @@ require('nvim-treesitter.configs').setup({
     "bash",
     "cpp",
     "glsl",
-    "latex"
+    "latex",
+    "help"
   },
 
   highlight = {
     enable = true,
-    disable = { "latex" },
+    disable = { "help", "latex" },
   },
 
   indent = {

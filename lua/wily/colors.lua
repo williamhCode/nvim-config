@@ -18,28 +18,28 @@ require("onedarkpro").setup({
     TermCursor = { fg = colors.black, bg = colors.white },
 
     -- Treesitter
-    ["@constructor.python"] = { fg = "${yellow}" },
+    ["@constructor.python"] = { fg = colors.yellow },
 
     -- Lsp
-    DiagnosticError = { fg = "${red}" },
-    DiagnosticWarn = { fg = "${yellow}" },
-    DiagnosticInfo = { fg = "${blue}" },
-    DiagnosticHint = { fg = "${purple}" },
+    DiagnosticError = { fg = colors.red },
+    DiagnosticWarn = { fg = colors.yellow },
+    DiagnosticInfo = { fg = colors.blue },
+    DiagnosticHint = { fg = colors.purple },
 
-    DiagnosticSignError = { fg = "${red}" },
-    DiagnosticSignWarn = { fg = "${yellow}" },
-    DiagnosticSignInfo = { fg = "${blue}" },
-    DiagnosticSignHint = { fg = "${purple}" },
+    DiagnosticSignError = { fg = colors.red },
+    DiagnosticSignWarn = { fg = colors.yellow },
+    DiagnosticSignInfo = { fg = colors.blue },
+    DiagnosticSignHint = { fg = colors.purple },
 
-    DiagnosticUnderlineError = { sp = "${red}", style = "undercurl" },
-    DiagnosticUnderlineWarn = { sp = "${yellow}", style = "undercurl" },
-    DiagnosticUnderlineInfo = { sp = "${blue}", style = "undercurl" },
-    DiagnosticUnderlineHint = { sp = "${purple}", style = "undercurl" },
+    DiagnosticUnderlineError = { sp = colors.red, style = "undercurl" },
+    DiagnosticUnderlineWarn = { sp = colors.yellow, style = "undercurl" },
+    DiagnosticUnderlineInfo = { sp = colors.blue, style = "undercurl" },
+    DiagnosticUnderlineHint = { sp = colors.purple, style = "undercurl" },
 
-    DiagnosticVirtualTextError = { fg = "${red}", bg = util.darken(colors.red, 0.1, colors.bg) },
-    DiagnosticVirtualTextWarn = { fg = "${yellow}", bg = util.darken(colors.yellow, 0.1, colors.bg) },
-    DiagnosticVirtualTextInfo = { fg = "${blue}", bg = util.darken(colors.blue, 0.1, colors.bg) },
-    DiagnosticVirtualTextHint = { fg = "${purple}", bg = util.darken(colors.purple, 0.1, colors.bg) },
+    DiagnosticVirtualTextError = { fg = colors.red, bg = util.darken(colors.red, 0.1, colors.bg) },
+    DiagnosticVirtualTextWarn = { fg = colors.yellow, bg = util.darken(colors.yellow, 0.1, colors.bg) },
+    DiagnosticVirtualTextInfo = { fg = colors.blue, bg = util.darken(colors.blue, 0.1, colors.bg) },
+    DiagnosticVirtualTextHint = { fg = colors.purple, bg = util.darken(colors.purple, 0.1, colors.bg) },
 
     -- Neo-tree
     NeoTreeRootName = { fg = colors.orange, style = "bold" },
@@ -52,7 +52,18 @@ require("onedarkpro").setup({
     NeoTreeSymbolicLinkTarget = { fg = colors.purple },
 
     -- Telescope
-    TelescopeBorder = { fg = colors.gray },
+    TelescopeNormal = { fg = colors.fg, bg = colors.float_bg },
+    TelescopeBorder = { fg = colors.gray, bg = colors.float_bg },
+
+    TelescopePromptNormal = { fg = colors.fg, bg = colors.fg_gutter },
+    TelescopePromptBorder = { fg = colors.fg, bg = colors.fg_gutter },
+    TelescopePromptTitle = { fg = colors.float_bg, bg = colors.red },
+    TelescopePromptCounter = { fg = colors.gray, bg = colors.fg_gutter },
+
+    TelescopeResultsTitle = { fg = colors.float_bg, bg = colors.float_bg },
+
+    TelescopePreviewTitle = { fg = colors.float_bg, bg = colors.green },
+
     TelescopeMatching = { fg = colors.orange, style = "bold" },
     TelescopePromptPrefix = { fg = colors.green },
   },

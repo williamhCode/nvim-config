@@ -24,6 +24,7 @@ opt.pumblend = 10
 opt.pumheight = 12
 opt.winblend = 10
 
+-- opt.cmdheight = 0
 opt.termguicolors = true
 -- opt.equalalways = false
 -- opt.cursorline = true
