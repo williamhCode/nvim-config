@@ -41,6 +41,15 @@ require("lualine").setup({
           return true
         end
       },
+      {
+        "filename",
+        path = 0,
+        cond = function()
+          if vim.bo.filetype == "toggleterm" then
+            return true
+          end
+        end
+      },
     },
     lualine_x = { "filetype" },
     lualine_y = { "progress" },

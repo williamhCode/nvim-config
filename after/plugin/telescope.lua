@@ -7,9 +7,9 @@ require("telescope").setup({
     layout_config = {
       horizontal = {
         prompt_position = "top",
-        height = 0.8,
-        width = 0.70,
-        preview_width = 0.6
+        -- height = 0.8,
+        -- width = 0.70,
+        -- preview_width = 0.45
       },
     },
     file_ignore_patterns = {

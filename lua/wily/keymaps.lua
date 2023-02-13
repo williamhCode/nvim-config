@@ -64,6 +64,7 @@ map("x", "<M-s>]", ">gv")
 
 -- terminal
 map("t", "<Esc>", "<C-\\><C-n>")
+map("t", "<C-w>", "<C-\\><C-n><C-w>")
 
 -- toggle options
 map("n", "<leader>tw", function()
