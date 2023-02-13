@@ -65,7 +65,6 @@ require("onedarkpro").setup({
     TelescopePreviewTitle = { fg = colors.float_bg, bg = colors.green },
 
     TelescopeMatching = { fg = colors.orange, style = "bold" },
-    TelescopePromptPrefix = { fg = colors.green },
   },
   styles = {
     types = "NONE",

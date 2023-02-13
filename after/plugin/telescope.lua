@@ -21,6 +21,9 @@ require("telescope").setup({
       n = {
         ["<C-c>"] = require("telescope.actions").close,
       },
+      i = {
+        ["<M-h>"] = { "<C-w>", type = "command" },
+      }
     },
     winblend = 10,
     border = true,
@@ -32,9 +35,7 @@ require("telescope").setup({
       hidden = true,
     },
     live_grep = {
-      additional_args = function(opts)
-        return { "--hidden" }
-      end
+      additional_args = { "--hidden" }
     },
     buffers = {
       sort_lastused = true,

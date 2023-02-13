@@ -2,7 +2,7 @@ local map = vim.keymap.set
 
 -- editing
 map("n", "<M-s>a", "ggVG")
-map({ "i", "c" }, "<M-bs>", "<C-w>")
+map({ "i", "c" }, "<M-bs>", "<C-w>", { remap = true })
 
 -- better deleting/cutting
 map({ "n", "x" }, "d", "\"_d")

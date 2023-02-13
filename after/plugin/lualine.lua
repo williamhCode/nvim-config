@@ -1,6 +1,9 @@
 local no_filename = {
   "toggleterm",
-  "neo-tree"
+  "neo-tree",
+  "TelescopePrompt",
+  "mason",
+  "lazy"
 }
 
 local onedark = require("lualine.themes.onedark")
@@ -11,7 +14,7 @@ require("lualine").setup({
     globalstatus = true,
     component_separators = "|",
     section_separators = "",
-    disabled_filetypes = { statusline = { "mason", "lazy", "alpha" } },
+    disabled_filetypes = { statusline = { --[[ "TelescopePrompt", "mason", "lazy", ]] "alpha" } },
   },
   sections = {
     lualine_a = { "mode" },

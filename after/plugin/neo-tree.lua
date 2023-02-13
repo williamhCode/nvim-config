@@ -30,7 +30,6 @@ require("neo-tree").setup({
   },
   window = {
     width = 35,
-
     mappings = {
       -- ["P"] = { "toggle_preview", config = { use_float = false } },
       ["L"] = "focus_preview",
@@ -44,7 +43,7 @@ require("neo-tree").setup({
   }
 })
 
-vim.keymap.set('n', "<M-s>b", "<cmd>Neotree toggle<CR>")
-vim.keymap.set('n', "<leader>et", "<cmd>Neotree toggle<CR>")
-vim.keymap.set('n', "<leader>ef", "<cmd>Neotree focus<CR>")
-vim.keymap.set('n', "<leader>er", "<cmd>Neotree reveal<CR>")
+vim.keymap.set("n", "<M-s>b", "<cmd>Neotree toggle<CR>")
+vim.keymap.set("n", "<leader>et", "<cmd>Neotree toggle<CR>")
+vim.keymap.set("n", "<leader>ef", "<cmd>Neotree focus<CR>")
+vim.keymap.set("n", "<leader>er", "<cmd>Neotree reveal<CR>")

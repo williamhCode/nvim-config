@@ -24,10 +24,10 @@ opt.pumblend = 10
 opt.pumheight = 12
 opt.winblend = 10
 
--- opt.cmdheight = 0
+opt.ignorecase = true
+opt.smartcase = true
+
 opt.termguicolors = true
--- opt.equalalways = false
--- opt.cursorline = true
 opt.showmode = false
 opt.wrap = false
 opt.hlsearch = false
