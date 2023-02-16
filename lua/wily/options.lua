@@ -30,7 +30,7 @@ opt.smartcase = true
 opt.termguicolors = true
 opt.showmode = false
 opt.wrap = false
-opt.hlsearch = false
+-- opt.hlsearch = false
 opt.undofile = true
 opt.updatetime = 250
 opt.guicursor:append("a:blinkon1")
@@ -39,3 +39,9 @@ opt.guicursor:append("a:blinkon1")
 --             \,sm:block-blinkwait175-blinkoff150-blinkon175
 -- ]])
 vim.cmd([[autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]])
+
+-- neovide
+if vim.g.neovide then
+  vim.g.neovide_input_macos_alt_is_meta = true
+end
+

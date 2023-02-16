@@ -1,7 +1,7 @@
 local lsp = require("wily.util.lsp")
 
-lsp.ensure_installed({
-  "sumneko_lua",
+lsp.servers({
+  "lua_ls",
   "pyright",
   "clangd",
   "jdtls",
@@ -36,6 +36,10 @@ lsp.on_attach(function(client, bufnr)
     })
   end
 
+  if client.server_capabilities.semanticTokensProvider then
+    require('hlargs').disable()
+  end
+
   local map = vim.keymap.set
   local opts = { buffer = bufnr }
   map('n', "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
@@ -57,7 +61,7 @@ end)
 -- server setups
 lsp.nvim_workspace()
 
-lsp.configure("sumneko_lua", {
+lsp.configure("lua_lsp", {
   settings = {
     Lua = {
       format = {

@@ -26,9 +26,6 @@ map({ "n", "x" }, "<leader>Y", "\"+Y")
 map("n", "<C-_>", "<C-^>")
 
 -- better find and replace, text editing
-map("x", "*", [[y/\V<C-R>=escape(@",'/\')<CR><CR>]])
-map("x", "#", [[y?\V<C-R>=escape(@",'/\')<CR><CR>]])
-
 map("n", "<leader>fr", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
 map("x", "<leader>fr", 'y:%s/<C-r>"/<C-r>"/gI<Left><Left><Left>')
 
@@ -37,17 +34,15 @@ map("n", "<leader>fc",
 map("x", "<leader>fc",
   [[y:,$s/<C-r>"/<C-r>"/gcI|1,''-&&<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>]])
 
+map("x", "*", [[y/\V<C-R>=escape(@",'/\')<CR><CR>]])
+map("x", "#", [[y?\V<C-R>=escape(@",'/\')<CR><CR>]])
+
 map({ "n", "x" }, "<leader>cn", "*Ncgn", { remap = true })
 map({ "n", "x" }, "<leader>cN", "*NcgN", { remap = true })
 
-local setup_cr = function()
-  map("n", "<CR>", ":nnoremap <buffer> <lt>Enter> @zn<CR>q:<C-u>let @z=strpart(@z,0,strlen(@z)-1)<CR>n",
-    { buffer = true })
-end
-
 map({ "n", "x" }, "<leader>cq", function()
-  setup_cr()
-  vim.cmd(":norm *Nqz")
+  map("n", "<CR>", "gno<ESC>@z", { buffer = true })
+  vim.cmd("norm *Nqz")
 end)
 
 -- quickfix shortcuts
@@ -76,7 +71,7 @@ map("n", "<leader>th", function()
 end)
 
 -- hydra mappings
-local Hydra = require('hydra')
+local Hydra = require("hydra")
 
 Hydra({
   mode = "n",
@@ -88,3 +83,4 @@ Hydra({
     { ">", "<C-w>3>" },
   }
 })
+

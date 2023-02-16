@@ -31,8 +31,10 @@ require("lazy").setup({
   -- Other
   {
     "norcalli/nvim-colorizer.lua",
-    config = function ()
-      require("colorizer").setup()
+    config = function()
+      require("colorizer").setup({
+        "*"; "!lazy"
+      })
     end
   },
 
@@ -71,22 +73,17 @@ require("lazy").setup({
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
   },
-  -- {
-  --   "m-demare/hlargs.nvim",
-  --   dependencies = { "nvim-treesitter/nvim-treesitter" },
-  --   config = function()
-  --     require('hlargs').setup({
-  --       color = "#e86671"
-  --     })
-  --   end
-  -- },
+  {
+    "m-demare/hlargs.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+  },
 
   -- Latex support
   {
     "lervag/vimtex",
     config = function()
       vim.g.vimtex_quickfix_open_on_warning = 0
-      vim.g.vimtex_view_method = 'sioyek'
+      vim.g.vimtex_view_method = "sioyek"
     end
   },
 

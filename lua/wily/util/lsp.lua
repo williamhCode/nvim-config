@@ -5,7 +5,7 @@ local settings = {
   configs = {},
 }
 
-M.ensure_installed = function(servers)
+M.servers = function(servers)
   settings.servers = servers
 end
 
