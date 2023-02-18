@@ -11,14 +11,29 @@ require("onedarkpro").setup({
     native_lsp = true,
   },
   highlights = {
-    -- Syntax
+    -- Editor
     MatchParen = { bg = colors.selection },
-    IncSearch = { fg = colors.orange, bg = colors.selection },
+    Search = { bg = colors.selection },
+    IncSearch = { bg = colors.selection },
     Cursor = { fg = colors.black, bg = colors.white },
     TermCursor = { fg = colors.black, bg = colors.white },
 
+    -- Syntax
+    PreProc = { fg = colors.purple },
+    Include = { fg = colors.purple },
+    Operator = { fg = colors.purple },
+    Macro = { fg = colors.orange },
+    PreCondit = { fg = colors.purple },
+    StorageClass = { fg = colors.purple },
+
     -- Treesitter
+    ["@constant.builtin"] = { link = "@constant" },
     ["@constructor.python"] = { fg = colors.yellow },
+
+    ["@operator.c"] = { fg = colors.white },
+    ["@operator.cpp"] = { fg = colors.white },
+    ["@type.builtin.c"] = { fg = colors.purple },
+    ["@type.builtin.cpp"] = { fg = colors.purple },
 
     -- Lsp
     DiagnosticError = { fg = colors.red },
@@ -88,3 +103,7 @@ vim.cmd("colorscheme onedark")
 -- require("onedark").setup()
 -- require("gruvbox").setup()
 -- vim.cmd("colorscheme gruvbox")
+
+-- vim.api.nvim_set_hl(0, "Search", { bg = colors.selection })
+-- vim.api.nvim_set_hl(0, "IncSearch", { bg = colors.selection })
+

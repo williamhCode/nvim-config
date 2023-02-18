@@ -6,7 +6,10 @@ local no_filename = {
   "lazy"
 }
 
-local onedark = require("lualine.themes.onedark")
+local path = vim.env.HOME .. "/.local/share/nvim/lazy/lualine.nvim/lua/lualine/?.lua"
+package.path = package.path .. ";" .. path
+
+local onedark = require("themes.onedark")
 
 require("lualine").setup({
   options = {
