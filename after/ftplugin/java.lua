@@ -6,3 +6,8 @@ term.set_run_cmd(
 )
 
 term.set_build_cmd("./gradlew assemble")
+
+-- set indentation to 4 spaces
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4

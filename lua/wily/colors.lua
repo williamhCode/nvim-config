@@ -20,12 +20,21 @@ require("onedarkpro").setup({
 
     -- Syntax
     PreProc = { fg = colors.purple },
+    Include = { fg = colors.purple },
     Operator = { fg = colors.purple },
+    Macro = { fg = colors.orange },
     PreCondit = { fg = colors.purple },
+
+    StorageClass = { fg = colors.purple },
 
     -- Treesitter
     ["@constant.builtin"] = { link = "@constant" },
     ["@constructor.python"] = { fg = colors.yellow },
+
+    -- ["@type.builtin.c"] = { fg = colors.purple },
+    -- ["@type.builtin.cpp"] = { fg = colors.purple },
+    ["@operator.c"] = { fg = colors.purple },
+    ["@operator.cpp"] = { fg = colors.purple },
 
     -- Lsp
     DiagnosticError = { fg = colors.red },

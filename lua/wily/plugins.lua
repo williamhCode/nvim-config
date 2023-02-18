@@ -87,6 +87,9 @@ require("lazy").setup({
     end
   },
 
+  -- Copilot
+  { "github/copilot.vim" },
+
   -------------------- Editor --------------------
   -- Navigation
   {
