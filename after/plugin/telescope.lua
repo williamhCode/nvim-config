@@ -1,5 +1,7 @@
 local Path = require("plenary.path")
 local utils = require("telescope.utils")
+local builtin = require("telescope.builtin")
+local map = vim.keymap.set
 
 require("telescope").setup({
   defaults = {
@@ -49,20 +51,6 @@ require("telescope").setup({
   },
 })
 
-local builtin = require("telescope.builtin")
-
-local function better_find_files(opts)
-  opts = opts or {}
-  -- we only want to do it if we have a gitignore and no .git dir
-  if vim.fn.filereadable(".gitignore") == 1 and vim.fn.isdirectory(".git/") == 0 and vim.fn.filereadable(".git") == 0 then
-    opts.find_command = { "rg", "--files", "--glob", "--ignore-file", ".gitignore" }
-  end
-  builtin.find_files(opts)
-end
-
-
-local map = vim.keymap.set
-
 local opts = {
   path_display = function(opts, path)
     -- make relative to cwd for oldfiles
@@ -73,10 +61,10 @@ local opts = {
   end,
 }
 
-local entry_maker = require("wily.util.telescope").gen_from_file(opts)
+local entry_maker = require("wily.util.telescope.make_entry").gen_from_file(opts)
 
 map("n", "<leader>sf", function()
-  builtin.find_files({
+  require("wily.util.telescope").better_find_files({
     entry_maker = entry_maker,
   })
 end)
