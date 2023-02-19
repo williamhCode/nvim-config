@@ -1,3 +1,5 @@
+local Path = require("plenary.path")
+
 require("telescope").setup({
   defaults = {
     prompt_prefix = "   ",
@@ -17,6 +19,13 @@ require("telescope").setup({
       "^%.git$",
       ".DS_Store",
     },
+    path_display = function(opts, path)
+      -- make relative to cwd for oldfiles
+      path = Path:new(path):make_relative(opts.cwd)
+      local tail = require("telescope.utils").path_tail(path)
+      local head = string.sub(path, 1, #path - #tail - 1)
+      return string.format("%-15s  %s", tail, head)
+    end,
     mappings = {
       n = {
         ["<C-c>"] = require("telescope.actions").close,
@@ -61,7 +70,6 @@ end
 
 map("n", "<C-p>", ":Telescope<CR>")
 map("n", "<leader>sf", better_find_files)
--- map('n', "<leader>sf", builtin.find_files)
 map("n", "<leader>sg", builtin.live_grep)
 map("n", "<leader>sb", builtin.buffers)
 map("n", "<leader>so", builtin.oldfiles)
