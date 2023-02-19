@@ -29,7 +29,7 @@
   "nvim-web-devicons": { "branch": "master", "commit": "bb6d4fd1e010300510172b173ab5205d37af084f" },
   "onedarkpro.nvim": { "branch": "main", "commit": "f79b875361d06a326d855393b5ed0ce4186a15c4" },
   "plenary.nvim": { "branch": "master", "commit": "9a0d3bf7b832818c042aaf30f692b081ddd58bd9" },
-  "telescope.nvim": { "branch": "0.1.x", "commit": "a1bd6866b539afdaa25305626c7aa6049b805d67" },
+  "telescope.nvim": { "branch": "0.1.x", "commit": "48ece76315958176bd3e69008a71503913fdefcc" },
   "toggleterm.nvim": { "branch": "main", "commit": "2a787c426ef00cb3488c11b14f5dcf892bbd0bda" },
   "vim-python-pep8-indent": { "branch": "master", "commit": "60ba5e11a61618c0344e2db190210145083c91f8" },
   "vimtex": { "branch": "master", "commit": "aa55f528d1a12ba2cdf7953639e5b6ced9aa1999" }

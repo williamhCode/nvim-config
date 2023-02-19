@@ -1,4 +1,5 @@
 local Path = require("plenary.path")
+local utils = require("telescope.utils")
 
 require("telescope").setup({
   defaults = {
@@ -19,13 +20,6 @@ require("telescope").setup({
       "^%.git$",
       ".DS_Store",
     },
-    path_display = function(opts, path)
-      -- make relative to cwd for oldfiles
-      path = Path:new(path):make_relative(opts.cwd)
-      local tail = require("telescope.utils").path_tail(path)
-      local head = string.sub(path, 1, #path - #tail - 1)
-      return string.format("%-15s  %s", tail, head)
-    end,
     mappings = {
       n = {
         ["<C-c>"] = require("telescope.actions").close,
@@ -51,12 +45,10 @@ require("telescope").setup({
     },
     oldfiles = {
       cwd_only = true,
-
     }
   },
 })
 
-local map = vim.keymap.set
 local builtin = require("telescope.builtin")
 
 local function better_find_files(opts)
@@ -68,8 +60,33 @@ local function better_find_files(opts)
   builtin.find_files(opts)
 end
 
+
+local map = vim.keymap.set
+
+local opts = {
+  path_display = function(opts, path)
+    -- make relative to cwd for oldfiles
+    path = Path:new(path):make_relative(opts.cwd)
+    local tail = utils.path_tail(path)
+    local head = string.sub(path, 1, #path - #tail - 1)
+    return string.format("%-15s  %s", tail, head)
+  end,
+}
+
+local entry_maker = require("wily.util.telescope").gen_from_file(opts)
+
+map("n", "<leader>sf", function()
+  builtin.find_files({
+    entry_maker = entry_maker,
+  })
+end)
+
+map("n", "<leader>so", function()
+  builtin.oldfiles({
+    entry_maker = entry_maker,
+  })
+end)
+
 map("n", "<C-p>", ":Telescope<CR>")
-map("n", "<leader>sf", better_find_files)
 map("n", "<leader>sg", builtin.live_grep)
 map("n", "<leader>sb", builtin.buffers)
-map("n", "<leader>so", builtin.oldfiles)
