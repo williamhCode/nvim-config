@@ -1,6 +1,6 @@
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
-  group = vim.api.nvim_create_augroup("highlight_yank", {}),
+  group = vim.api.nvim_create_augroup("wily_highlight_yank", {}),
   callback = function()
     vim.highlight.on_yank({
       -- higroup = "Visual",
@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- go to last location when opening a buffer
 vim.api.nvim_create_autocmd("BufReadPost", {
-  group = vim.api.nvim_create_augroup("last_location", {}),
+  group = vim.api.nvim_create_augroup("wily_last_location", {}),
   callback = function()
     local mark = vim.api.nvim_buf_get_mark(0, '"')
     local lcount = vim.api.nvim_buf_line_count(0)
@@ -24,6 +24,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 -- set glsl filetype
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  group = vim.api.nvim_create_augroup("wily_glsl_ft", {}),
   pattern = { "*.vert", "*.frag" },
   callback = function()
     vim.bo.filetype = "glsl"
@@ -31,7 +32,7 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 })
 
 -- file switching
-local group = vim.api.nvim_create_augroup("fileswitch_mapping", {})
+local group = vim.api.nvim_create_augroup("wily_fileswitch_mapping", {})
 local create_fileswitch_map = function(extensions)
   local create_autocmd = function(patterns)
     vim.api.nvim_create_autocmd("BufEnter", {
@@ -54,3 +55,33 @@ end
 create_fileswitch_map({ ".pyx", ".pxd" })
 create_fileswitch_map({ ".vert", ".frag" })
 create_fileswitch_map({ ".c", ".h" })
+<<<<<<< HEAD
+=======
+
+-- nohlsearch when cursor moves or enters insert mode
+vim.cmd([[
+noremap <expr> <Plug>(StopHL) execute('nohlsearch')[-1]
+noremap! <expr> <Plug>(StopHL) execute('nohlsearch')[-1]
+
+fu! HlSearch()
+    let s:pos = match(getline('.'), @/, col('.') - 1) + 1
+    if s:pos != col('.')
+        call StopHL()
+    endif
+endfu
+
+fu! StopHL()
+    if !v:hlsearch || mode() isnot 'n'
+        return
+    else
+        sil call feedkeys("\<Plug>(StopHL)", 'm')
+    endif
+endfu
+
+augroup wily_search_highlight
+au!
+    au CursorMoved * call HlSearch()
+    au InsertEnter * call StopHL()
+augroup end
+]])
+>>>>>>> 895a21493711134fe44f0816d1402bf6c7f97e23

@@ -32,6 +32,8 @@ require("neo-tree").setup({
     width = 35,
     mappings = {
       -- ["P"] = { "toggle_preview", config = { use_float = false } },
+      ["z"] = "none",
+      ["C"] = "close_all_nodes",
       ["L"] = "focus_preview",
       ["h"] = "close_node",
       ["l"] = "open",

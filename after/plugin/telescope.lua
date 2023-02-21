@@ -1,3 +1,8 @@
+local Path = require("plenary.path")
+local utils = require("telescope.utils")
+local builtin = require("telescope.builtin")
+local map = vim.keymap.set
+
 require("telescope").setup({
   defaults = {
     prompt_prefix = "   ",
@@ -42,26 +47,34 @@ require("telescope").setup({
     },
     oldfiles = {
       cwd_only = true,
-
     }
   },
 })
 
-local map = vim.keymap.set
-local builtin = require("telescope.builtin")
+local opts = {
+  path_display = function(opts, path)
+    -- make relative to cwd for oldfiles
+    path = Path:new(path):make_relative(opts.cwd)
+    local tail = utils.path_tail(path)
+    local head = string.sub(path, 1, #path - #tail - 1)
+    return string.format("%-15s  %s", tail, head)
+  end,
+}
 
-local function better_find_files(opts)
-  opts = opts or {}
-  -- we only want to do it if we have a gitignore and no .git dir
-  if vim.fn.filereadable(".gitignore") == 1 and vim.fn.isdirectory(".git/") == 0 and vim.fn.filereadable(".git") == 0 then
-    opts.find_command = { "rg", "--files", "--glob", "--ignore-file", ".gitignore" }
-  end
-  builtin.find_files(opts)
-end
+local entry_maker = require("wily.util.telescope.make_entry").gen_from_file(opts)
+
+map("n", "<leader>sf", function()
+  require("wily.util.telescope").better_find_files({
+    entry_maker = entry_maker,
+  })
+end)
+
+map("n", "<leader>so", function()
+  builtin.oldfiles({
+    entry_maker = entry_maker,
+  })
+end)
 
 map("n", "<C-p>", ":Telescope<CR>")
-map("n", "<leader>sf", better_find_files)
--- map('n', "<leader>sf", builtin.find_files)
 map("n", "<leader>sg", builtin.live_grep)
 map("n", "<leader>sb", builtin.buffers)
-map("n", "<leader>so", builtin.oldfiles)
