@@ -55,8 +55,6 @@ end
 create_fileswitch_map({ ".pyx", ".pxd" })
 create_fileswitch_map({ ".vert", ".frag" })
 create_fileswitch_map({ ".c", ".h" })
-<<<<<<< HEAD
-=======
 
 -- nohlsearch when cursor moves or enters insert mode
 vim.cmd([[
@@ -84,4 +82,3 @@ au!
     au InsertEnter * call StopHL()
 augroup end
 ]])
->>>>>>> 895a21493711134fe44f0816d1402bf6c7f97e23

@@ -24,27 +24,17 @@ require("onedarkpro").setup({
     Operator = { fg = colors.purple },
     Macro = { fg = colors.orange },
     PreCondit = { fg = colors.purple },
-<<<<<<< HEAD
-=======
 
->>>>>>> 895a21493711134fe44f0816d1402bf6c7f97e23
     StorageClass = { fg = colors.purple },
 
     -- Treesitter
     ["@constant.builtin"] = { link = "@constant" },
     ["@constructor.python"] = { fg = colors.yellow },
 
-<<<<<<< HEAD
     ["@operator.c"] = { fg = colors.white },
     ["@operator.cpp"] = { fg = colors.white },
     ["@type.builtin.c"] = { fg = colors.purple },
     ["@type.builtin.cpp"] = { fg = colors.purple },
-=======
-    -- ["@type.builtin.c"] = { fg = colors.purple },
-    -- ["@type.builtin.cpp"] = { fg = colors.purple },
-    ["@operator.c"] = { fg = colors.purple },
-    ["@operator.cpp"] = { fg = colors.purple },
->>>>>>> 895a21493711134fe44f0816d1402bf6c7f97e23
 
     -- Lsp
     DiagnosticError = { fg = colors.red },
@@ -116,10 +106,3 @@ vim.cmd("colorscheme onedark")
 -- require("onedark").setup()
 -- require("gruvbox").setup()
 -- vim.cmd("colorscheme gruvbox")
-
--- vim.api.nvim_set_hl(0, "Search", { bg = colors.selection })
--- vim.api.nvim_set_hl(0, "IncSearch", { bg = colors.selection })
-<<<<<<< HEAD
-
-=======
->>>>>>> 895a21493711134fe44f0816d1402bf6c7f97e23
