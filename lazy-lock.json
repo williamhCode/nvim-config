@@ -32,5 +32,5 @@
   "telescope.nvim": { "branch": "0.1.x", "commit": "766a45a972408f67e793a3b63e3c419ff5458753" },
   "toggleterm.nvim": { "branch": "main", "commit": "2a787c426ef00cb3488c11b14f5dcf892bbd0bda" },
   "vim-python-pep8-indent": { "branch": "master", "commit": "60ba5e11a61618c0344e2db190210145083c91f8" },
-  "vimtex": { "branch": "master", "commit": "8bbd3b0308ba8238c4d00a24d68a6074e19ccc0a" }
+  "vimtex": { "branch": "master", "commit": "05925afb8eaf6a76fad6e682270ad72a14faa757" }
 }
