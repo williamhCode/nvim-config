@@ -24,9 +24,19 @@ require("toggleterm").setup({
   --   end
   -- end,
 
-  direction = "horizontal",
+  highlights = {
+    NormalFloat = {
+      link = "NormalFloat"
+    },
+    FloatBorder = {
+      link = "NormalFloat"
+    },
+  },
+
+  direction = "float",
 
   float_opts = {
-      border = 'single'
+    border = "solid",
+    winblend = 10
   },
 })

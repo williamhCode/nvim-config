@@ -17,6 +17,8 @@ require("onedarkpro").setup({
     IncSearch = { bg = colors.selection },
     Cursor = { fg = colors.black, bg = colors.white },
     TermCursor = { fg = colors.black, bg = colors.white },
+    CursorLine = { bg = colors.color_column },
+    CursorLineNr = { fg = colors.line_number },
 
     -- Syntax
     PreProc = { fg = colors.purple },
@@ -31,10 +33,10 @@ require("onedarkpro").setup({
     ["@constant.builtin"] = { link = "@constant" },
     ["@constructor.python"] = { fg = colors.yellow },
 
-    -- ["@type.builtin.c"] = { fg = colors.purple },
-    -- ["@type.builtin.cpp"] = { fg = colors.purple },
-    ["@operator.c"] = { fg = colors.purple },
-    ["@operator.cpp"] = { fg = colors.purple },
+    ["@operator.c"] = { fg = colors.white },
+    ["@operator.cpp"] = { fg = colors.white },
+    ["@type.builtin.c"] = { fg = colors.purple },
+    ["@type.builtin.cpp"] = { fg = colors.purple },
 
     -- Lsp
     DiagnosticError = { fg = colors.red },
@@ -106,6 +108,3 @@ vim.cmd("colorscheme onedark")
 -- require("onedark").setup()
 -- require("gruvbox").setup()
 -- vim.cmd("colorscheme gruvbox")
-
--- vim.api.nvim_set_hl(0, "Search", { bg = colors.selection })
--- vim.api.nvim_set_hl(0, "IncSearch", { bg = colors.selection })

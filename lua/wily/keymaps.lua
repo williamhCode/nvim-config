@@ -64,11 +64,30 @@ map("t", "<C-w>", "<C-\\><C-n><C-w>")
 -- toggle options
 map("n", "<leader>tw", function()
   vim.opt.wrap = not vim.o.wrap
+  print("wrap is " .. tostring(vim.o.wrap));
 end)
 
 map("n", "<leader>th", function()
   vim.opt.hlsearch = not vim.o.hlsearch
+  print("hlsearch is " .. tostring(vim.o.hlsearch));
 end)
+
+map("n", "<leader>te", function()
+  vim.opt.equalalways = not vim.o.equalalways
+  print("equalalways is " .. tostring(vim.o.equalalways));
+end)
+
+-- user commands
+vim.cmd([[
+" remove trailing whitespace
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+
+command TW :call TrimWhitespace()
+]])
 
 -- hydra mappings
 local Hydra = require("hydra")
