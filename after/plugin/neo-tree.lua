@@ -16,6 +16,7 @@ require("neo-tree").setup({
       handler = function()
         vim.opt_local.scrolloff = 0
         vim.opt_local.sidescrolloff = 0
+        vim.opt_local.cursorline = true
       end
     }
   },
@@ -32,6 +33,7 @@ require("neo-tree").setup({
     width = 35,
     mappings = {
       -- ["P"] = { "toggle_preview", config = { use_float = false } },
+      ["/"] = "none",
       ["z"] = "none",
       ["C"] = "close_all_nodes",
       ["L"] = "focus_preview",

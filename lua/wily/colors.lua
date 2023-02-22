@@ -17,6 +17,8 @@ require("onedarkpro").setup({
     IncSearch = { bg = colors.selection },
     Cursor = { fg = colors.black, bg = colors.white },
     TermCursor = { fg = colors.black, bg = colors.white },
+    CursorLine = { bg = colors.color_column },
+    CursorLineNr = { fg = colors.line_number },
 
     -- Syntax
     PreProc = { fg = colors.purple },
