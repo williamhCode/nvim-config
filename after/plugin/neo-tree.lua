@@ -16,7 +16,7 @@ require("neo-tree").setup({
       handler = function()
         vim.opt_local.scrolloff = 0
         vim.opt_local.sidescrolloff = 0
-        vim.opt_local.cursorline = true
+        -- vim.opt_local.cursorline = true
       end
     }
   },
@@ -30,7 +30,12 @@ require("neo-tree").setup({
     use_libuv_file_watcher = true,
   },
   window = {
-    width = 35,
+    width = function()
+      local width = vim.fn.winwidth(0) * 0.2
+      width = math.max(width, 30)
+      width = math.min(width, 40)
+      return width
+    end,
     mappings = {
       -- ["P"] = { "toggle_preview", config = { use_float = false } },
       ["/"] = "none",
