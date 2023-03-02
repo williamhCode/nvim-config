@@ -56,9 +56,6 @@ local opts = {
     -- make relative to cwd for oldfiles
     path = Path:new(path):make_relative(opts.cwd)
     local tail = utils.path_tail(path)
-    if tail == path then
-      return tail
-    end
     local head = string.sub(path, 1, math.max(#path - #tail - 1, 0))
     return string.format("%-15s  %s", tail, head)
   end,

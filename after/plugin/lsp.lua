@@ -36,6 +36,7 @@ lsp.on_attach(function(client, bufnr)
     })
   end
 
+  -- client.server_capabilities.semanticTokensProvider = nil
   if client.server_capabilities.semanticTokensProvider then
     require('hlargs').disable()
   end

@@ -19,6 +19,7 @@ require("onedarkpro").setup({
     TermCursor = { fg = colors.black, bg = colors.white },
     CursorLine = { bg = colors.color_column },
     CursorLineNr = { fg = colors.line_number },
+    TabLineSel =  {fg = colors.bg, bg = colors.fg},
 
     -- Syntax
     PreProc = { fg = colors.purple },
@@ -35,6 +36,7 @@ require("onedarkpro").setup({
 
     ["@operator.c"] = { fg = colors.white },
     ["@operator.cpp"] = { fg = colors.white },
+    ["@type.c"] = { fg = colors.purple },
     ["@type.builtin.c"] = { fg = colors.purple },
     ["@type.builtin.cpp"] = { fg = colors.purple },
 

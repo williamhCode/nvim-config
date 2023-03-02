@@ -1,6 +1,7 @@
 local map = vim.keymap.set
 
 -- editing
+map("i", "<C-c>", "<Esc>")
 map("n", "<M-s>a", "ggVG")
 map({ "i", "c" }, "<M-bs>", "<C-w>", { remap = true })
 
