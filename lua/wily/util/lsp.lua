@@ -31,6 +31,7 @@ M.setup = function()
 
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = false
+  capabilities.offsetEncoding = "utf-8"
 
   for _, server in pairs(settings.servers) do
     local server_config = settings.configs[server] or {}

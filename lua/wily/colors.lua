@@ -36,6 +36,7 @@ require("onedarkpro").setup({
 
     ["@operator.c"] = { fg = colors.white },
     ["@operator.cpp"] = { fg = colors.white },
+    ["@type.c"] = { fg = colors.purple },
     ["@type.builtin.c"] = { fg = colors.purple },
     ["@type.builtin.cpp"] = { fg = colors.purple },
 
