@@ -30,7 +30,12 @@ require("neo-tree").setup({
     use_libuv_file_watcher = true,
   },
   window = {
-    width = 35,
+    width = function()
+      local width = vim.fn.winwidth(0) * 0.18
+      width = math.max(width, 30)
+      width = math.min(width, 40)
+      return width
+    end,
     mappings = {
       -- ["P"] = { "toggle_preview", config = { use_float = false } },
       ["/"] = "none",
