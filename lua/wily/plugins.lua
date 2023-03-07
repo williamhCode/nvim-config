@@ -48,6 +48,7 @@ require("lazy").setup({
   { "williamboman/mason.nvim" },
   { "williamboman/mason-lspconfig.nvim" },
 
+  -- Null Ls
   { "jose-elias-alvarez/null-ls.nvim" },
   { "jay-babu/mason-null-ls.nvim" },
 

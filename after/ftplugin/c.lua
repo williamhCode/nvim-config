@@ -1,4 +1,4 @@
-local term = require("wily.util.term")
+local term = require("wily.utils.term")
 
 term.set_build_cmd("gcc -Wall -Werror -std=c17 %")
 term.set_run_cmd("./a.out")

@@ -61,10 +61,10 @@ local opts = {
   end,
 }
 
-local entry_maker = require("wily.util.telescope.make_entry").gen_from_file(opts)
+local entry_maker = require("wily.utils.telescope.make_entry").gen_from_file(opts)
 
 map("n", "<leader>sf", function()
-  require("wily.util.telescope").better_find_files({
+  require("wily.utils.telescope").better_find_files({
     entry_maker = entry_maker,
   })
 end)

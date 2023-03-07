@@ -1,5 +1,5 @@
 -- colorschemes
-local util = require("wily.util.colors")
+local utils = require("wily.utils.colors")
 
 local color = require("onedarkpro.helpers")
 local colors = color.get_colors()
@@ -13,8 +13,8 @@ require("onedarkpro").setup({
   highlights = {
     -- Editor
     MatchParen = { bg = colors.selection },
-    Search = { fg = colors.yellow, bg = colors.selection },
-    IncSearch = { fg = colors.orange, bg = colors.selection },
+    Search = { fg = colors.bg, bg = colors.yellow },
+    IncSearch = { fg = colors.bg, bg = colors.orange },
     Cursor = { fg = colors.black, bg = colors.white },
     TermCursor = { fg = colors.black, bg = colors.white },
     CursorLine = { bg = colors.color_column },
@@ -64,10 +64,10 @@ require("onedarkpro").setup({
     DiagnosticUnderlineInfo = { sp = colors.blue, style = "undercurl" },
     DiagnosticUnderlineHint = { sp = colors.purple, style = "undercurl" },
 
-    DiagnosticVirtualTextError = { fg = colors.red, bg = util.darken(colors.red, 0.1, colors.bg) },
-    DiagnosticVirtualTextWarn = { fg = colors.yellow, bg = util.darken(colors.yellow, 0.1, colors.bg) },
-    DiagnosticVirtualTextInfo = { fg = colors.blue, bg = util.darken(colors.blue, 0.1, colors.bg) },
-    DiagnosticVirtualTextHint = { fg = colors.purple, bg = util.darken(colors.purple, 0.1, colors.bg) },
+    DiagnosticVirtualTextError = { fg = colors.red, bg = utils.darken(colors.red, 0.1, colors.bg) },
+    DiagnosticVirtualTextWarn = { fg = colors.yellow, bg = utils.darken(colors.yellow, 0.1, colors.bg) },
+    DiagnosticVirtualTextInfo = { fg = colors.blue, bg = utils.darken(colors.blue, 0.1, colors.bg) },
+    DiagnosticVirtualTextHint = { fg = colors.purple, bg = utils.darken(colors.purple, 0.1, colors.bg) },
 
     -- Neo-tree
     NeoTreeRootName = { fg = colors.orange, style = "bold" },
