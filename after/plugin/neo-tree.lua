@@ -14,9 +14,9 @@ require("neo-tree").setup({
     {
       event = "neo_tree_buffer_enter",
       handler = function()
-        vim.opt_local.scrolloff = 0
-        vim.opt_local.sidescrolloff = 0
-        -- vim.opt_local.cursorline = true
+        vim.opt.scrolloff = 0
+        vim.opt.sidescrolloff = 0
+        -- vim.opt.cursorline = true
       end
     }
   },

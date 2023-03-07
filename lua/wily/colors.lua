@@ -13,8 +13,8 @@ require("onedarkpro").setup({
   highlights = {
     -- Editor
     MatchParen = { bg = colors.selection },
-    Search = { bg = colors.selection },
-    IncSearch = { bg = colors.selection },
+    Search = { fg = colors.yellow, bg = colors.selection },
+    IncSearch = { fg = colors.orange, bg = colors.selection },
     Cursor = { fg = colors.black, bg = colors.white },
     TermCursor = { fg = colors.black, bg = colors.white },
     CursorLine = { bg = colors.color_column },
@@ -27,18 +27,26 @@ require("onedarkpro").setup({
     Operator = { fg = colors.purple },
     Macro = { fg = colors.orange },
     PreCondit = { fg = colors.purple },
+    -- Type = { fg = colors.purple },
 
     StorageClass = { fg = colors.purple },
 
     -- Treesitter
+    ["@field"] = { fg = colors.red },
+    ["@type"] = { link = "Type" },
+    -- ["@type.builtin"] = { fg = colors.purple },
+    -- ["@type.definition"] = { fg = colors.purple },
+    -- ["@type.qualifier"] = { fg = colors.purple },
     ["@constant.builtin"] = { link = "@constant" },
+
+    ["@field.lua"] = { fg = colors.red },
+    ["@parameter.lua"] = { fg = colors.red, style = "italic" },
+
     ["@constructor.python"] = { fg = colors.yellow },
 
+    ["@type.c"] = { fg = colors.purple },
     ["@operator.c"] = { fg = colors.white },
     ["@operator.cpp"] = { fg = colors.white },
-    ["@type.c"] = { fg = colors.purple },
-    ["@type.builtin.c"] = { fg = colors.purple },
-    ["@type.builtin.cpp"] = { fg = colors.purple },
 
     -- Lsp
     DiagnosticError = { fg = colors.red },
@@ -87,6 +95,17 @@ require("onedarkpro").setup({
     TelescopeMatching = { fg = colors.orange, style = "bold" },
 
     TelescopeDirectoryCustom = { fg = colors.comment },
+
+    -- Alpha
+    DashboardHeader = { fg = colors.yellow },
+  },
+  semantic_tokens = {
+    default = {
+      ["@class"] = { fg = colors.yellow },
+      ["@property"] = { fg = colors.red },
+      ["@global"] = { fg = colors.red },
+      ["@defaultLibrary"] = { fg = colors.cyan },
+    },
   },
   styles = {
     types = "NONE",

@@ -28,7 +28,6 @@ opt.ignorecase = true
 opt.smartcase = true
 
 opt.cursorline = true
-opt.colorcolumn = "80"
 opt.termguicolors = true
 opt.showmode = false
 opt.wrap = false
@@ -36,8 +35,9 @@ opt.wrap = false
 opt.undofile = true
 opt.updatetime = 250
 opt.guicursor:append("a:blinkon1")
+-- opt.formatoptions:remove( { "c", "r", "o" } )
+
 -- vim.cmd([[:set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
 --             \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
 --             \,sm:block-blinkwait175-blinkoff150-blinkon175
 -- ]])
-vim.cmd([[autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]])

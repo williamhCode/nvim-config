@@ -48,6 +48,9 @@ require("lazy").setup({
   { "williamboman/mason.nvim" },
   { "williamboman/mason-lspconfig.nvim" },
 
+  { "jose-elias-alvarez/null-ls.nvim" },
+  { "jay-babu/mason-null-ls.nvim" },
+
   -- Lsp Extras
   { "Issafalcon/lsp-overloads.nvim" }, -- Signature Help
   { "folke/neodev.nvim" }, -- Nvim Workspace
