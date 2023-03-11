@@ -7,14 +7,14 @@ local helpers = require("null-ls.helpers")
 
 null_ls.setup({
   on_attach = function(client, bufnr)
-    if vim.o.filetype == "pyrex" then
-      vim.opt.formatexpr = ""
-    end
     local map = vim.keymap.set
     local opts = { buffer = bufnr }
-    map('n', "[d", vim.diagnostic.goto_prev, opts)
-    map('n', "]d", vim.diagnostic.goto_next, opts)
-    map('n', "<leader>lf", vim.diagnostic.open_float, opts)
+    if vim.o.filetype == "pyrex" then
+      map('n', "[d", vim.diagnostic.goto_prev, opts)
+      map('n', "]d", vim.diagnostic.goto_next, opts)
+      map('n', "<leader>lf", vim.diagnostic.open_float, opts)
+    end
+    vim.opt.formatexpr = ""
   end,
   sources = {
     null_ls.builtins.formatting.black
