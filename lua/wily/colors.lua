@@ -8,7 +8,8 @@ require("onedarkpro").setup({
   plugins = {
     all = false,
     treesitter = true,
-    native_lsp = true,
+    nvim_lsp = true,
+    semantic_tokens = true,
   },
   highlights = {
     -- Editor
@@ -32,6 +33,9 @@ require("onedarkpro").setup({
     StorageClass = { fg = colors.purple },
 
     -- Treesitter
+    -- ["@label.help"] = { fg = colors.green },
+    -- ["@title.help"] = { fg = colors.purple },
+
     ["@field"] = { fg = colors.red },
     ["@type"] = { link = "Type" },
     -- ["@type.builtin"] = { fg = colors.purple },
@@ -41,12 +45,16 @@ require("onedarkpro").setup({
 
     ["@field.lua"] = { fg = colors.red },
     ["@parameter.lua"] = { fg = colors.red, style = "italic" },
+    ["@lsp.typemod.variable.defaultLibrary.lua"] = { fg = colors.red },
 
-    ["@constructor.python"] = { fg = colors.yellow },
+    ["@include.python"] = { fg = colors.purple },
 
     ["@type.c"] = { fg = colors.purple },
     ["@operator.c"] = { fg = colors.white },
     ["@operator.cpp"] = { fg = colors.white },
+
+    ["@text.reference"] = { fg = colors.red },
+    ["@text.literal"] = { link = "Comment" },
 
     -- Lsp
     DiagnosticError = { fg = colors.red },
@@ -98,14 +106,6 @@ require("onedarkpro").setup({
 
     -- Alpha
     DashboardHeader = { fg = colors.yellow },
-  },
-  semantic_tokens = {
-    default = {
-      ["@class"] = { fg = colors.yellow },
-      ["@property"] = { fg = colors.red },
-      ["@global"] = { fg = colors.red },
-      ["@defaultLibrary"] = { fg = colors.cyan },
-    },
   },
   styles = {
     types = "NONE",
