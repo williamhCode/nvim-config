@@ -1,4 +1,4 @@
-local term = require("wily.util.term")
+local term = require("wily.utils.term")
 
 term.set_run_cmd(
   "java -jar " ..

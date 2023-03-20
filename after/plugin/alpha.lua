@@ -10,6 +10,7 @@ local logo = [[
 ]]
 
 dashboard.section.header.val = vim.split(logo, "\n")
+dashboard.section.header.opts.hl = "DashboardHeader"
 dashboard.section.buttons.val = {
   dashboard.button("SPC s f", "  Find file"),
   dashboard.button("SPC s o", "  Recently opened files"),

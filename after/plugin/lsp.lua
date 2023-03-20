@@ -1,4 +1,4 @@
-local lsp = require("wily.util.lsp")
+local lsp = require("wily.utils.lsp")
 
 lsp.servers({
   "lua_ls",

@@ -1,5 +1,5 @@
 -- colorschemes
-local util = require("wily.util.colors")
+local utils = require("wily.utils.colors")
 
 local color = require("onedarkpro.helpers")
 local colors = color.get_colors()
@@ -8,13 +8,14 @@ require("onedarkpro").setup({
   plugins = {
     all = false,
     treesitter = true,
-    native_lsp = true,
+    nvim_lsp = true,
+    semantic_tokens = true,
   },
   highlights = {
     -- Editor
     MatchParen = { bg = colors.selection },
-    Search = { bg = colors.selection },
-    IncSearch = { bg = colors.selection },
+    Search = { fg = colors.bg, bg = colors.yellow },
+    IncSearch = { fg = colors.bg, bg = colors.orange },
     Cursor = { fg = colors.black, bg = colors.white },
     TermCursor = { fg = colors.black, bg = colors.white },
     CursorLine = { bg = colors.color_column },
@@ -27,18 +28,33 @@ require("onedarkpro").setup({
     Operator = { fg = colors.purple },
     Macro = { fg = colors.orange },
     PreCondit = { fg = colors.purple },
+    -- Type = { fg = colors.purple },
 
     StorageClass = { fg = colors.purple },
 
     -- Treesitter
-    ["@constant.builtin"] = { link = "@constant" },
-    ["@constructor.python"] = { fg = colors.yellow },
+    -- ["@label.help"] = { fg = colors.green },
+    -- ["@title.help"] = { fg = colors.purple },
 
+    ["@field"] = { fg = colors.red },
+    ["@type"] = { link = "Type" },
+    -- ["@type.builtin"] = { fg = colors.purple },
+    -- ["@type.definition"] = { fg = colors.purple },
+    -- ["@type.qualifier"] = { fg = colors.purple },
+    ["@constant.builtin"] = { link = "@constant" },
+
+    ["@field.lua"] = { fg = colors.red },
+    ["@parameter.lua"] = { fg = colors.red, style = "italic" },
+    ["@lsp.typemod.variable.defaultLibrary.lua"] = { fg = colors.red },
+
+    ["@include.python"] = { fg = colors.purple },
+
+    ["@type.c"] = { fg = colors.purple },
     ["@operator.c"] = { fg = colors.white },
     ["@operator.cpp"] = { fg = colors.white },
-    ["@type.c"] = { fg = colors.purple },
-    ["@type.builtin.c"] = { fg = colors.purple },
-    ["@type.builtin.cpp"] = { fg = colors.purple },
+
+    ["@text.reference"] = { fg = colors.red },
+    ["@text.literal"] = { link = "Comment" },
 
     -- Lsp
     DiagnosticError = { fg = colors.red },
@@ -56,10 +72,10 @@ require("onedarkpro").setup({
     DiagnosticUnderlineInfo = { sp = colors.blue, style = "undercurl" },
     DiagnosticUnderlineHint = { sp = colors.purple, style = "undercurl" },
 
-    DiagnosticVirtualTextError = { fg = colors.red, bg = util.darken(colors.red, 0.1, colors.bg) },
-    DiagnosticVirtualTextWarn = { fg = colors.yellow, bg = util.darken(colors.yellow, 0.1, colors.bg) },
-    DiagnosticVirtualTextInfo = { fg = colors.blue, bg = util.darken(colors.blue, 0.1, colors.bg) },
-    DiagnosticVirtualTextHint = { fg = colors.purple, bg = util.darken(colors.purple, 0.1, colors.bg) },
+    DiagnosticVirtualTextError = { fg = colors.red, bg = utils.darken(colors.red, 0.1, colors.bg) },
+    DiagnosticVirtualTextWarn = { fg = colors.yellow, bg = utils.darken(colors.yellow, 0.1, colors.bg) },
+    DiagnosticVirtualTextInfo = { fg = colors.blue, bg = utils.darken(colors.blue, 0.1, colors.bg) },
+    DiagnosticVirtualTextHint = { fg = colors.purple, bg = utils.darken(colors.purple, 0.1, colors.bg) },
 
     -- Neo-tree
     NeoTreeRootName = { fg = colors.orange, style = "bold" },
@@ -87,6 +103,9 @@ require("onedarkpro").setup({
     TelescopeMatching = { fg = colors.orange, style = "bold" },
 
     TelescopeDirectoryCustom = { fg = colors.comment },
+
+    -- Alpha
+    DashboardHeader = { fg = colors.yellow },
   },
   styles = {
     types = "NONE",

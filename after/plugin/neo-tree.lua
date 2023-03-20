@@ -16,7 +16,7 @@ require("neo-tree").setup({
       handler = function()
         vim.opt_local.scrolloff = 0
         vim.opt_local.sidescrolloff = 0
-        -- vim.opt_local.cursorline = true
+        -- vim.opt.cursorline = true
       end
     }
   },
@@ -31,7 +31,7 @@ require("neo-tree").setup({
   },
   window = {
     width = function()
-      local width = vim.fn.winwidth(0) * 0.18
+      local width = vim.api.nvim_win_get_width(0) * 0.2
       width = math.max(width, 30)
       width = math.min(width, 40)
       return width

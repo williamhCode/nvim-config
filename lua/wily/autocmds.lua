@@ -22,12 +22,20 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   end,
 })
 
--- set glsl filetype
+-- set filetypes
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   group = vim.api.nvim_create_augroup("wily_glsl_ft", {}),
   pattern = { "*.vert", "*.frag" },
   callback = function()
     vim.bo.filetype = "glsl"
+  end
+})
+
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  group = vim.api.nvim_create_augroup("wily_cmake_ft", {}),
+  pattern = "CMakeLists.txt",
+  callback = function()
+    vim.bo.filetype = "cmake"
   end
 })
 
@@ -82,3 +90,4 @@ au!
     au InsertEnter * call StopHL()
 augroup end
 ]])
+
