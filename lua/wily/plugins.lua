@@ -104,7 +104,7 @@ require("lazy").setup({
         "nvim-tree/nvim-web-devicons",
         "MunifTanjim/nui.nvim",
       },
-      dev = true,
+      dev = false,
     }, -- File Tree
     {
       "nvim-telescope/telescope.nvim",

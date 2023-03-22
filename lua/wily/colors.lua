@@ -9,7 +9,8 @@ require("onedarkpro").setup({
     all = false,
     treesitter = true,
     nvim_lsp = true,
-    semantic_tokens = true,
+    lsp_semantic_tokens = true,
+    -- semantic_tokens = true,
   },
   highlights = {
     -- Editor
@@ -33,15 +34,13 @@ require("onedarkpro").setup({
     StorageClass = { fg = colors.purple },
 
     -- Treesitter
-    -- ["@label.help"] = { fg = colors.green },
-    -- ["@title.help"] = { fg = colors.purple },
-
     ["@field"] = { fg = colors.red },
     ["@type"] = { link = "Type" },
-    -- ["@type.builtin"] = { fg = colors.purple },
-    -- ["@type.definition"] = { fg = colors.purple },
-    -- ["@type.qualifier"] = { fg = colors.purple },
+    ["@type.builtin"] = { fg = colors.purple },
+    ["@type.definition"] = { fg = colors.purple },
+    ["@type.qualifier"] = { fg = colors.purple },
     ["@constant.builtin"] = { link = "@constant" },
+    ["@function.builtin"] = { fg = colors.cyan },
 
     ["@field.lua"] = { fg = colors.red },
     ["@parameter.lua"] = { fg = colors.red, style = "italic" },
