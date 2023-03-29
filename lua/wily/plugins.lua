@@ -124,6 +124,9 @@ require("lazy").setup({
 
     -- Keymap Modes
     { "anuvyklack/hydra.nvim" },
+
+    -- Local Configuration
+    { "klen/nvim-config-local" },
   },
   {
     dev = {

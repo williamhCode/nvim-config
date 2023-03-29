@@ -28,7 +28,6 @@ require("onedarkpro").setup({
     Operator = { fg = colors.purple },
     Macro = { fg = colors.orange },
     PreCondit = { fg = colors.purple },
-    -- Type = { fg = colors.purple },
     StorageClass = { fg = colors.purple },
 
     -- Treesitter
@@ -45,6 +44,9 @@ require("onedarkpro").setup({
     ["@lsp.typemod.variable.defaultLibrary.lua"] = { fg = colors.red },
 
     ["@include.python"] = { fg = colors.purple },
+    ["@type.builtin.python"] = { link = "@type" },
+    ["@type.definition.python"] = { link = "@type" },
+    ["@type.qualifier.python"] = { link = "@type" },
 
     ["@type.c"] = { fg = colors.purple },
     ["@operator.c"] = { fg = colors.white },
