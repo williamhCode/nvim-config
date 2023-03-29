@@ -29,6 +29,10 @@ map({ "n", "x" }, "<leader>Y", "\"+Y")
 -- file switch
 map("n", "<C-_>", "<C-^>")
 
+-- better page up/down
+map("n", "<C-u>", "20<C-u>")
+map("n", "<C-d>", "20<C-d>")
+
 -- better find and replace, text editing
 map("n", "<leader>fr", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
 map("x", "<leader>fr", 'y:%s/<C-r>"/<C-r>"/gI<Left><Left><Left>')

@@ -36,4 +36,3 @@
   "toggleterm.nvim": { "branch": "main", "commit": "2a787c426ef00cb3488c11b14f5dcf892bbd0bda" },
   "vim-python-pep8-indent": { "branch": "master", "commit": "60ba5e11a61618c0344e2db190210145083c91f8" },
   "vimtex": { "branch": "master", "commit": "7c1bc9b8ad6c6bddc0194aeb27b34bd1107880f2" }
-}
