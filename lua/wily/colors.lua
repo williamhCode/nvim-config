@@ -19,7 +19,7 @@ require("onedarkpro").setup({
     Cursor = { fg = colors.black, bg = colors.white },
     TermCursor = { fg = colors.black, bg = colors.white },
     CursorLine = { bg = colors.color_column },
-    CursorLineNr = { fg = colors.line_number },
+    CursorLineNr = { fg = colors.fg },
     TabLineSel = { fg = colors.bg, bg = colors.fg },
 
     -- Syntax
@@ -75,6 +75,8 @@ require("onedarkpro").setup({
     DiagnosticVirtualTextWarn = { fg = colors.yellow, bg = utils.darken(colors.yellow, 0.1, colors.bg) },
     DiagnosticVirtualTextInfo = { fg = colors.blue, bg = utils.darken(colors.blue, 0.1, colors.bg) },
     DiagnosticVirtualTextHint = { fg = colors.purple, bg = utils.darken(colors.purple, 0.1, colors.bg) },
+
+    LspSignatureActiveParameter = { fg = colors.orange, style = "bold" },
 
     -- Neo-tree
     NeoTreeRootName = { fg = colors.orange, style = "bold" },

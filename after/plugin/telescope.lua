@@ -30,7 +30,7 @@ require("telescope").setup({
         ["<M-h>"] = { "<C-w>", type = "command" },
       }
     },
-    winblend = 10,
+    -- winblend = 10,
     border = true,
     borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
     color_devicons = true,
