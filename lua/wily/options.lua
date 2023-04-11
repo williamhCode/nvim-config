@@ -41,4 +41,3 @@ vim.cmd([[autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatop
 --             \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
 --             \,sm:block-blinkwait175-blinkoff150-blinkon175
 -- ]])
-
