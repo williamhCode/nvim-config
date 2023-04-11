@@ -94,6 +94,15 @@ require("lazy").setup({
     -- Copilot
     { "zbirenbaum/copilot.lua" },
 
+    -- Docs gen
+    {
+      "kkoomen/vim-doge",
+      build = ":call doge#install()",
+      config = function()
+        vim.g.doge_doc_standard_python = "google"
+      end
+    },
+
     -------------------- Editor --------------------
     -- Navigation
     {
@@ -122,8 +131,14 @@ require("lazy").setup({
       tag = "2.3.0",
     },
 
+    -- Undotree
+    { "https://github.com/mbbill/undotree" },
+
     -- Keymap Modes
     { "anuvyklack/hydra.nvim" },
+
+    -- Local Configuration
+    { "klen/nvim-config-local" },
   },
   {
     dev = {

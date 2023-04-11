@@ -20,9 +20,9 @@ opt.sidescrolloff = 10
 opt.splitright = true
 opt.splitbelow = true
 
-opt.pumblend = 10
+-- opt.pumblend = 10
 opt.pumheight = 12
-opt.winblend = 10
+-- opt.winblend = 10
 
 opt.ignorecase = true
 opt.smartcase = true
@@ -36,7 +36,6 @@ opt.undofile = true
 opt.updatetime = 250
 opt.guicursor:append("a:blinkon1")
 -- vim.cmd([[autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]])
-
 -- vim.cmd([[:set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
 --             \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
 --             \,sm:block-blinkwait175-blinkoff150-blinkon175

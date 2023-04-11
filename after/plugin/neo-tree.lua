@@ -31,7 +31,7 @@ require("neo-tree").setup({
   },
   window = {
     width = function()
-      local width = vim.api.nvim_win_get_width(0) * 0.2
+      local width = vim.go.columns * 0.2
       width = math.max(width, 30)
       width = math.min(width, 40)
       return width

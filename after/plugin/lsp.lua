@@ -8,6 +8,7 @@ lsp.servers({
   "omnisharp_mono",
   "bashls",
   "texlab",
+  "cmake",
 })
 
 lsp.on_attach(function(client, bufnr)
