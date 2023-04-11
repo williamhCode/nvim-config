@@ -76,6 +76,8 @@ require("onedarkpro").setup({
     DiagnosticVirtualTextInfo = { fg = colors.blue, bg = utils.darken(colors.blue, 0.1, colors.bg) },
     DiagnosticVirtualTextHint = { fg = colors.purple, bg = utils.darken(colors.purple, 0.1, colors.bg) },
 
+    LspSignatureActiveParameter = { fg = colors.orange, style = "bold" },
+
     -- Neo-tree
     NeoTreeRootName = { fg = colors.orange, style = "bold" },
     NeoTreeGitAdded = { fg = colors.green },
