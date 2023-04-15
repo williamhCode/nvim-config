@@ -21,6 +21,7 @@ require("onedarkpro").setup({
     CursorLine = { bg = colors.color_column },
     CursorLineNr = { fg = colors.fg },
     TabLineSel = { fg = colors.bg, bg = colors.fg },
+    SpecialKey = { fg = colors.comment },
 
     -- Syntax
     PreProc = { fg = colors.purple },
@@ -107,6 +108,11 @@ require("onedarkpro").setup({
 
     -- Alpha
     DashboardHeader = { fg = colors.yellow },
+
+    -- Tagbar
+    TagbarHighlight = { fg = colors.orange, style = "bold" },
+    TagbarScope = { fg = colors.yellow },
+    TagbarType = { fg = colors.purple },
   },
   styles = {
     types = "NONE",

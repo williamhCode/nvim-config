@@ -31,7 +31,7 @@ require("neo-tree").setup({
   },
   window = {
     width = function()
-      local width = vim.go.columns * 0.2
+      local width = vim.o.columns * 0.2
       width = math.max(width, 30)
       width = math.min(width, 40)
       return width
@@ -52,7 +52,16 @@ require("neo-tree").setup({
   }
 })
 
-vim.keymap.set("n", "<M-s>b", "<cmd>Neotree toggle<CR>")
+-- vim.keymap.set("n", "<M-s>b", "<cmd>Neotree toggle<CR>")
+local sidebar = require("wily.utils.sidebar")
+sidebar.set_cmds("<M-s>b",
+  function()
+    vim.cmd("Neotree toggle")
+  end,
+  function()
+    vim.cmd("Neotree close")
+  end
+)
 vim.keymap.set("n", "<leader>et", "<cmd>Neotree toggle<CR>")
 vim.keymap.set("n", "<leader>ef", "<cmd>Neotree focus<CR>")
 vim.keymap.set("n", "<leader>er", "<cmd>Neotree reveal<CR>")
