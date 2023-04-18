@@ -36,11 +36,21 @@ require("lazy").setup({
           "*", "!lazy"
         })
       end
-    },
+    }, -- highlight colors
+
+    {
+      'edluffy/hologram.nvim',
+      enabled = false,
+      config = function()
+        require('hologram').setup({
+          auto_display = true
+        })
+      end
+    }, -- Images support
 
     ------------------- Coding --------------------
     -- General
-    { "numToStr/Comment.nvim" },         -- Commenting
+    { "numToStr/Comment.nvim" }, -- Commenting
     { "Vimjas/vim-python-pep8-indent" }, -- Cython Indentation
 
     -- Lsp Support
@@ -54,7 +64,7 @@ require("lazy").setup({
 
     -- Lsp Extras
     { "Issafalcon/lsp-overloads.nvim" }, -- Signature Help
-    { "folke/neodev.nvim" },             -- Nvim Workspace
+    { "folke/neodev.nvim" }, -- Nvim Workspace
     {
       "j-hui/fidget.nvim",
       config = true
@@ -88,6 +98,7 @@ require("lazy").setup({
       config = function()
         vim.g.vimtex_quickfix_open_on_warning = 0
         vim.g.vimtex_view_method = "sioyek"
+        vim.g.vimtex_format_enabled = 1
       end
     },
 
@@ -124,6 +135,7 @@ require("lazy").setup({
       "ThePrimeagen/harpoon",
       dependencies = { "nvim-lua/plenary.nvim" },
     }, -- File Jumping
+    { "preservim/tagbar" }, -- Tagbar
 
     -- Terminal
     {
@@ -132,7 +144,7 @@ require("lazy").setup({
     },
 
     -- Undotree
-    { "https://github.com/mbbill/undotree" },
+    { "mbbill/undotree" },
 
     -- Keymap Modes
     { "anuvyklack/hydra.nvim" },

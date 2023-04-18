@@ -96,6 +96,8 @@ endfun
 
 command TW :call TrimWhitespace()
 ]])
+-- set Q as wa then qa if wa success
+vim.api.nvim_create_user_command("Q", "wa | qa", {})
 
 -- hydra mappings
 local Hydra = require("hydra")

@@ -9,6 +9,7 @@ opt.softtabstop = 4
 opt.expandtab = true
 opt.smartindent = true
 opt.shiftround = true
+opt.mousescroll = "ver:1,hor:3"
 
 opt.number = true
 opt.relativenumber = true

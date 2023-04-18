@@ -1,6 +1,9 @@
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
+
 -- Highlight on yank
-vim.api.nvim_create_autocmd("TextYankPost", {
-  group = vim.api.nvim_create_augroup("wily_highlight_yank", {}),
+autocmd("TextYankPost", {
+  group = augroup("wily_highlight_yank", {}),
   callback = function()
     vim.highlight.on_yank({
       -- higroup = "Visual",
@@ -11,8 +14,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- go to last location when opening a buffer
-vim.api.nvim_create_autocmd("BufReadPost", {
-  group = vim.api.nvim_create_augroup("wily_last_location", {}),
+autocmd("BufReadPost", {
+  group = augroup("wily_last_location", {}),
   callback = function()
     local mark = vim.api.nvim_buf_get_mark(0, '"')
     local lcount = vim.api.nvim_buf_line_count(0)
@@ -23,16 +26,16 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 
 -- set filetypes
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-  group = vim.api.nvim_create_augroup("wily_glsl_ft", {}),
+autocmd({ "BufNewFile", "BufRead" }, {
+  group = augroup("wily_glsl_ft", {}),
   pattern = { "*.vert", "*.frag" },
   callback = function()
     vim.bo.filetype = "glsl"
   end
 })
 
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-  group = vim.api.nvim_create_augroup("wily_cmake_ft", {}),
+autocmd({ "BufNewFile", "BufRead" }, {
+  group = augroup("wily_cmake_ft", {}),
   pattern = "CMakeLists.txt",
   callback = function()
     vim.bo.filetype = "cmake"
@@ -40,10 +43,10 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 })
 
 -- file switching
-local group = vim.api.nvim_create_augroup("wily_fileswitch_mapping", {})
+local group = augroup("wily_fileswitch_mapping", {})
 local create_fileswitch_map = function(extensions)
   local create_autocmd = function(patterns)
-    vim.api.nvim_create_autocmd("BufEnter", {
+    autocmd("BufEnter", {
       group = group,
       pattern = "*" .. patterns[1],
       callback = function()
