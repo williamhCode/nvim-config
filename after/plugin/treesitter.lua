@@ -10,8 +10,8 @@ require("nvim-treesitter.configs").setup({
     "cpp",
     "glsl",
     "latex",
-    "help",
     "markdown",
+    "vimdoc"
   },
 
   highlight = {
