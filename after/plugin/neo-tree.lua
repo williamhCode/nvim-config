@@ -34,7 +34,7 @@ require("neo-tree").setup({
       local width = vim.o.columns * 0.2
       width = math.max(width, 30)
       width = math.min(width, 40)
-      return width
+      return math.floor(width)
     end,
     mappings = {
       -- ["P"] = { "toggle_preview", config = { use_float = false } },
