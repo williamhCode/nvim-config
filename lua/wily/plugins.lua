@@ -151,6 +151,9 @@ require("lazy").setup({
 
     -- Local Configuration
     { "klen/nvim-config-local" },
+
+    -- ssh clipboard
+    { "ojroques/nvim-osc52" },
   },
   {
     dev = {
