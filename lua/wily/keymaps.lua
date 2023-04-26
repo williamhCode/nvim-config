@@ -85,6 +85,16 @@ map("n", "<leader>te", function()
   print("equalalways is " .. tostring(vim.o.equalalways));
 end)
 
+local diagnostics_active = true
+map('n', '<leader>td', function()
+  diagnostics_active = not diagnostics_active
+  if diagnostics_active then
+    vim.diagnostic.enable()
+  else
+    vim.diagnostic.disable()
+  end
+end)
+
 -- user commands
 vim.cmd([[
 " remove trailing whitespace

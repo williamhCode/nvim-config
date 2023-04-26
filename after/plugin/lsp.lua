@@ -22,6 +22,10 @@ lsp.on_attach(function(client, bufnr)
     })
   end
 
+  -- if client.server_capabilities.documentSymbolProvider then
+  --   require("nvim-navic").attach(client, bufnr)
+  -- end
+
   if client.server_capabilities.documentHighlightProvider then
     local group = vim.api.nvim_create_augroup("lsp_document_highlight", { clear = false })
     vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
@@ -86,7 +90,6 @@ lsp.configure("pyright", {
       analysis = {
         typeCheckingMode = "off",
         autoImportCompletions = false,
-
         autoSearchPaths = true,
         useLibraryCodeForTypes = true,
         diagnosticMode = "workspace",
