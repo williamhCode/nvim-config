@@ -28,6 +28,18 @@ require("neo-tree").setup({
       },
     },
     use_libuv_file_watcher = true,
+    window = {
+      mappings = {
+        ["o"] = "system_open",
+      },
+    },
+    commands = {
+      system_open = function(state)
+        local node = state.tree:get_node()
+        local path = node:get_id()
+        vim.cmd(string.format("silent !open '%s'", path))
+      end,
+    },
   },
   window = {
     width = function()

@@ -27,6 +27,21 @@ require("lazy").setup({
       "nvim-lualine/lualine.nvim",
       dependencies = { "nvim-tree/nvim-web-devicons" },
     }, -- Status Line
+    {
+      "utilyre/barbecue.nvim",
+      version = "*",
+      dependencies = {
+        "SmiteshP/nvim-navic",
+        "nvim-tree/nvim-web-devicons", -- optional dependency
+      },
+      opts = {
+        show_dirname = false,
+        show_navic = true,
+        symbols = {
+          separator = ""
+        }
+      }
+    }, -- Breadcrumbs
 
     -- Other
     {
@@ -124,7 +139,7 @@ require("lazy").setup({
         "nvim-tree/nvim-web-devicons",
         "MunifTanjim/nui.nvim",
       },
-      dev = false,
+      dev = true,
     }, -- File Tree
     {
       "nvim-telescope/telescope.nvim",
