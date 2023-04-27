@@ -9,7 +9,6 @@ opt.softtabstop = 4
 opt.expandtab = true
 opt.smartindent = true
 opt.shiftround = true
-opt.mousescroll = "ver:1,hor:3"
 
 opt.number = true
 opt.relativenumber = true
@@ -28,6 +27,10 @@ opt.pumheight = 12
 opt.ignorecase = true
 opt.smartcase = true
 
+opt.completeopt = "menu,menuone,noinsert,noselect"
+opt.wildmode = "longest:full,full"
+
+opt.mousescroll = "ver:2,hor:3"
 opt.cursorline = true
 opt.termguicolors = true
 opt.showmode = false
@@ -35,6 +38,7 @@ opt.wrap = false
 -- opt.hlsearch = false
 opt.undofile = true
 opt.updatetime = 250
+
 opt.guicursor:append("a:blinkon1")
 vim.cmd([[autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]])
 

@@ -32,8 +32,6 @@ local kind_icons = {
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 
 cmp.setup({
-  performance = {
-  },
   snippet = {
     expand = function(args)
       require('luasnip').lsp_expand(args.body)
@@ -44,7 +42,7 @@ cmp.setup({
     -- documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert({
-    ['<C-u>'] = cmp.mapping.scroll_docs( -4),
+    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
     ['<C-e>'] = cmp.mapping.confirm({ select = true }),
 
@@ -57,8 +55,8 @@ cmp.setup({
     end, { "i", "s" }),
 
     ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if luasnip.jumpable( -1) then
-        luasnip.jump( -1)
+      if luasnip.jumpable(-1) then
+        luasnip.jump(-1)
       else
         fallback()
       end
@@ -70,11 +68,11 @@ cmp.setup({
       vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
       -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
       vim_item.menu = ({
-          nvim_lsp = "[LSP]",
-          luasnip = "[Snippet]",
-          buffer = "[Buffer]",
-          path = "[Path]",
-        })[entry.source.name]
+        nvim_lsp = "[LSP]",
+        luasnip = "[Snippet]",
+        buffer = "[Buffer]",
+        path = "[Path]",
+      })[entry.source.name]
       return vim_item
     end,
   },

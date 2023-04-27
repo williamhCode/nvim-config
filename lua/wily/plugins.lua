@@ -17,6 +17,7 @@ require("lazy").setup({
     -- { "navarasu/onedark.nvim" },
     { "olimorris/onedarkpro.nvim" },
     { "ellisonleao/gruvbox.nvim" },
+    { "rebelot/kanagawa.nvim" },
 
     -- UI
     {
@@ -27,21 +28,20 @@ require("lazy").setup({
       "nvim-lualine/lualine.nvim",
       dependencies = { "nvim-tree/nvim-web-devicons" },
     }, -- Status Line
-    {
-      "utilyre/barbecue.nvim",
-      version = "*",
-      dependencies = {
-        "SmiteshP/nvim-navic",
-        "nvim-tree/nvim-web-devicons", -- optional dependency
-      },
-      opts = {
-        show_dirname = false,
-        show_navic = true,
-        symbols = {
-          separator = ""
-        }
-      }
-    }, -- Breadcrumbs
+    -- {
+    --   "utilyre/barbecue.nvim",
+    --   version = "*",
+    --   dependencies = {
+    --     "SmiteshP/nvim-navic",
+    --     "nvim-tree/nvim-web-devicons", -- optional dependency
+    --   },
+    --   opts = {
+    --     show_dirname = false,
+    --     show_basename = true,
+    --     show_navic = false,
+    --     show_modified = true,
+    --   }
+    -- }, -- Breadcrumbs
 
     -- Other
     {
