@@ -42,7 +42,7 @@ require("lualine").setup({
     section_separators = "",
     disabled_filetypes = {
       statusline = { "alpha" },
-      winbar = { "alpha", "neo-tree" },
+      winbar = { "alpha", "neo-tree", "tagbar", "undotree", "diff" },
     },
   },
   sections = {
