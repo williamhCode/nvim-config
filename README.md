@@ -1,7 +1,6 @@
 # Wily
 
-My personalized neovim config.  
-Theme: One Dark Pro
+My personalized neovim config.
 
 ## Screenshots
 
