@@ -35,8 +35,8 @@ require("lazy").setup({
         "nvim-tree/nvim-web-devicons", -- optional dependency
       },
       opts = {
-        show_dirname = false,
-        show_navic = true,
+        show_dirname = true,
+        show_navic = false,
         symbols = {
           separator = ""
         }
@@ -139,7 +139,7 @@ require("lazy").setup({
         "nvim-tree/nvim-web-devicons",
         "MunifTanjim/nui.nvim",
       },
-      dev = true,
+      dev = false,
     }, -- File Tree
     {
       "nvim-telescope/telescope.nvim",
