@@ -8,3 +8,7 @@ vim.g.undotree_SetFocusWhenToggle = 1
 local sidebar = require("wily.utils.sidebar")
 -- vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 sidebar.set_cmds("<leader>u", vim.cmd.UndotreeToggle, vim.cmd.UndotreeHide)
+
+vim.g.Undotree_CustomMap = function()
+  vim.keymap.set("n", "l", "<plug>UndotreeEnter", { buffer = true })
+end

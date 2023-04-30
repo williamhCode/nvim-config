@@ -17,8 +17,9 @@ dashboard.section.buttons.val = {
   dashboard.button("SPC s g", "  Find word"),
 }
 
+local padding_val = math.floor((vim.o.lines - 16) * 0.30)
 dashboard.config.layout = {
-  { type = "padding", val = 9 },
+  { type = "padding", val = padding_val },
   unpack(dashboard.config.layout)
 }
 
