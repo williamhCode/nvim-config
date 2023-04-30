@@ -70,28 +70,27 @@ map("t", "<Esc>", "<C-\\><C-n>")
 map("t", "<C-w>", "<C-\\><C-n><C-w>")
 
 -- toggle options
-map("n", "<leader>tw", function()
-  vim.opt.wrap = not vim.o.wrap
-  print("wrap is " .. tostring(vim.o.wrap));
-end)
+local map_toggle_option = function(key, option)
+  map("n", "<leader>t" .. key, function()
+    vim.opt[option] = not vim.o[option]
+    local message = vim.o[option] and "enabled" or "disabled"
+    print(option .. " is " .. message);
+  end)
+end
 
-map("n", "<leader>th", function()
-  vim.opt.hlsearch = not vim.o.hlsearch
-  print("hlsearch is " .. tostring(vim.o.hlsearch));
-end)
-
-map("n", "<leader>te", function()
-  vim.opt.equalalways = not vim.o.equalalways
-  print("equalalways is " .. tostring(vim.o.equalalways));
-end)
+map_toggle_option("w", "wrap")
+map_toggle_option("h", "hlsearch")
+map_toggle_option("e", "equalalways")
 
 local diagnostics_active = true
 map('n', '<leader>td', function()
   diagnostics_active = not diagnostics_active
   if diagnostics_active then
     vim.diagnostic.enable()
+    print("diagnostics enabled");
   else
     vim.diagnostic.disable()
+    print("diagnostics disabled");
   end
 end)
 

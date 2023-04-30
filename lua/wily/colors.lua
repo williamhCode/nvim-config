@@ -132,11 +132,11 @@ require("onedarkpro").setup({
 })
 
 require('kanagawa').setup({
-    theme = "wave",
-    background = {
-        dark = "wave",
-        light = "lotus"
-    },
+  theme = "wave",
+  background = {
+    dark = "wave",
+    light = "lotus"
+  },
 })
 
 -- vim.cmd("colorscheme kanagawa")
@@ -144,4 +144,3 @@ vim.cmd("colorscheme onedark")
 
 -- require("onedark").setup()
 -- require("gruvbox").setup()
-

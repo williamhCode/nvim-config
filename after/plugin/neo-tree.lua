@@ -57,8 +57,8 @@ require("neo-tree").setup({
       ["h"] = "close_node",
       ["l"] = "open",
       ["<TAB>"] = function(state)
-        require("neo-tree.sources.filesystem.commands").open(state)
-        require("neo-tree.command").execute({ action = "focus" })
+        state.commands["open"](state)
+        vim.cmd("Neotree focus")
       end
     }
   }
