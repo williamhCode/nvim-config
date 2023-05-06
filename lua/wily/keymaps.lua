@@ -30,16 +30,16 @@ map({ "n", "x" }, "<leader>Y", "\"+Y", { remap = true })
 map("n", "<C-_>", "<C-^>")
 
 -- better page up/down
-local replace = function(key)
-  return vim.api.nvim_replace_termcodes(key, true, false, true)
+local feedkey = function(key, mode)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, false, true), mode, false)
 end
 map("n", "<C-u>", function()
   local height = math.min(vim.fn.winheight(0) / 2, 20)
-  vim.api.nvim_feedkeys(replace(height .. "<C-u>"), "n", false)
+  feedkey(height .. "<C-u>", "n")
 end)
 map("n", "<C-d>", function()
   local height = math.min(vim.fn.winheight(0) / 2, 20)
-  vim.api.nvim_feedkeys(replace(height .. "<C-d>"), "n", false)
+  feedkey(height .. "<C-d>", "n")
 end)
 
 -- better find and replace, text editing
