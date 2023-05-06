@@ -141,6 +141,7 @@ require('kanagawa').setup({
 
 -- vim.cmd("colorscheme kanagawa")
 vim.cmd("colorscheme onedark")
+-- require('vscode').load()
 
 -- require("onedark").setup()
 -- require("gruvbox").setup()

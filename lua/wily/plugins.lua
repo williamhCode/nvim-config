@@ -15,6 +15,7 @@ require("lazy").setup({
     ----------------- Colors and UI ----------------
     -- Colorschemes
     -- { "navarasu/onedark.nvim" },
+    -- { "Mofiqul/vscode.nvim" },
     { "olimorris/onedarkpro.nvim" },
     { "ellisonleao/gruvbox.nvim" },
     { "rebelot/kanagawa.nvim" },
@@ -155,7 +156,7 @@ require("lazy").setup({
     -- Terminal
     {
       "akinsho/toggleterm.nvim",
-      tag = "2.3.0",
+      tag = "v2.6.0",
     },
 
     -- Undotree

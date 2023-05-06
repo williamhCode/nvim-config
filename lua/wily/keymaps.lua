@@ -24,14 +24,23 @@ map({ "n", "x" }, "<leader>p", "\"+p")
 map({ "n", "x" }, "<leader>P", "\"+P")
 
 map({ "n", "x" }, "<leader>y", "\"+y")
-map({ "n", "x" }, "<leader>Y", "\"+Y")
+map({ "n", "x" }, "<leader>Y", "\"+Y", { remap = true })
 
 -- file switch
 map("n", "<C-_>", "<C-^>")
 
 -- better page up/down
-map("n", "<C-u>", "20<C-u>")
-map("n", "<C-d>", "20<C-d>")
+local replace = function(key)
+  return vim.api.nvim_replace_termcodes(key, true, false, true)
+end
+map("n", "<C-u>", function()
+  local height = math.min(vim.fn.winheight(0) / 2, 20)
+  vim.api.nvim_feedkeys(replace(height .. "<C-u>"), "n", false)
+end)
+map("n", "<C-d>", function()
+  local height = math.min(vim.fn.winheight(0) / 2, 20)
+  vim.api.nvim_feedkeys(replace(height .. "<C-d>"), "n", false)
+end)
 
 -- better find and replace, text editing
 map("n", "<leader>fr", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
@@ -121,4 +130,3 @@ Hydra({
     { ">", "<C-w>3>" },
   }
 })
-

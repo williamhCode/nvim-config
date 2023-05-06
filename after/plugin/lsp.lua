@@ -80,7 +80,7 @@ lsp.configure("lua_lsp", {
         enable = true,
         defaultConfig = {
           -- indent_style = "space",
-          -- indent_size = "2",
+          indent_size = "2",
           continuation_indent = "2",
           quote_style = "double",
           align_array_table = "false"

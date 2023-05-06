@@ -42,6 +42,16 @@ autocmd({ "BufNewFile", "BufRead" }, {
   end
 })
 
+-- press q to close buffer
+autocmd("FileType", {
+  group = augroup("wily_close_buffers", {}),
+  pattern = { "qf", "help" },
+  callback = function()
+    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = true })
+    vim.opt_local.buflisted = false
+  end
+})
+
 -- file switching
 local group = augroup("wily_fileswitch_mapping", {})
 local create_fileswitch_map = function(extensions)
@@ -123,3 +133,12 @@ if v:version >= 700
     autocmd BufEnter * call AutoRestoreWinView()
 endif
 ]])
+
+-- quickfix auto-open
+autocmd("QuickFixCmdPost", {
+  group = augroup("wily_quickfix", {}),
+  pattern = "[^l]*",
+  callback = function()
+    vim.cmd("botright cwindow")
+  end,
+})
