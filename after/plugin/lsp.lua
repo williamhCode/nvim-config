@@ -1,3 +1,5 @@
+-- vim.lsp.set_log_level("debug")
+
 local lsp = require("wily.utils.lsp")
 
 lsp.servers({
@@ -9,11 +11,13 @@ lsp.servers({
   "bashls",
   "texlab",
   "cmake",
+  "rust_analyzer",
+  -- "wgsl_analyzer",
 })
 
 lsp.on_attach(function(client, bufnr)
   if client.server_capabilities.signatureHelpProvider then
-    require('lsp-overloads').setup(client, {
+    require("lsp-overloads").setup(client, {
       ui = {
         border = "none",
         close_events = { "CursorMoved", "CursorMovedI", "InsertCharPre" },
@@ -37,27 +41,27 @@ lsp.on_attach(function(client, bufnr)
     })
   end
 
-  -- client.server_capabilities.semanticTokensProvider = nil
-  if client.server_capabilities.semanticTokensProvider then
-    require('hlargs').disable()
-  end
+  -- if client.server_capabilities.semanticTokensProvider then
+  -- end
 
   local map = vim.keymap.set
   local opts = { buffer = bufnr }
-  map('n', "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
-  map('n', "gD", vim.lsp.buf.declaration, opts)
-  map('n', "gh", vim.lsp.buf.hover, opts)
-  map('n', "gs", vim.lsp.buf.signature_help, opts)
-  map('i', "<M-x>", vim.lsp.buf.signature_help, opts)
-  map('n', "gr", "<cmd>Telescope lsp_references<CR>", opts)
-  map('n', "<leader>lf", vim.diagnostic.open_float, opts)
+  map("n", "<leader>sd", "<cmd>Telescope lsp_document_symbols<CR>", opts)
+  map("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
+  map("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
+  map("n", "gD", vim.lsp.buf.declaration, opts)
+  map("n", "gh", vim.lsp.buf.hover, opts)
+  map("n", "gs", vim.lsp.buf.signature_help, opts)
+  map("i", "<M-x>", vim.lsp.buf.signature_help, opts)
+  map("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
+  map("n", "<leader>lf", vim.diagnostic.open_float, opts)
   if client.name ~= "texlab" then
-    map('n', "<leader>lca", vim.lsp.buf.code_action, opts)
-    map('n', "<leader>lrn", vim.lsp.buf.rename, opts)
+    map("n", "<leader>lca", vim.lsp.buf.code_action, opts)
+    map("n", "<leader>lrn", vim.lsp.buf.rename, opts)
   end
-  map('n', "[d", vim.diagnostic.goto_prev, opts)
-  map('n', "]d", vim.diagnostic.goto_next, opts)
-  map({ 'n', 'v' }, "<M-F>", function() vim.lsp.buf.format({ async = true }) end, opts)
+  map("n", "[d", vim.diagnostic.goto_prev, opts)
+  map("n", "]d", vim.diagnostic.goto_next, opts)
+  map({ "n", "v" }, "<M-F>", function() vim.lsp.buf.format({ async = true }) end, opts)
 end)
 
 -- server setups
@@ -73,7 +77,7 @@ lsp.configure("jdtls", {
   }
 })
 
-lsp.configure("lua_lsp", {
+lsp.configure("lua_ls", {
   settings = {
     Lua = {
       format = {
@@ -102,6 +106,18 @@ lsp.configure("pyright", {
       },
     },
   },
+})
+
+lsp.configure("rust_analyzer", {
+  settings = {
+    ["rust-analyzer"] = {
+      rustfmt = {
+        -- rangeFormatting = {
+        --   enable = true
+        -- }
+      }
+    }
+  }
 })
 
 lsp.setup()

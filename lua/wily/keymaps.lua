@@ -34,11 +34,11 @@ local feedkey = function(key, mode)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, false, true), mode, false)
 end
 map("n", "<C-u>", function()
-  local height = math.min(vim.fn.winheight(0) / 2, 20)
+  local height = math.floor(math.min(vim.fn.winheight(0) / 2, 20))
   feedkey(height .. "<C-u>", "n")
 end)
 map("n", "<C-d>", function()
-  local height = math.min(vim.fn.winheight(0) / 2, 20)
+  local height = math.floor(math.min(vim.fn.winheight(0) / 2, 20))
   feedkey(height .. "<C-d>", "n")
 end)
 
@@ -78,6 +78,12 @@ map("x", "<M-s>]", ">gv")
 map("t", "<Esc>", "<C-\\><C-n>")
 map("t", "<C-w>", "<C-\\><C-n><C-w>")
 
+-- default build command
+vim.keymap.set("n", "<leader>b", function()
+  vim.cmd("wall")
+  vim.cmd("make! build")
+end)
+
 -- toggle options
 local map_toggle_option = function(key, option)
   map("n", "<leader>t" .. key, function()
@@ -91,16 +97,11 @@ map_toggle_option("w", "wrap")
 map_toggle_option("h", "hlsearch")
 map_toggle_option("e", "equalalways")
 
-local diagnostics_active = true
-map('n', '<leader>td', function()
-  diagnostics_active = not diagnostics_active
-  if diagnostics_active then
-    vim.diagnostic.enable()
-    print("diagnostics enabled");
-  else
-    vim.diagnostic.disable()
-    print("diagnostics disabled");
-  end
+map('n', '<leader>d', function()
+  local virtual_text = not vim.diagnostic.config().virtual_text
+  vim.diagnostic.config({
+    virtual_text = virtual_text,
+  })
 end)
 
 -- user commands

@@ -45,14 +45,14 @@ require("lazy").setup({
     -- }, -- Breadcrumbs
 
     -- Other
-    {
-      "norcalli/nvim-colorizer.lua",
-      config = function()
-        require("colorizer").setup({
-          "*", "!lazy"
-        })
-      end
-    }, -- highlight colors
+    -- {
+    --   "norcalli/nvim-colorizer.lua",
+    --   config = function()
+    --     require("colorizer").setup({
+    --       "*", "!lazy"
+    --     })
+    --   end
+    -- }, -- highlight colors
 
     {
       'edluffy/hologram.nvim',
@@ -65,9 +65,12 @@ require("lazy").setup({
     }, -- Images support
 
     ------------------- Coding --------------------
-    -- General
     { "numToStr/Comment.nvim" }, -- Commenting
+
+    -- Language Support
     { "Vimjas/vim-python-pep8-indent" }, -- Cython Indentation
+    { "rust-lang/rust.vim" },
+    { "DingDean/wgsl.vim" },
 
     -- Lsp Support
     { "neovim/nvim-lspconfig" },
@@ -122,13 +125,13 @@ require("lazy").setup({
     { "zbirenbaum/copilot.lua" },
 
     -- Docs gen
-    {
-      "kkoomen/vim-doge",
-      build = ":call doge#install()",
-      config = function()
-        vim.g.doge_doc_standard_python = "google"
-      end
-    },
+    -- {
+    --   "kkoomen/vim-doge",
+    --   build = ":call doge#install()",
+    --   config = function()
+    --     vim.g.doge_doc_standard_python = "google"
+    --   end
+    -- },
 
     -------------------- Editor --------------------
     -- Navigation

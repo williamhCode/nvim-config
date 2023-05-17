@@ -30,6 +30,7 @@ require("onedarkpro").setup({
     Macro = { fg = colors.orange },
     PreCondit = { fg = colors.purple },
     StorageClass = { fg = colors.purple },
+    -- Structure = { fg = colors.yellow },
 
     -- Treesitter
     ["@field"] = { fg = colors.red },
@@ -39,6 +40,8 @@ require("onedarkpro").setup({
     ["@type.qualifier"] = { fg = colors.purple },
     ["@constant.builtin"] = { link = "@constant" },
     ["@function.builtin"] = { fg = colors.cyan },
+
+    ["@lsp.type.struct.rust"] = { fg = colors.yellow },
 
     ["@field.lua"] = { fg = colors.red },
     ["@parameter.lua"] = { fg = colors.red, style = "italic" },
@@ -76,6 +79,11 @@ require("onedarkpro").setup({
     DiagnosticVirtualTextWarn = { fg = colors.yellow, bg = utils.darken(colors.yellow, 0.1, colors.bg) },
     DiagnosticVirtualTextInfo = { fg = colors.blue, bg = utils.darken(colors.blue, 0.1, colors.bg) },
     DiagnosticVirtualTextHint = { fg = colors.purple, bg = utils.darken(colors.purple, 0.1, colors.bg) },
+
+    -- DiagnosticVirtualTextError = { fg = colors.red },
+    -- DiagnosticVirtualTextWarn = { fg = colors.yellow },
+    -- DiagnosticVirtualTextInfo = { fg = colors.blue },
+    -- DiagnosticVirtualTextHint = { fg = colors.purple },
 
     LspSignatureActiveParameter = { fg = colors.orange, style = "bold" },
 
@@ -119,7 +127,7 @@ require("onedarkpro").setup({
     methods = "NONE",
     numbers = "NONE",
     strings = "NONE",
-    comments = "italic",
+    comments = "NONE",
     keywords = "NONE",
     constants = "NONE",
     functions = "NONE",

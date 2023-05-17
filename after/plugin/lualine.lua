@@ -23,7 +23,7 @@ local winbar_settings = {
     {
       "filename",
       padding = 0,
-      color = { bg = "bg", gui = "bold" },
+      color = { fg = "fg", bg = "bg", gui = "bold" },
       symbols = {
         modified = "●",
       }

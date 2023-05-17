@@ -11,7 +11,9 @@ require("nvim-treesitter.configs").setup({
     "glsl",
     "latex",
     "markdown",
-    "vimdoc"
+    "vimdoc",
+    "rust",
+    "wgsl"
   },
 
   highlight = {
@@ -22,7 +24,7 @@ require("nvim-treesitter.configs").setup({
 
   indent = {
     enable = true,
-    disable = { "python", "lua" },
+    disable = { "python", "lua", "rust", "wgsl" },
   },
 
   incremental_selection = {
@@ -35,4 +37,3 @@ require("nvim-treesitter.configs").setup({
     },
   },
 })
-
