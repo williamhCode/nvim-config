@@ -43,6 +43,8 @@ require("onedarkpro").setup({
 
     ["@lsp.type.struct.rust"] = { fg = colors.yellow },
 
+    ["@lsp.type.comment"] = {},
+
     ["@field.lua"] = { fg = colors.red },
     ["@parameter.lua"] = { fg = colors.red, style = "italic" },
     ["@lsp.typemod.variable.defaultLibrary.lua"] = { fg = colors.red },
@@ -139,17 +141,15 @@ require("onedarkpro").setup({
   },
 })
 
-require('kanagawa').setup({
-  theme = "wave",
-  background = {
-    dark = "wave",
-    light = "lotus"
-  },
-})
+-- require('kanagawa').setup({
+--   theme = "wave",
+--   background = {
+--     dark = "wave",
+--     light = "lotus"
+--   },
+-- })
 
 -- vim.cmd("colorscheme kanagawa")
 vim.cmd("colorscheme onedark")
--- require('vscode').load()
 
--- require("onedark").setup()
--- require("gruvbox").setup()
+-- vim.cmd("colorscheme github_light")

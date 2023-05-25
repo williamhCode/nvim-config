@@ -13,7 +13,7 @@ require("nvim-treesitter.configs").setup({
     "markdown",
     "vimdoc",
     "rust",
-    "wgsl"
+    "wgsl",
   },
 
   highlight = {

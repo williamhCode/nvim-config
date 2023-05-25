@@ -15,7 +15,7 @@ require("lazy").setup({
     ----------------- Colors and UI ----------------
     -- Colorschemes
     -- { "navarasu/onedark.nvim" },
-    -- { "Mofiqul/vscode.nvim" },
+    { "projekt0n/github-nvim-theme" },
     { "olimorris/onedarkpro.nvim" },
     { "ellisonleao/gruvbox.nvim" },
     { "rebelot/kanagawa.nvim" },
@@ -148,7 +148,7 @@ require("lazy").setup({
     {
       "nvim-telescope/telescope.nvim",
       dependencies = { "nvim-lua/plenary.nvim" },
-      branch = "0.1.x",
+      -- branch = "0.1.x",
     }, -- Fuzzy Finder
     {
       "ThePrimeagen/harpoon",

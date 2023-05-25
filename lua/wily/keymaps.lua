@@ -79,10 +79,10 @@ map("t", "<Esc>", "<C-\\><C-n>")
 map("t", "<C-w>", "<C-\\><C-n><C-w>")
 
 -- default build command
-vim.keymap.set("n", "<leader>b", function()
-  vim.cmd("wall")
-  vim.cmd("make! build")
-end)
+-- vim.keymap.set("n", "<leader>b", function()
+--   vim.cmd("wall")
+--   vim.cmd("make! build")
+-- end)
 
 -- toggle options
 local map_toggle_option = function(key, option)

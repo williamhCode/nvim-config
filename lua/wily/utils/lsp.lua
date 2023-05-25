@@ -36,6 +36,11 @@ M.setup = function()
   for _, server in pairs(settings.servers) do
     local server_config = settings.configs[server] or {}
 
+    local capabilities = vim.deepcopy(capabilities)
+    if server == "clangd" then
+      capabilities.offsetEncoding = "utf-8"
+    end
+
     server_config = vim.tbl_deep_extend("force", {
         capabilities = capabilities,
         on_attach = settings.on_attach,
