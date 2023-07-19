@@ -30,7 +30,7 @@ opt.smartcase = true
 opt.completeopt = "menu,menuone,noinsert,noselect"
 opt.wildmode = "longest:full,full"
 
-opt.mousescroll = "ver:2,hor:3"
+opt.mousescroll = "ver:1,hor:3"
 opt.cursorline = true
 opt.termguicolors = true
 opt.showmode = false

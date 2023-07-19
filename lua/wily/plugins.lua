@@ -15,6 +15,7 @@ require("lazy").setup({
     ----------------- Colors and UI ----------------
     -- Colorschemes
     -- { "navarasu/onedark.nvim" },
+    "folke/tokyonight.nvim",
     { "projekt0n/github-nvim-theme" },
     { "olimorris/onedarkpro.nvim" },
     { "ellisonleao/gruvbox.nvim" },
@@ -55,10 +56,10 @@ require("lazy").setup({
     -- }, -- highlight colors
 
     {
-      'edluffy/hologram.nvim',
+      "edluffy/hologram.nvim",
       enabled = false,
       config = function()
-        require('hologram').setup({
+        require("hologram").setup({
           auto_display = true
         })
       end
@@ -83,7 +84,7 @@ require("lazy").setup({
 
     -- Lsp Extras
     { "Issafalcon/lsp-overloads.nvim" }, -- Signature Help
-    { "folke/neodev.nvim" }, -- Nvim Workspace
+    { "folke/neodev.nvim" },             -- Nvim Workspace
     {
       "j-hui/fidget.nvim",
       config = true
@@ -107,6 +108,9 @@ require("lazy").setup({
       build = ":TSUpdate",
     },
     {
+      "nvim-treesitter/playground",
+    },
+    {
       "m-demare/hlargs.nvim",
       dependencies = { "nvim-treesitter/nvim-treesitter" },
     },
@@ -123,6 +127,7 @@ require("lazy").setup({
 
     -- Copilot
     { "zbirenbaum/copilot.lua" },
+    -- "github/copilot.vim",
 
     -- Docs gen
     -- {
@@ -133,27 +138,43 @@ require("lazy").setup({
     --   end
     -- },
 
+    {
+      "iamcco/markdown-preview.nvim",
+      ft = "markdown",
+      build = ":call mkdp#util#install()",
+      config = function()
+        vim.keymap.set("n", "<leader>tp", "<Plug>MarkdownPreviewToggle")
+      end
+    },
+
     -------------------- Editor --------------------
     -- Navigation
+    -- File Tree
     {
       "nvim-neo-tree/neo-tree.nvim",
-      branch = "v2.x",
+      branch = "v3.x",
       dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons",
         "MunifTanjim/nui.nvim",
       },
       -- dev = true,
-    }, -- File Tree
+    },
+
+    -- Fuzzy Finder
     {
       "nvim-telescope/telescope.nvim",
       dependencies = { "nvim-lua/plenary.nvim" },
       -- branch = "0.1.x",
-    }, -- Fuzzy Finder
+    },
+    {
+      "nvim-telescope/telescope-fzf-native.nvim", build = "make"
+    },
+
     {
       "ThePrimeagen/harpoon",
       dependencies = { "nvim-lua/plenary.nvim" },
-    }, -- File Jumping
+    },                      -- File Jumping
     { "preservim/tagbar" }, -- Tagbar
 
     -- Terminal

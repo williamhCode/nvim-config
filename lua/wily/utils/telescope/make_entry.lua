@@ -45,7 +45,6 @@ do
       -- find the index of the end of the tail in the path
       local _, i = string.find(display, tail, 1, true)
 
-      print(hl_group)
       if hl_group then
         return display, { { { 0, #icon }, hl_group }, { { i, #display }, "TelescopeDirectoryCustom" } }
       else

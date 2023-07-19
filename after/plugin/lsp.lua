@@ -12,6 +12,7 @@ lsp.servers({
   "texlab",
   "cmake",
   "rust_analyzer",
+  "marksman",
   -- "wgsl_analyzer",
 })
 
@@ -49,6 +50,7 @@ lsp.on_attach(function(client, bufnr)
   map("n", "<leader>sd", "<cmd>Telescope lsp_document_symbols<CR>", opts)
   map("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
   map("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
+  map("n", "gI", "<cmd>Telescope lsp_implementations<CR>", opts)
   map("n", "gD", vim.lsp.buf.declaration, opts)
   map("n", "gh", vim.lsp.buf.hover, opts)
   map("n", "gs", vim.lsp.buf.signature_help, opts)

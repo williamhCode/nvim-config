@@ -18,6 +18,13 @@ M.set_term_cmd = function(mapping, cmd)
   end, { buffer = true })
 end
 
+M.set_global_term_cmd = function(mapping, cmd)
+  map("n", mapping, function()
+    vim.cmd("wall")
+    toggleterm.exec(vim.fn.expandcmd(cmd), vim.v.count)
+  end)
+end
+
 M.spawn_make = function()
   local lines = {}
   local makeprg = vim.o.makeprg

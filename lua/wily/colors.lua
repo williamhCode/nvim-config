@@ -13,7 +13,7 @@ require("onedarkpro").setup({
   },
   highlights = {
     -- Editor
-    MatchParen = { bg = colors.selection },
+    MatchParen = { fg = "NONE", bg = colors.selection },
     Search = { fg = colors.bg, bg = colors.yellow },
     IncSearch = { fg = colors.bg, bg = colors.orange },
     Cursor = { fg = colors.black, bg = colors.white },
@@ -56,7 +56,9 @@ require("onedarkpro").setup({
 
     ["@type.c"] = { fg = colors.purple },
     ["@operator.c"] = { fg = colors.white },
+
     ["@operator.cpp"] = { fg = colors.white },
+    ["@lsp.typemod.variable.readonly.cpp"] = { },
 
     ["@text.reference"] = { fg = colors.red },
     ["@text.literal"] = { link = "Comment" },
@@ -72,10 +74,10 @@ require("onedarkpro").setup({
     DiagnosticSignInfo = { fg = colors.blue },
     DiagnosticSignHint = { fg = colors.purple },
 
-    DiagnosticUnderlineError = { sp = colors.red, style = "undercurl" },
-    DiagnosticUnderlineWarn = { sp = colors.yellow, style = "undercurl" },
-    DiagnosticUnderlineInfo = { sp = colors.blue, style = "undercurl" },
-    DiagnosticUnderlineHint = { sp = colors.purple, style = "undercurl" },
+    DiagnosticUnderlineError ={ fg = "NONE", sp = colors.red, style = "undercurl" },
+    DiagnosticUnderlineWarn = { fg = "NONE", sp = colors.yellow, style = "undercurl" },
+    DiagnosticUnderlineInfo = { fg = "NONE", sp = colors.blue, style = "undercurl" },
+    DiagnosticUnderlineHint = { fg = "NONE", sp = colors.purple, style = "undercurl" },
 
     DiagnosticVirtualTextError = { fg = colors.red, bg = utils.darken(colors.red, 0.1, colors.bg) },
     DiagnosticVirtualTextWarn = { fg = colors.yellow, bg = utils.darken(colors.yellow, 0.1, colors.bg) },
@@ -151,5 +153,6 @@ require("onedarkpro").setup({
 
 -- vim.cmd("colorscheme kanagawa")
 vim.cmd("colorscheme onedark")
+-- vim.cmd("colorscheme tokyonight")
 
 -- vim.cmd("colorscheme github_light")
