@@ -3,9 +3,9 @@ vim.g.maplocalleader = " "
 
 local opt = vim.opt
 
-opt.shiftwidth = 4
-opt.tabstop = 4
-opt.softtabstop = 4
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
 opt.expandtab = true
 opt.smartindent = true
 opt.shiftround = true
@@ -38,6 +38,7 @@ opt.wrap = false
 -- opt.hlsearch = false
 opt.undofile = true
 opt.updatetime = 250
+opt.ttimeoutlen = 0
 
 opt.guicursor:append("a:blinkon1")
 vim.cmd([[autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]])

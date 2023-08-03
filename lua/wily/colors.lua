@@ -11,6 +11,9 @@ require("onedarkpro").setup({
     nvim_lsp = true,
     lsp_semantic_tokens = true,
   },
+  options = {
+    -- transparency = true,
+  },
   highlights = {
     -- Editor
     MatchParen = { fg = "NONE", bg = colors.selection },
@@ -58,10 +61,12 @@ require("onedarkpro").setup({
     ["@operator.c"] = { fg = colors.white },
 
     ["@operator.cpp"] = { fg = colors.white },
-    ["@lsp.typemod.variable.readonly.cpp"] = { },
+    ["@lsp.typemod.variable.readonly.cpp"] = {},
 
     ["@text.reference"] = { fg = colors.red },
     ["@text.literal"] = { link = "Comment" },
+    ["@text.todo.unchecked"] = {},
+    ["@text.todo.checked"] = {},
 
     -- Lsp
     DiagnosticError = { fg = colors.red },
@@ -74,7 +79,7 @@ require("onedarkpro").setup({
     DiagnosticSignInfo = { fg = colors.blue },
     DiagnosticSignHint = { fg = colors.purple },
 
-    DiagnosticUnderlineError ={ fg = "NONE", sp = colors.red, style = "undercurl" },
+    DiagnosticUnderlineError = { fg = "NONE", sp = colors.red, style = "undercurl" },
     DiagnosticUnderlineWarn = { fg = "NONE", sp = colors.yellow, style = "undercurl" },
     DiagnosticUnderlineInfo = { fg = "NONE", sp = colors.blue, style = "undercurl" },
     DiagnosticUnderlineHint = { fg = "NONE", sp = colors.purple, style = "undercurl" },

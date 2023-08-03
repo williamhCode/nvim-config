@@ -24,11 +24,11 @@ require("nvim-treesitter.configs").setup({
   highlight = {
     enable = true,
     disable = { "latex", "bash", "vim" },
-    additional_vim_regex_highlighting = { "vim" },
+    additional_vim_regex_highlighting = { "vim", "markdown" },
   },
 
   indent = {
-    enable = false,
+    enable = { "lua", "python", "cpp" },
     -- disable = { "python", "lua", "rust", "wgsl", "cpp" },
   },
 

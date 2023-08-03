@@ -30,21 +30,6 @@ require("lazy").setup({
       "nvim-lualine/lualine.nvim",
       dependencies = { "nvim-tree/nvim-web-devicons" },
     }, -- Status Line
-    -- {
-    --   "utilyre/barbecue.nvim",
-    --   version = "*",
-    --   dependencies = {
-    --     "SmiteshP/nvim-navic",
-    --     "nvim-tree/nvim-web-devicons", -- optional dependency
-    --   },
-    --   opts = {
-    --     show_dirname = false,
-    --     show_basename = true,
-    --     show_navic = false,
-    --     show_modified = true,
-    --   }
-    -- }, -- Breadcrumbs
-
     -- Other
     -- {
     --   "norcalli/nvim-colorizer.lua",
@@ -54,7 +39,6 @@ require("lazy").setup({
     --     })
     --   end
     -- }, -- highlight colors
-
     {
       "edluffy/hologram.nvim",
       enabled = false,
@@ -69,9 +53,13 @@ require("lazy").setup({
     { "numToStr/Comment.nvim" }, -- Commenting
 
     -- Language Support
-    { "Vimjas/vim-python-pep8-indent" }, -- Cython Indentation
+    -- { "Vimjas/vim-python-pep8-indent" }, -- Cython Indentation
     { "rust-lang/rust.vim" },
     { "DingDean/wgsl.vim" },
+    {
+      "epwalsh/obsidian.nvim",
+      dependencies = { "nvim-lua/plenary.nvim" }
+    },
 
     -- Lsp Support
     { "neovim/nvim-lspconfig" },
@@ -127,17 +115,6 @@ require("lazy").setup({
 
     -- Copilot
     { "zbirenbaum/copilot.lua" },
-    -- "github/copilot.vim",
-
-    -- Docs gen
-    -- {
-    --   "kkoomen/vim-doge",
-    --   build = ":call doge#install()",
-    --   config = function()
-    --     vim.g.doge_doc_standard_python = "google"
-    --   end
-    -- },
-
     {
       "iamcco/markdown-preview.nvim",
       ft = "markdown",
@@ -174,8 +151,8 @@ require("lazy").setup({
     {
       "ThePrimeagen/harpoon",
       dependencies = { "nvim-lua/plenary.nvim" },
-    },                      -- File Jumping
-    { "preservim/tagbar" }, -- Tagbar
+    }, -- File Jumping
+    -- { "preservim/tagbar" }, -- Tagbar
 
     -- Terminal
     {
@@ -183,13 +160,9 @@ require("lazy").setup({
       tag = "v2.6.0",
     },
 
-    -- Undotree
+    -- Misc
     { "mbbill/undotree" },
-
-    -- Keymap Modes
     { "anuvyklack/hydra.nvim" },
-
-    -- Local Configuration
     { "klen/nvim-config-local" },
   },
   {
