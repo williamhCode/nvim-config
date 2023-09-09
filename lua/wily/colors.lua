@@ -26,7 +26,7 @@ require("onedarkpro").setup({
     TabLineSel = { fg = colors.bg, bg = colors.fg },
     SpecialKey = { fg = colors.comment },
 
-    -- Syntax
+    -- -- Syntax
     PreProc = { fg = colors.purple },
     Include = { fg = colors.purple },
     Operator = { fg = colors.purple },
@@ -35,7 +35,7 @@ require("onedarkpro").setup({
     StorageClass = { fg = colors.purple },
     -- Structure = { fg = colors.yellow },
 
-    -- Treesitter
+    -- -- Treesitter
     ["@field"] = { fg = colors.red },
     ["@type"] = { link = "Type" },
     ["@type.builtin"] = { fg = colors.purple },

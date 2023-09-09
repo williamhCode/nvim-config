@@ -28,8 +28,8 @@ require("nvim-treesitter.configs").setup({
   },
 
   indent = {
-    enable = { "lua", "python", "cpp" },
-    -- disable = { "python", "lua", "rust", "wgsl", "cpp" },
+    enable = true,
+    disable = { "lua", "rust", "wgsl" },
   },
 
   incremental_selection = {

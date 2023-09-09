@@ -2,10 +2,12 @@ local term = require("wily.utils.term")
 
 term.set_term_cmd("<leader>r",
   "java -jar " ..
-  vim.fn.resolve("build/libs/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t") .. ".jar")
+  vim.fn.resolve(
+    "build/libs/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t") .. ".jar"
+  )
 )
 
-term.set_build_cmd("!./gradlew assemble")
+term.set_term_cmd("<leader>b", "./gradlew assemble")
 
 -- set indentation to 4 spaces
 vim.opt.tabstop = 4
