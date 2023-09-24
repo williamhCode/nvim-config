@@ -12,9 +12,12 @@ require("onedarkpro").setup({
     lsp_semantic_tokens = true,
   },
   options = {
-    -- transparency = true,
+    transparency = true
   },
   highlights = {
+    NormalFloat = { bg = colors.float_bg },
+    FloatBorder = { bg = colors.float_bg, fg = colors.gray },
+
     -- Editor
     MatchParen = { fg = "NONE", bg = colors.selection },
     Search = { fg = colors.bg, bg = colors.yellow },
@@ -26,7 +29,7 @@ require("onedarkpro").setup({
     TabLineSel = { fg = colors.bg, bg = colors.fg },
     SpecialKey = { fg = colors.comment },
 
-    -- -- Syntax
+    -- Syntax
     PreProc = { fg = colors.purple },
     Include = { fg = colors.purple },
     Operator = { fg = colors.purple },
@@ -130,6 +133,9 @@ require("onedarkpro").setup({
     TagbarHighlight = { fg = colors.orange, style = "bold" },
     TagbarScope = { fg = colors.yellow },
     TagbarType = { fg = colors.purple },
+
+    -- Fidget
+    -- FidgetTask = { link = "Normal" },
   },
   styles = {
     types = "NONE",
@@ -148,16 +154,21 @@ require("onedarkpro").setup({
   },
 })
 
--- require('kanagawa').setup({
---   theme = "wave",
---   background = {
---     dark = "wave",
---     light = "lotus"
---   },
--- })
+require("catppuccin").setup({
+  flavour = "latte",
+  integrations = {
+    cmp = true,
+    neotree = true,
+    treesitter = true,
+    telescope = {
+      enabled = true,
+      -- style = "nvchad"
+    }
+  },
+})
 
--- vim.cmd("colorscheme kanagawa")
+-- link FidgetTask highlight to background
 vim.cmd("colorscheme onedark")
--- vim.cmd("colorscheme tokyonight")
 
+-- vim.cmd("colorscheme catppuccin")
 -- vim.cmd("colorscheme github_light")

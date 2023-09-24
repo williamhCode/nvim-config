@@ -99,6 +99,7 @@ end
 map_toggle_option("w", "wrap")
 map_toggle_option("h", "hlsearch")
 map_toggle_option("e", "equalalways")
+map_toggle_option("r", "relativenumber")
 
 map('n', '<leader>td', function()
   local virtual_text = not vim.diagnostic.config().virtual_text

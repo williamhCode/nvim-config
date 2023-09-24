@@ -37,6 +37,7 @@ local winbar_settings = {
 require("lualine").setup({
   options = {
     theme = onedark,
+    -- theme = "catppuccin",
     globalstatus = true,
     component_separators = "|",
     section_separators = "",

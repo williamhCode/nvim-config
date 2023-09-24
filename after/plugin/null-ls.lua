@@ -80,18 +80,30 @@ local wgsl_validation = {
   name = "wgsl_validation",
   filetypes = { "wgsl" },
   method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+  -- generator = null_ls.generator({
+  --   command = "naga",
+  --   args = { "$FILENAME" },
+  --   format = "raw",
+  --   from_stderr = true,
+  --   on_output = from_errorformat(
+  --     table.concat({
+  --       "%Eerror: ",
+  --       "%Eerror: %m",
+  --       "%C   ┌─ %f:%l:%c",
+  --     }, ","),
+  --     "naga"
+  --   ),
+  -- }),
   generator = null_ls.generator({
-    command = "naga",
-    args = { "$FILENAME" },
+    command = "./tint",
+    args = { "--format", "wgsl", "--validate", "$FILENAME" },
     format = "raw",
     from_stderr = true,
     on_output = from_errorformat(
       table.concat({
-        "%Eerror: ",
-        "%Eerror: %m",
-        "%C   ┌─ %f:%l:%c",
+        "%E%f:%l:%c error: %m",
       }, ","),
-      "naga"
+      "tint"
     ),
   }),
 }

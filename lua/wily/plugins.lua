@@ -20,6 +20,7 @@ require("lazy").setup({
     { "olimorris/onedarkpro.nvim" },
     { "ellisonleao/gruvbox.nvim" },
     { "rebelot/kanagawa.nvim" },
+    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
     -- UI
     {
@@ -75,7 +76,13 @@ require("lazy").setup({
     { "folke/neodev.nvim" },             -- Nvim Workspace
     {
       "j-hui/fidget.nvim",
-      config = true
+      config = function()
+        require("fidget").setup({
+          window = {
+            blend = 0
+          }
+        })
+      end
     }, -- Lsp Progress
 
     -- Autocompletion
