@@ -7,7 +7,6 @@ vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 opt.expandtab = true
-opt.smartindent = true
 opt.shiftround = true
 
 opt.number = true

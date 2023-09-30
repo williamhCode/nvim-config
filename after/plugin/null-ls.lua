@@ -101,6 +101,7 @@ local wgsl_validation = {
     from_stderr = true,
     on_output = from_errorformat(
       table.concat({
+        "%l:%c error: %m",
         "%E%f:%l:%c error: %m",
       }, ","),
       "tint"
