@@ -1,6 +1,6 @@
 local term = require("wily.utils.term")
 
-term.set_build_cmd("python setup.py build_ext --inplace")
-term.set_run_cmd("python \"%\"")
+term.set_term_cmd("<leader>r", "python \"%\"")
+term.set_build_cmd("!make build")
 
 vim.opt.colorcolumn = "88"

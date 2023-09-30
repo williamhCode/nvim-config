@@ -11,9 +11,15 @@ require("onedarkpro").setup({
     nvim_lsp = true,
     lsp_semantic_tokens = true,
   },
+  options = {
+    transparency = true
+  },
   highlights = {
+    NormalFloat = { bg = colors.float_bg },
+    FloatBorder = { bg = colors.float_bg, fg = colors.gray },
+
     -- Editor
-    MatchParen = { bg = colors.selection },
+    MatchParen = { fg = "NONE", bg = colors.selection },
     Search = { fg = colors.bg, bg = colors.yellow },
     IncSearch = { fg = colors.bg, bg = colors.orange },
     Cursor = { fg = colors.black, bg = colors.white },
@@ -30,8 +36,9 @@ require("onedarkpro").setup({
     Macro = { fg = colors.orange },
     PreCondit = { fg = colors.purple },
     StorageClass = { fg = colors.purple },
+    -- Structure = { fg = colors.yellow },
 
-    -- Treesitter
+    -- -- Treesitter
     ["@field"] = { fg = colors.red },
     ["@type"] = { link = "Type" },
     ["@type.builtin"] = { fg = colors.purple },
@@ -39,6 +46,10 @@ require("onedarkpro").setup({
     ["@type.qualifier"] = { fg = colors.purple },
     ["@constant.builtin"] = { link = "@constant" },
     ["@function.builtin"] = { fg = colors.cyan },
+
+    ["@lsp.type.struct.rust"] = { fg = colors.yellow },
+
+    ["@lsp.type.comment"] = {},
 
     ["@field.lua"] = { fg = colors.red },
     ["@parameter.lua"] = { fg = colors.red, style = "italic" },
@@ -51,10 +62,14 @@ require("onedarkpro").setup({
 
     ["@type.c"] = { fg = colors.purple },
     ["@operator.c"] = { fg = colors.white },
+
     ["@operator.cpp"] = { fg = colors.white },
+    ["@lsp.typemod.variable.readonly.cpp"] = {},
 
     ["@text.reference"] = { fg = colors.red },
     ["@text.literal"] = { link = "Comment" },
+    ["@text.todo.unchecked"] = {},
+    ["@text.todo.checked"] = {},
 
     -- Lsp
     DiagnosticError = { fg = colors.red },
@@ -67,15 +82,20 @@ require("onedarkpro").setup({
     DiagnosticSignInfo = { fg = colors.blue },
     DiagnosticSignHint = { fg = colors.purple },
 
-    DiagnosticUnderlineError = { sp = colors.red, style = "undercurl" },
-    DiagnosticUnderlineWarn = { sp = colors.yellow, style = "undercurl" },
-    DiagnosticUnderlineInfo = { sp = colors.blue, style = "undercurl" },
-    DiagnosticUnderlineHint = { sp = colors.purple, style = "undercurl" },
+    DiagnosticUnderlineError = { fg = "NONE", sp = colors.red, style = "undercurl" },
+    DiagnosticUnderlineWarn = { fg = "NONE", sp = colors.yellow, style = "undercurl" },
+    DiagnosticUnderlineInfo = { fg = "NONE", sp = colors.blue, style = "undercurl" },
+    DiagnosticUnderlineHint = { fg = "NONE", sp = colors.purple, style = "undercurl" },
 
     DiagnosticVirtualTextError = { fg = colors.red, bg = utils.darken(colors.red, 0.1, colors.bg) },
     DiagnosticVirtualTextWarn = { fg = colors.yellow, bg = utils.darken(colors.yellow, 0.1, colors.bg) },
     DiagnosticVirtualTextInfo = { fg = colors.blue, bg = utils.darken(colors.blue, 0.1, colors.bg) },
     DiagnosticVirtualTextHint = { fg = colors.purple, bg = utils.darken(colors.purple, 0.1, colors.bg) },
+
+    -- DiagnosticVirtualTextError = { fg = colors.red },
+    -- DiagnosticVirtualTextWarn = { fg = colors.yellow },
+    -- DiagnosticVirtualTextInfo = { fg = colors.blue },
+    -- DiagnosticVirtualTextHint = { fg = colors.purple },
 
     LspSignatureActiveParameter = { fg = colors.orange, style = "bold" },
 
@@ -113,13 +133,16 @@ require("onedarkpro").setup({
     TagbarHighlight = { fg = colors.orange, style = "bold" },
     TagbarScope = { fg = colors.yellow },
     TagbarType = { fg = colors.purple },
+
+    -- Fidget
+    -- FidgetTask = { link = "Normal" },
   },
   styles = {
     types = "NONE",
     methods = "NONE",
     numbers = "NONE",
     strings = "NONE",
-    comments = "italic",
+    comments = "NONE",
     keywords = "NONE",
     constants = "NONE",
     functions = "NONE",
@@ -131,17 +154,21 @@ require("onedarkpro").setup({
   },
 })
 
-require('kanagawa').setup({
-    theme = "wave",
-    background = {
-        dark = "wave",
-        light = "lotus"
-    },
+require("catppuccin").setup({
+  flavour = "latte",
+  integrations = {
+    cmp = true,
+    neotree = true,
+    treesitter = true,
+    telescope = {
+      enabled = true,
+      -- style = "nvchad"
+    }
+  },
 })
 
--- vim.cmd("colorscheme kanagawa")
+-- link FidgetTask highlight to background
 vim.cmd("colorscheme onedark")
 
--- require("onedark").setup()
--- require("gruvbox").setup()
-
+-- vim.cmd("colorscheme catppuccin")
+-- vim.cmd("colorscheme github_light")

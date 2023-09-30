@@ -15,9 +15,12 @@ require("lazy").setup({
     ----------------- Colors and UI ----------------
     -- Colorschemes
     -- { "navarasu/onedark.nvim" },
+    "folke/tokyonight.nvim",
+    { "projekt0n/github-nvim-theme" },
     { "olimorris/onedarkpro.nvim" },
     { "ellisonleao/gruvbox.nvim" },
     { "rebelot/kanagawa.nvim" },
+    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
     -- UI
     {
@@ -28,45 +31,36 @@ require("lazy").setup({
       "nvim-lualine/lualine.nvim",
       dependencies = { "nvim-tree/nvim-web-devicons" },
     }, -- Status Line
-    -- {
-    --   "utilyre/barbecue.nvim",
-    --   version = "*",
-    --   dependencies = {
-    --     "SmiteshP/nvim-navic",
-    --     "nvim-tree/nvim-web-devicons", -- optional dependency
-    --   },
-    --   opts = {
-    --     show_dirname = false,
-    --     show_basename = true,
-    --     show_navic = false,
-    --     show_modified = true,
-    --   }
-    -- }, -- Breadcrumbs
-
     -- Other
+    -- {
+    --   "norcalli/nvim-colorizer.lua",
+    --   config = function()
+    --     require("colorizer").setup({
+    --       "*", "!lazy"
+    --     })
+    --   end
+    -- }, -- highlight colors
     {
-      "norcalli/nvim-colorizer.lua",
-      config = function()
-        require("colorizer").setup({
-          "*", "!lazy"
-        })
-      end
-    }, -- highlight colors
-
-    {
-      'edluffy/hologram.nvim',
+      "edluffy/hologram.nvim",
       enabled = false,
       config = function()
-        require('hologram').setup({
+        require("hologram").setup({
           auto_display = true
         })
       end
     }, -- Images support
 
     ------------------- Coding --------------------
-    -- General
     { "numToStr/Comment.nvim" }, -- Commenting
-    { "Vimjas/vim-python-pep8-indent" }, -- Cython Indentation
+
+    -- Language Support
+    -- { "Vimjas/vim-python-pep8-indent" }, -- Cython Indentation
+    { "rust-lang/rust.vim" },
+    { "DingDean/wgsl.vim" },
+    {
+      "epwalsh/obsidian.nvim",
+      dependencies = { "nvim-lua/plenary.nvim" }
+    },
 
     -- Lsp Support
     { "neovim/nvim-lspconfig" },
@@ -79,10 +73,16 @@ require("lazy").setup({
 
     -- Lsp Extras
     { "Issafalcon/lsp-overloads.nvim" }, -- Signature Help
-    { "folke/neodev.nvim" }, -- Nvim Workspace
+    { "folke/neodev.nvim" },             -- Nvim Workspace
     {
       "j-hui/fidget.nvim",
-      config = true
+      config = function()
+        require("fidget").setup({
+          window = {
+            blend = 0
+          }
+        })
+      end
     }, -- Lsp Progress
 
     -- Autocompletion
@@ -103,6 +103,9 @@ require("lazy").setup({
       build = ":TSUpdate",
     },
     {
+      "nvim-treesitter/playground",
+    },
+    {
       "m-demare/hlargs.nvim",
       dependencies = { "nvim-treesitter/nvim-treesitter" },
     },
@@ -119,21 +122,21 @@ require("lazy").setup({
 
     -- Copilot
     { "zbirenbaum/copilot.lua" },
-
-    -- Docs gen
     {
-      "kkoomen/vim-doge",
-      build = ":call doge#install()",
+      "iamcco/markdown-preview.nvim",
+      ft = "markdown",
+      build = ":call mkdp#util#install()",
       config = function()
-        vim.g.doge_doc_standard_python = "google"
+        vim.keymap.set("n", "<leader>tp", "<Plug>MarkdownPreviewToggle")
       end
     },
 
     -------------------- Editor --------------------
     -- Navigation
+    -- File Tree
     {
       "nvim-neo-tree/neo-tree.nvim",
-      branch = "v2.x",
+      branch = "v3.x",
       dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons",
@@ -141,30 +144,32 @@ require("lazy").setup({
       },
       dev = false,
     }, -- File Tree
+
+    -- Fuzzy Finder
     {
       "nvim-telescope/telescope.nvim",
       dependencies = { "nvim-lua/plenary.nvim" },
-      branch = "0.1.x",
-    }, -- Fuzzy Finder
+      -- branch = "0.1.x",
+    },
+    {
+      "nvim-telescope/telescope-fzf-native.nvim", build = "make"
+    },
+
     {
       "ThePrimeagen/harpoon",
       dependencies = { "nvim-lua/plenary.nvim" },
     }, -- File Jumping
-    { "preservim/tagbar" }, -- Tagbar
+    -- { "preservim/tagbar" }, -- Tagbar
 
     -- Terminal
     {
       "akinsho/toggleterm.nvim",
-      tag = "2.3.0",
+      tag = "v2.6.0",
     },
 
-    -- Undotree
+    -- Misc
     { "mbbill/undotree" },
-
-    -- Keymap Modes
     { "anuvyklack/hydra.nvim" },
-
-    -- Local Configuration
     { "klen/nvim-config-local" },
 
     -- ssh clipboard

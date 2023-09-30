@@ -37,16 +37,16 @@ do
     mt_file_entry.display = function(entry)
       local tail = utils.path_tail(entry.value)
 
-      local hl_group
+      local hl_group, icon
       local display = utils.transform_path(opts, entry.value)
 
-      display, hl_group = utils.transform_devicons(entry.value, display, disable_devicons)
+      display, hl_group, icon = utils.transform_devicons(entry.value, display, disable_devicons)
 
       -- find the index of the end of the tail in the path
       local _, i = string.find(display, tail, 1, true)
 
       if hl_group then
-        return display, { { { 1, 3 }, hl_group }, { { i, #display }, "TelescopeDirectoryCustom" } }
+        return display, { { { 0, #icon }, hl_group }, { { i, #display }, "TelescopeDirectoryCustom" } }
       else
         return display
       end

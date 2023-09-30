@@ -1,4 +1,7 @@
 require("nvim-treesitter.configs").setup({
+  playground = {
+    enable = true,
+  },
   ensure_installed = {
     "java",
     "python",
@@ -11,18 +14,22 @@ require("nvim-treesitter.configs").setup({
     "glsl",
     "latex",
     "markdown",
-    "vimdoc"
+    "markdown_inline",
+    "vimdoc",
+    "rust",
+    "wgsl",
+    "query"
   },
 
   highlight = {
     enable = true,
     disable = { "latex", "bash", "vim" },
-    additional_vim_regex_highlighting = { "vim" },
+    additional_vim_regex_highlighting = { "vim", "markdown" },
   },
 
   indent = {
     enable = true,
-    disable = { "python", "lua" },
+    disable = { "lua", "rust", "wgsl" },
   },
 
   incremental_selection = {
@@ -35,4 +42,3 @@ require("nvim-treesitter.configs").setup({
     },
   },
 })
-

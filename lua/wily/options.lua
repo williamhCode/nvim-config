@@ -3,9 +3,9 @@ vim.g.maplocalleader = " "
 
 local opt = vim.opt
 
-opt.shiftwidth = 4
-opt.tabstop = 4
-opt.softtabstop = 4
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
 opt.expandtab = true
 opt.shiftround = true
 
@@ -29,7 +29,7 @@ opt.smartcase = true
 opt.completeopt = "menu,menuone,noinsert,noselect"
 opt.wildmode = "longest:full,full"
 
-opt.mousescroll = "ver:2,hor:3"
+opt.mousescroll = "ver:1,hor:3"
 opt.cursorline = true
 opt.termguicolors = true
 opt.showmode = false
@@ -37,10 +37,13 @@ opt.wrap = false
 -- opt.hlsearch = false
 opt.undofile = true
 opt.updatetime = 250
+opt.ttimeoutlen = 0
 
 opt.guicursor:append("a:blinkon1")
--- vim.cmd([[autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]])
--- vim.cmd([[:set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
---             \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
---             \,sm:block-blinkwait175-blinkoff150-blinkon175
--- ]])
+vim.cmd([[autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]])
+
+vim.diagnostic.config({
+  virtual_text = false,
+})
+
+vim.filetype.add({ extension = { wgsl = "wgsl" } })

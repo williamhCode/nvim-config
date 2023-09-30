@@ -23,7 +23,7 @@ local winbar_settings = {
     {
       "filename",
       padding = 0,
-      color = { bg = "bg", gui = "bold" },
+      color = { fg = "fg", bg = "bg", gui = "bold" },
       symbols = {
         modified = "●",
       }
@@ -37,12 +37,13 @@ local winbar_settings = {
 require("lualine").setup({
   options = {
     theme = onedark,
+    -- theme = "catppuccin",
     globalstatus = true,
     component_separators = "|",
     section_separators = "",
     disabled_filetypes = {
       statusline = { "alpha" },
-      winbar = { "alpha", "neo-tree", "tagbar", "undotree", "diff" },
+      winbar = { "alpha", "neo-tree", "tagbar", "undotree", "diff", "qf" },
     },
   },
   sections = {
@@ -54,7 +55,7 @@ require("lualine").setup({
         symbols = {
           error = " ",
           warn = " ",
-          hint = " ",
+          hint = "󰌶 ",
           info = " ",
         }
       },

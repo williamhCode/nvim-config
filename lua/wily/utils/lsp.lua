@@ -31,10 +31,15 @@ M.setup = function()
 
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = false
-  capabilities.offsetEncoding = "utf-8"
+  -- capabilities.offsetEncoding = "utf-8"
 
   for _, server in pairs(settings.servers) do
     local server_config = settings.configs[server] or {}
+
+    local capabilities = vim.deepcopy(capabilities)
+    if server == "clangd" then
+      capabilities.offsetEncoding = "utf-8"
+    end
 
     server_config = vim.tbl_deep_extend("force", {
         capabilities = capabilities,
