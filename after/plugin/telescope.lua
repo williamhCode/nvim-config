@@ -83,6 +83,6 @@ map("n", "<leader>so", function()
   })
 end)
 
--- map("n", "<C-p>", ":Telescope<CR>")
+map("n", "<C-p>", ":Telescope<CR>")
 map("n", "<leader>sg", builtin.live_grep)
 map("n", "<leader>sb", builtin.buffers)

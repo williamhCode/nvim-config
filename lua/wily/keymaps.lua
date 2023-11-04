@@ -29,7 +29,9 @@ map({ "n", "x" }, "<leader>Y", "\"+Y", { remap = true })
 -- file switch
 map("n", "<C-_>", "<C-^>")
 
--- tab switch
+-- tab
+map("n", "<leader>te", "<cmd>tabe<CR>")
+map("n", "<leader>tc", "<cmd>tabc<CR>")
 map("n", "<leader>]", "<cmd>tabn<CR>")
 map("n", "<leader>[", "<cmd>tabp<CR>")
 
@@ -202,7 +204,10 @@ Hydra({
 })
 
 -- ui's
-map("n", "<leader>m", ":Mason<CR>", { silent = true})
-map("n", "<leader>l", ":Lazy<CR>", { silent = true})
-map("n", "<leader>g", ":Neogit<CR>", { silent = true})
+map("n", "<leader>M", "<Cmd>Mason<CR>")
+map("n", "<leader>L", "<Cmd>Lazy<CR>")
+map("n", "<leader>gg", "<Cmd>Neogit<CR>")
+map("n", "<leader>gd", "<Cmd>DiffviewOpen<CR>")
+map("n", "<leader>gh", "<Cmd>DiffviewFileHistory<CR>")
+map("n", "<leader>gH", "<Cmd>DiffviewFileHistory %<CR>")
 

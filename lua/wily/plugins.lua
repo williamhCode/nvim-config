@@ -175,6 +175,7 @@ require("lazy").setup({
       },
       config = true
     },
+    { "sindrets/diffview.nvim" },
 
     -- Misc
     { "mbbill/undotree" },

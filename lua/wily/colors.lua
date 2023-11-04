@@ -10,6 +10,7 @@ require("onedarkpro").setup({
     treesitter = true,
     nvim_lsp = true,
     lsp_semantic_tokens = true,
+    -- diffview = true,
   },
   options = {
     transparency = true
@@ -38,7 +39,7 @@ require("onedarkpro").setup({
     StorageClass = { fg = colors.purple },
     -- Structure = { fg = colors.yellow },
 
-    -- -- Treesitter
+    -- Treesitter
     ["@field"] = { fg = colors.red },
     ["@type"] = { link = "Type" },
     ["@type.builtin"] = { fg = colors.purple },
@@ -108,6 +109,22 @@ require("onedarkpro").setup({
     NeoTreeGitUntracked = { fg = colors.red, style = "italic" },
     NeoTreeIndentMarker = { fg = colors.gray },
     NeoTreeSymbolicLinkTarget = { fg = colors.purple },
+
+    -- Diff
+    diffAdded = { fg = colors.green },
+    diffChanged = { fg = colors.yellow },
+    diffRemoved = { fg = colors.red },
+
+    -- DiffAdd = { bg = "#054a4d" },
+    -- DiffChange = { bg = colors.diff_add },
+    DiffDelete = { fg = colors.gray, bg = colors.bg },
+    DiffText = { bg = "#562C30" },
+
+    DiffviewFolderSign = { fg = colors.blue },
+    DiffviewFilePanelFileName = { fg = colors.fg },
+    DiffviewFilePanelTitle = { fg = colors.orange, style = "bold" },
+    DiffviewFilePanelCounter = { fg = colors.fg },
+    DiffviewHash = { fg = colors.yellow },
 
     -- Telescope
     TelescopeNormal = { fg = colors.fg, bg = colors.float_bg },
