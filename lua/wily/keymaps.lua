@@ -31,7 +31,7 @@ map("n", "<C-_>", "<C-^>")
 
 -- tab
 map("n", "<leader>te", "<cmd>tabe<CR>")
-map("n", "<leader>tc", "<cmd>tabc<CR>")
+map("n", "<leader>tq", "<cmd>tabc<CR>")
 map("n", "<leader>]", "<cmd>tabn<CR>")
 map("n", "<leader>[", "<cmd>tabp<CR>")
 

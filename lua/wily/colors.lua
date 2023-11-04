@@ -20,9 +20,6 @@ require("onedarkpro").setup({
     FloatBorder = { bg = colors.float_bg, fg = colors.gray },
 
     -- Editor
-    MatchParen = { fg = "NONE", bg = colors.selection },
-    Search = { fg = colors.bg, bg = colors.yellow },
-    IncSearch = { fg = colors.bg, bg = colors.orange },
     Cursor = { fg = colors.black, bg = colors.white },
     TermCursor = { fg = colors.black, bg = colors.white },
     CursorLine = { bg = colors.color_column },
@@ -115,16 +112,30 @@ require("onedarkpro").setup({
     diffChanged = { fg = colors.yellow },
     diffRemoved = { fg = colors.red },
 
-    -- DiffAdd = { bg = "#054a4d" },
-    -- DiffChange = { bg = colors.diff_add },
-    DiffDelete = { fg = colors.gray, bg = colors.bg },
-    DiffText = { bg = "#562C30" },
+    -- DiffAdd = { bg = "#562C30" },  green
+    -- DiffText = { bg = "#562C30" },
+    -- DiffChange = { bg = colors.green },
+    -- DiffDelete = { bg = "#562C30" },
 
     DiffviewFolderSign = { fg = colors.blue },
     DiffviewFilePanelFileName = { fg = colors.fg },
     DiffviewFilePanelTitle = { fg = colors.orange, style = "bold" },
     DiffviewFilePanelCounter = { fg = colors.fg },
     DiffviewHash = { fg = colors.yellow },
+
+    -- Neogit
+    NeogitDiffAdd = { fg = colors.fg, bg = colors.diff_add },
+    NeogitDiffDelete = { bg = colors.diff_delete },
+
+    NeogitHunkHeaderHighlight = { fg = colors.bg, bg = colors.fg, style = "bold" },
+    NeogitDiffAddHighlight = { fg = colors.fg, bg = colors.diff_add },
+    NeogitDiffDeleteHighlight = { bg = "#562C30" },
+
+    NeogitBranch = { fg = colors.blue, style = "bold" },
+    NeogitRemote = { fg = colors.blue, style = "bold" },
+
+    NeogitSectionHeader = { fg = colors.purple, style = "bold" },
+    NeogitChangeModified = { fg = colors.purple, style = "bold" },
 
     -- Telescope
     TelescopeNormal = { fg = colors.fg, bg = colors.float_bg },
@@ -165,6 +176,9 @@ require("onedarkpro").setup({
     functions = "NONE",
     operators = "NONE",
     variables = "NONE",
+
+
+
     parameters = "italic",
     conditionals = "NONE",
     virtual_text = "NONE",
