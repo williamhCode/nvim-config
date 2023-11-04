@@ -167,6 +167,15 @@ require("lazy").setup({
       tag = "v2.6.0",
     },
 
+    -- Git
+    {
+      "NeogitOrg/neogit",
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+      },
+      config = true
+    },
+
     -- Misc
     { "mbbill/undotree" },
     { "anuvyklack/hydra.nvim" },
