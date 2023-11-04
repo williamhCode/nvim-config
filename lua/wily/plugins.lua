@@ -15,12 +15,12 @@ require("lazy").setup({
     ----------------- Colors and UI ----------------
     -- Colorschemes
     -- { "navarasu/onedark.nvim" },
-    "folke/tokyonight.nvim",
+    -- "folke/tokyonight.nvim",
     { "projekt0n/github-nvim-theme" },
     { "olimorris/onedarkpro.nvim" },
-    { "ellisonleao/gruvbox.nvim" },
-    { "rebelot/kanagawa.nvim" },
-    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+    -- { "ellisonleao/gruvbox.nvim" },
+    -- { "rebelot/kanagawa.nvim" },
+    -- { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
     -- UI
     {
@@ -142,7 +142,7 @@ require("lazy").setup({
         "nvim-tree/nvim-web-devicons",
         "MunifTanjim/nui.nvim",
       },
-      dev = true,
+      dev = false,
     },
 
     -- Fuzzy Finder

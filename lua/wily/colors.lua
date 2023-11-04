@@ -154,18 +154,18 @@ require("onedarkpro").setup({
   },
 })
 
-require("catppuccin").setup({
-  flavour = "latte",
-  integrations = {
-    cmp = true,
-    neotree = true,
-    treesitter = true,
-    telescope = {
-      enabled = true,
-      -- style = "nvchad"
-    }
-  },
-})
+-- require("catppuccin").setup({
+--   flavour = "latte",
+--   integrations = {
+--     cmp = true,
+--     neotree = true,
+--     treesitter = true,
+--     telescope = {
+--       enabled = true,
+--       -- style = "nvchad"
+--     }
+--   },
+-- })
 
 -- link FidgetTask highlight to background
 vim.cmd("colorscheme onedark")
