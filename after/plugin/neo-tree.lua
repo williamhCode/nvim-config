@@ -62,7 +62,7 @@ require("neo-tree").setup({
     use_libuv_file_watcher = true,
     window = {
       mappings = {
-        ["o"] = "system_open",
+        ["O"] = "system_open",
       },
     },
     commands = {

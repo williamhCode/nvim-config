@@ -204,3 +204,5 @@ Hydra({
 -- ui's
 map("n", "<leader>m", ":Mason<CR>", { silent = true})
 map("n", "<leader>l", ":Lazy<CR>", { silent = true})
+map("n", "<leader>g", ":Neogit<CR>", { silent = true})
+
