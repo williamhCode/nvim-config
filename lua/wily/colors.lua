@@ -20,6 +20,9 @@ require("onedarkpro").setup({
     FloatBorder = { bg = colors.float_bg, fg = colors.gray },
 
     -- Editor
+    MatchParen = { fg = "NONE", bg = colors.selection },
+    Search = { fg = colors.bg, bg = colors.yellow },
+    IncSearch = { fg = colors.bg, bg = colors.orange },
     Cursor = { fg = colors.black, bg = colors.white },
     TermCursor = { fg = colors.black, bg = colors.white },
     CursorLine = { bg = colors.color_column },
@@ -109,7 +112,7 @@ require("onedarkpro").setup({
 
     -- Diff
     diffAdded = { fg = colors.green },
-    diffChanged = { fg = colors.yellow },
+    diffChanged = { fg = colors.blue },
     diffRemoved = { fg = colors.red },
 
     -- DiffAdd = { bg = "#562C30" },  green
@@ -126,13 +129,17 @@ require("onedarkpro").setup({
     -- Neogit
     NeogitDiffAdd = { fg = colors.fg, bg = colors.diff_add },
     NeogitDiffDelete = { bg = colors.diff_delete },
+    -- NeogitDiffAdd = { fg = colors.green,  },
+    -- NeogitDiffDelete = { fg = colors.red },
 
     NeogitHunkHeaderHighlight = { fg = colors.bg, bg = colors.fg, style = "bold" },
     NeogitDiffAddHighlight = { fg = colors.fg, bg = colors.diff_add },
-    NeogitDiffDeleteHighlight = { bg = "#562C30" },
+    NeogitDiffDeleteHighlight = { bg = colors.diff_delete },
+    -- NeogitDiffAddHighlight = { fg = colors.green },
+    -- NeogitDiffDeleteHighlight = { fg = colors.red },
 
-    NeogitBranch = { fg = colors.blue, style = "bold" },
-    NeogitRemote = { fg = colors.blue, style = "bold" },
+    NeogitBranch = { fg = colors.yellow, style = "bold" },
+    NeogitRemote = { fg = colors.green, style = "bold" },
 
     NeogitSectionHeader = { fg = colors.purple, style = "bold" },
     NeogitChangeModified = { fg = colors.purple, style = "bold" },

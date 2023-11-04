@@ -15,7 +15,7 @@ require("lazy").setup({
     ----------------- Colors and UI ----------------
     -- Colorschemes
     -- { "navarasu/onedark.nvim" },
-    -- "folke/tokyonight.nvim",
+    "folke/tokyonight.nvim",
     { "projekt0n/github-nvim-theme" },
     { "olimorris/onedarkpro.nvim" },
     -- { "ellisonleao/gruvbox.nvim" },
@@ -173,7 +173,7 @@ require("lazy").setup({
       dependencies = {
         "nvim-lua/plenary.nvim",
       },
-      config = true
+      -- config = true
     },
     { "sindrets/diffview.nvim" },
 
