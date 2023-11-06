@@ -207,7 +207,4 @@ Hydra({
 map("n", "<leader>M", "<Cmd>Mason<CR>")
 map("n", "<leader>L", "<Cmd>Lazy<CR>")
 map("n", "<leader>gg", "<Cmd>Neogit<CR>")
-map("n", "<leader>gd", "<Cmd>DiffviewOpen<CR>")
-map("n", "<leader>gh", "<Cmd>DiffviewFileHistory<CR>")
-map("n", "<leader>gH", "<Cmd>DiffviewFileHistory %<CR>")
 

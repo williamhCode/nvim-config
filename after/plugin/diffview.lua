@@ -24,3 +24,8 @@ require("diffview").setup({
     }
   }
 })
+
+local map = vim.keymap.set
+map("n", "<leader>gd", "<Cmd>DiffviewOpen<CR>")
+map("n", "<leader>gh", "<Cmd>DiffviewFileHistory<CR>")
+map("n", "<leader>gH", "<Cmd>DiffviewFileHistory %<CR>")

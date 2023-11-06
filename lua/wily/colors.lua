@@ -4,6 +4,12 @@ local utils = require("wily.utils.colors")
 local color = require("onedarkpro.helpers")
 local colors = color.get_colors()
 
+-- colors.git_add = "#73C991"
+-- colors.git_add = "#60A27A"
+-- colors.git_change = "#CE9866"
+-- colors.git_delete = "#C74E39"
+-- colors.git_delete = "#e06c75"
+
 require("onedarkpro").setup({
   plugins = {
     all = false,
@@ -112,13 +118,13 @@ require("onedarkpro").setup({
 
     -- Diff
     diffAdded = { fg = colors.green },
-    diffChanged = { fg = colors.blue },
+    diffChanged = { fg = colors.yellow },
     diffRemoved = { fg = colors.red },
 
-    -- DiffAdd = { bg = "#562C30" },  green
-    -- DiffText = { bg = "#562C30" },
-    -- DiffChange = { bg = colors.green },
-    -- DiffDelete = { bg = "#562C30" },
+    DiffAdd = { bg = utils.darken(colors.git_add, 0.4, colors.bg) },
+    DiffText = { bg = utils.darken(colors.git_add, 0.4, colors.bg) },
+    DiffChange = { bg = utils.darken(colors.git_change, 0.4, colors.bg) },
+    DiffDelete = { bg = utils.darken(colors.git_delete, 0.4, colors.bg) },
 
     DiffviewFolderSign = { fg = colors.blue },
     DiffviewFilePanelFileName = { fg = colors.fg },
@@ -183,9 +189,6 @@ require("onedarkpro").setup({
     functions = "NONE",
     operators = "NONE",
     variables = "NONE",
-
-
-
     parameters = "italic",
     conditionals = "NONE",
     virtual_text = "NONE",
