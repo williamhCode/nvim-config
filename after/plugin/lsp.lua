@@ -7,13 +7,14 @@ lsp.servers({
   "pyright",
   "clangd",
   "jdtls",
-  "omnisharp_mono",
+  -- "omnisharp_mono",
   "bashls",
   "texlab",
   "cmake",
   "rust_analyzer",
   "marksman",
   -- "wgsl_analyzer",
+  "zls",
 })
 
 lsp.on_attach(function(client, bufnr)

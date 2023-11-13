@@ -39,11 +39,11 @@ require("onedarkpro").setup({
     -- Syntax
     PreProc = { fg = colors.purple },
     Include = { fg = colors.purple },
-    Operator = { fg = colors.purple },
+    Operator = { fg = colors.white },
     Macro = { fg = colors.orange },
     PreCondit = { fg = colors.purple },
     StorageClass = { fg = colors.purple },
-    -- Structure = { fg = colors.yellow },
+    Structure = { fg = colors.yellow },
 
     -- Treesitter
     ["@field"] = { fg = colors.red },
