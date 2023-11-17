@@ -43,4 +43,41 @@ require("nvim-treesitter.configs").setup({
       node_decremental = "<bs>",
     },
   },
+
+  textobjects = {
+    select = {
+      enable = true,
+      lookahead = true,
+      keymaps = {
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+      },
+      selection_modes = {
+        ["@parameter.outer"] = "v", -- charwise
+        ["@function.outer"] = "V",  -- linewise
+        ["@class.outer"] = "<c-v>", -- blockwise
+      },
+      -- include_surrounding_whitespace = true,
+    },
+    move = {
+      enable = true,
+      set_jumps = true,
+      goto_next_start = {
+        ["]f"] = "@function.outer",
+        -- ["]o"] = "@loop.*",
+        -- ["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
+      },
+      goto_next_end = {
+        ["]F"] = "@function.outer",
+      },
+      goto_previous_start = {
+        ["[f"] = "@function.outer",
+      },
+      goto_previous_end = {
+        ["[F"] = "@function.outer",
+      },
+    },
+  },
 })
