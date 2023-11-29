@@ -4,16 +4,17 @@ local lsp = require("wily.utils.lsp")
 
 lsp.servers({
   "lua_ls",
-  "pyright",
+  -- "pyright",
   "clangd",
   "jdtls",
-  "omnisharp_mono",
+  -- "omnisharp_mono",
   "bashls",
-  "texlab",
+  -- "texlab",
   "cmake",
-  "rust_analyzer",
-  "marksman",
+  -- "rust_analyzer",
+  -- "marksman",
   -- "wgsl_analyzer",
+  "asm_lsp"
 })
 
 lsp.on_attach(function(client, bufnr)
