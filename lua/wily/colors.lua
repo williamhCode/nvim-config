@@ -4,12 +4,19 @@ local utils = require("wily.utils.colors")
 local color = require("onedarkpro.helpers")
 local colors = color.get_colors()
 
+-- colors.git_add = "#73C991"
+-- colors.git_add = "#60A27A"
+-- colors.git_change = "#CE9866"
+-- colors.git_delete = "#C74E39"
+-- colors.git_delete = "#e06c75"
+
 require("onedarkpro").setup({
   plugins = {
     all = false,
     treesitter = true,
     nvim_lsp = true,
     lsp_semantic_tokens = true,
+    -- diffview = true,
   },
   options = {
     transparency = true
@@ -32,13 +39,13 @@ require("onedarkpro").setup({
     -- Syntax
     PreProc = { fg = colors.purple },
     Include = { fg = colors.purple },
-    Operator = { fg = colors.purple },
+    Operator = { fg = colors.white },
     Macro = { fg = colors.orange },
     PreCondit = { fg = colors.purple },
     StorageClass = { fg = colors.purple },
-    -- Structure = { fg = colors.yellow },
+    Structure = { fg = colors.yellow },
 
-    -- -- Treesitter
+    -- Treesitter
     ["@field"] = { fg = colors.red },
     ["@type"] = { link = "Type" },
     ["@type.builtin"] = { fg = colors.purple },
@@ -109,6 +116,40 @@ require("onedarkpro").setup({
     NeoTreeIndentMarker = { fg = colors.gray },
     NeoTreeSymbolicLinkTarget = { fg = colors.purple },
 
+    -- Diff
+    diffAdded = { fg = colors.green },
+    diffChanged = { fg = colors.yellow },
+    diffRemoved = { fg = colors.red },
+
+    DiffAdd = { bg = utils.darken(colors.git_add, 0.4, colors.bg) },
+    DiffText = { bg = utils.darken(colors.git_add, 0.4, colors.bg) },
+    DiffChange = { bg = utils.darken(colors.git_change, 0.4, colors.bg) },
+    DiffDelete = { bg = utils.darken(colors.git_delete, 0.4, colors.bg) },
+
+    DiffviewFolderSign = { fg = colors.blue },
+    DiffviewFilePanelFileName = { fg = colors.fg },
+    DiffviewFilePanelTitle = { fg = colors.orange, style = "bold" },
+    DiffviewFilePanelCounter = { fg = colors.fg },
+    DiffviewHash = { fg = colors.yellow },
+
+    -- Neogit
+    NeogitDiffAdd = { fg = colors.fg, bg = colors.diff_add },
+    NeogitDiffDelete = { bg = colors.diff_delete },
+    -- NeogitDiffAdd = { fg = colors.green,  },
+    -- NeogitDiffDelete = { fg = colors.red },
+
+    NeogitHunkHeaderHighlight = { fg = colors.bg, bg = colors.fg, style = "bold" },
+    NeogitDiffAddHighlight = { fg = colors.fg, bg = colors.diff_add },
+    NeogitDiffDeleteHighlight = { bg = colors.diff_delete },
+    -- NeogitDiffAddHighlight = { fg = colors.green },
+    -- NeogitDiffDeleteHighlight = { fg = colors.red },
+
+    NeogitBranch = { fg = colors.yellow, style = "bold" },
+    NeogitRemote = { fg = colors.green, style = "bold" },
+
+    NeogitSectionHeader = { fg = colors.purple, style = "bold" },
+    NeogitChangeModified = { fg = colors.purple, style = "bold" },
+
     -- Telescope
     TelescopeNormal = { fg = colors.fg, bg = colors.float_bg },
     TelescopeBorder = { fg = colors.gray, bg = colors.float_bg },
@@ -154,18 +195,18 @@ require("onedarkpro").setup({
   },
 })
 
-require("catppuccin").setup({
-  flavour = "latte",
-  integrations = {
-    cmp = true,
-    neotree = true,
-    treesitter = true,
-    telescope = {
-      enabled = true,
-      -- style = "nvchad"
-    }
-  },
-})
+-- require("catppuccin").setup({
+--   flavour = "latte",
+--   integrations = {
+--     cmp = true,
+--     neotree = true,
+--     treesitter = true,
+--     telescope = {
+--       enabled = true,
+--       -- style = "nvchad"
+--     }
+--   },
+-- })
 
 -- link FidgetTask highlight to background
 vim.cmd("colorscheme onedark")
