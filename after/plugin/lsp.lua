@@ -14,7 +14,8 @@ lsp.servers({
   -- "rust_analyzer",
   -- "marksman",
   -- "wgsl_analyzer",
-  "asm_lsp"
+  "asm_lsp",
+  -- "zls",
 })
 
 lsp.on_attach(function(client, bufnr)
@@ -57,13 +58,10 @@ lsp.on_attach(function(client, bufnr)
   map("n", "gs", vim.lsp.buf.signature_help, opts)
   map("i", "<M-x>", vim.lsp.buf.signature_help, opts)
   map("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
-  map("n", "<leader>lf", vim.diagnostic.open_float, opts)
   if client.name ~= "texlab" then
     map("n", "<leader>lca", vim.lsp.buf.code_action, opts)
     map("n", "<leader>lrn", vim.lsp.buf.rename, opts)
   end
-  map("n", "[d", vim.diagnostic.goto_prev, opts)
-  map("n", "]d", vim.diagnostic.goto_next, opts)
   map({ "n", "v" }, "<M-F>", function() vim.lsp.buf.format({ async = true }) end, opts)
 end)
 
@@ -76,6 +74,8 @@ lsp.configure("jdtls", {
       signatureHelp = {
         enabled = true
       },
+      -- ["format.settings.url"] = "/Users/williamhou/.config/jdtls-format-settings.xml",
+      -- ["format.settings.profile"] = "MyProfile",
     }
   }
 })
@@ -83,6 +83,9 @@ lsp.configure("jdtls", {
 lsp.configure("lua_ls", {
   settings = {
     Lua = {
+      -- diagnostics = {
+      --   disable = { "missing-fields" }
+      -- },
       format = {
         enable = true,
         defaultConfig = {

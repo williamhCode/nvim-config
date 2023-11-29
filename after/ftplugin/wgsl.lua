@@ -7,3 +7,7 @@ vim.opt.commentstring = "//%s"
 -- }
 
 -- require("wily.utils.term").set_build_cmd("make! %")
+
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2

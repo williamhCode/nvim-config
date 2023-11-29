@@ -39,6 +39,20 @@ opt.undofile = true
 opt.updatetime = 250
 opt.ttimeoutlen = 0
 
+local function list(items, sep)
+  return table.concat(items, sep or ",")
+end
+
+opt.fillchars = list {
+  -- "vert:▏",
+  "vert:│",
+  "diff:╱",
+  "foldclose:",
+  "foldopen:",
+  "fold: ",
+  "msgsep:─",
+}
+
 opt.guicursor:append("a:blinkon1")
 vim.cmd([[autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]])
 

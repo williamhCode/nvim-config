@@ -14,13 +14,9 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     ----------------- Colors and UI ----------------
     -- Colorschemes
-    -- { "navarasu/onedark.nvim" },
-    "folke/tokyonight.nvim",
-    { "projekt0n/github-nvim-theme" },
+    -- "folke/tokyonight.nvim",
+    -- { "projekt0n/github-nvim-theme" },
     { "olimorris/onedarkpro.nvim" },
-    { "ellisonleao/gruvbox.nvim" },
-    { "rebelot/kanagawa.nvim" },
-    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
     -- UI
     {
@@ -40,15 +36,6 @@ require("lazy").setup({
     --     })
     --   end
     -- }, -- highlight colors
-    {
-      "edluffy/hologram.nvim",
-      enabled = false,
-      config = function()
-        require("hologram").setup({
-          auto_display = true
-        })
-      end
-    }, -- Images support
 
     ------------------- Coding --------------------
     { "numToStr/Comment.nvim" }, -- Commenting
@@ -74,16 +61,7 @@ require("lazy").setup({
     -- Lsp Extras
     { "Issafalcon/lsp-overloads.nvim" }, -- Signature Help
     { "folke/neodev.nvim" },             -- Nvim Workspace
-    {
-      "j-hui/fidget.nvim",
-      config = function()
-        require("fidget").setup({
-          window = {
-            blend = 0
-          }
-        })
-      end
-    }, -- Lsp Progress
+    { "j-hui/fidget.nvim", },            -- Lsp Progress
 
     -- Autocompletion
     { "hrsh7th/nvim-cmp" },
@@ -102,9 +80,8 @@ require("lazy").setup({
       "nvim-treesitter/nvim-treesitter",
       build = ":TSUpdate",
     },
-    {
-      "nvim-treesitter/playground",
-    },
+    { "nvim-treesitter/playground", },
+    { "nvim-treesitter/nvim-treesitter-textobjects" },
     {
       "m-demare/hlargs.nvim",
       dependencies = { "nvim-treesitter/nvim-treesitter" },
@@ -113,6 +90,7 @@ require("lazy").setup({
     -- Latex support
     {
       "lervag/vimtex",
+      ft = "tex",
       config = function()
         vim.g.vimtex_quickfix_open_on_warning = 0
         vim.g.vimtex_view_method = "sioyek"
@@ -143,7 +121,7 @@ require("lazy").setup({
         "MunifTanjim/nui.nvim",
       },
       dev = false,
-    }, -- File Tree
+    },
 
     -- Fuzzy Finder
     {
@@ -159,13 +137,23 @@ require("lazy").setup({
       "ThePrimeagen/harpoon",
       dependencies = { "nvim-lua/plenary.nvim" },
     }, -- File Jumping
-    -- { "preservim/tagbar" }, -- Tagbar
 
     -- Terminal
     {
       "akinsho/toggleterm.nvim",
       tag = "v2.6.0",
     },
+
+    -- Git
+    {
+      "NeogitOrg/neogit",
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+      },
+      config = true,
+      cond = false,
+    },
+    { "sindrets/diffview.nvim" },
 
     -- Misc
     { "mbbill/undotree" },

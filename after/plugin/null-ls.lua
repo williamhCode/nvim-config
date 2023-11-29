@@ -7,13 +7,6 @@ local helpers = require("null-ls.helpers")
 
 null_ls.setup({
   on_attach = function(client, bufnr)
-    local map = vim.keymap.set
-    local opts = { buffer = bufnr }
-    if vim.o.filetype ~= "python" then
-      map("n", "[d", vim.diagnostic.goto_prev, opts)
-      map("n", "]d", vim.diagnostic.goto_next, opts)
-      map("n", "<leader>lf", vim.diagnostic.open_float, opts)
-    end
     vim.opt.formatexpr = ""
   end,
   sources = {

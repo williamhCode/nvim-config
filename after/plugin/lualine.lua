@@ -43,7 +43,8 @@ require("lualine").setup({
     section_separators = "",
     disabled_filetypes = {
       statusline = { "alpha" },
-      winbar = { "alpha", "neo-tree", "tagbar", "undotree", "diff", "qf" },
+      winbar = { "alpha", "neo-tree", "tagbar", "undotree", "diff", "qf", "DiffviewFiles", "DiffviewFileHistory",
+        "NeogitStatus" },
     },
   },
   sections = {
@@ -86,8 +87,28 @@ require("lualine").setup({
     lualine_y = { "progress" },
     lualine_z = { "location" },
   },
+  tabline = {
+    -- lualine_a = {
+    --   {
+    --     "tabs",
+    --     mode = 0,
+    --     -- 0: Shows tab_nr
+    --     -- 1: Shows tab_name
+    --     -- 2: Shows tab_nr + tab_name
+
+    --     path = 0, -- 0: just shows the filename
+    --     -- 1: shows the relative path and shorten $HOME to ~
+    --     -- 2: shows the full path
+    --     -- 3: shows the full path and shorten $HOME to ~
+
+    --     -- tabs_color = {
+    --     --   -- Same values as the general color option can be used here.
+    --     --   active = "lualine_{section}_normal",   -- Color for active tab.
+    --     --   inactive = "lualine_{section}_inactive", -- Color for inactive tab.
+    --     -- },
+    --   }
+    -- }
+  },
   winbar = winbar_settings,
   inactive_winbar = winbar_settings,
-  -- extensions = { "neo-tree", "toggleterm" }
 })
-

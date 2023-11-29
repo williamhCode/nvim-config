@@ -29,7 +29,9 @@ map({ "n", "x" }, "<leader>Y", "\"+Y", { remap = true })
 -- file switch
 map("n", "<C-_>", "<C-^>")
 
--- tab switch
+-- tab
+map("n", "<leader>te", "<cmd>tabe<CR>")
+map("n", "<leader>tq", "<cmd>tabc<CR>")
 map("n", "<leader>]", "<cmd>tabn<CR>")
 map("n", "<leader>[", "<cmd>tabp<CR>")
 
@@ -71,6 +73,10 @@ map("n", "<C-j>", "<cmd>cnext<CR>zz")
 map("n", "<C-k>", "<cmd>cprev<CR>zz")
 map("n", "<leader>ds", vim.diagnostic.setqflist)
 
+-- locationlist shortcuts
+map("n", "<C-l>", "<cmd>lnext<CR>zz")
+map("n", "<C-h>", "<cmd>lprev<CR>zz")
+
 -- indentation
 map("i", "<M-s>[", "<C-d>")
 map("i", "<M-s>]", "<C-t>")
@@ -87,26 +93,10 @@ local term = require("wily.utils.term")
 term.set_global_term_cmd("<leader>r", "make run")
 term.set_global_term_cmd("<leader>b", "make build")
 
--- toggle options
-local map_toggle_option = function(key, option)
-  map("n", "<leader>t" .. key, function()
-    vim.opt[option] = not vim.o[option]
-    local message = vim.o[option] and "enabled" or "disabled"
-    print(option .. " " .. message);
-  end)
-end
-
-map_toggle_option("w", "wrap")
-map_toggle_option("h", "hlsearch")
-map_toggle_option("e", "equalalways")
-map_toggle_option("r", "relativenumber")
-
-map('n', '<leader>td', function()
-  local virtual_text = not vim.diagnostic.config().virtual_text
-  vim.diagnostic.config({
-    virtual_text = virtual_text,
-  })
-end)
+-- diagnostics
+map("n", "<leader>df", vim.diagnostic.open_float)
+map("n", "[d", vim.diagnostic.goto_prev)
+map("n", "]d", vim.diagnostic.goto_next)
 
 -- user commands
 vim.cmd([[
@@ -135,3 +125,86 @@ Hydra({
     { ">", "<C-w>3>" },
   }
 })
+
+Hydra({
+  mode = "n",
+  body = "z",
+  heads = {
+    { "h", "5zh" },
+    { "l", "5zl" },
+    { "H", "zH" },
+    { "L", "zL" },
+  }
+})
+
+local toggle_conf = function(key, option)
+  return { key, function()
+    vim.opt[option] = not vim.o[option]
+  end, { desc = option, exit = true } }
+end
+
+Hydra({
+  name = "Options",
+  hint = [[
+    ^ ^        Options
+    ^
+    _w_ %{wrap} wrap
+    _v_ %{virtual_text} virtual_text
+    _h_ %{hls} hlsearch
+    _e_ %{ea} equalalways
+    _r_ %{rnu} relative number        ^
+  ]],
+  config = {
+    exit = true,
+    invoke_on_body = true,
+    hint = {
+      position = "middle",
+      funcs = {
+        hls = function()
+          return vim.o.hlsearch and "[x]" or "[ ]"
+        end,
+        ea = function()
+          return vim.o.equalalways and "[x]" or "[ ]"
+        end,
+        virtual_text = function()
+          return vim.diagnostic.config().virtual_text and "[x]" or "[ ]"
+        end,
+      }
+    }
+  },
+  mode = "n",
+  body = "<leader>o",
+  heads = {
+    { "w", function()
+      if vim.o.wrap ~= true then
+        vim.o.wrap = true
+        vim.keymap.set("n", "k", function()
+          return vim.v.count > 0 and "k" or "gk"
+        end, { expr = true, desc = "k or gk" })
+        vim.keymap.set("n", "j", function()
+          return vim.v.count > 0 and "j" or "gj"
+        end, { expr = true, desc = "j or gj" })
+      else
+        vim.o.wrap = false
+        vim.keymap.del("n", "k")
+        vim.keymap.del("n", "j")
+      end
+    end, { desc = "wrap", exit = true } },
+    { "v", function()
+      vim.diagnostic.config({
+        virtual_text = not vim.diagnostic.config().virtual_text,
+      })
+    end, { desc = "virtual_text", exit = true } },
+    toggle_conf("h", "hlsearch"),
+    toggle_conf("e", "equalalways"),
+    toggle_conf("r", "relativenumber"),
+    { "<leader>o", nil, { desc = false, exit = true } },
+    { "<Esc>", nil, { desc = false, exit = true } }
+  }
+})
+
+-- ui's
+map("n", "<leader>M", "<Cmd>Mason<CR>")
+map("n", "<leader>L", "<Cmd>Lazy<CR>")
+map("n", "<leader>gg", "<Cmd>Neogit<CR>")
+
