@@ -151,7 +151,7 @@ require("lazy").setup({
         "nvim-lua/plenary.nvim",
       },
       config = true,
-      cond = false,
+      -- cond = false,
     },
     { "sindrets/diffview.nvim" },
 
