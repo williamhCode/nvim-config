@@ -73,6 +73,8 @@ lsp.configure("jdtls", {
       signatureHelp = {
         enabled = true
       },
+      -- ["format.settings.url"] = "/Users/williamhou/.config/jdtls-format-settings.xml",
+      -- ["format.settings.profile"] = "MyProfile",
     }
   }
 })
