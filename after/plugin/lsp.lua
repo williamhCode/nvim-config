@@ -15,6 +15,7 @@ lsp.servers({
   "marksman",
   -- "wgsl_analyzer",
   "zls",
+  "asm_lsp",
 })
 
 lsp.on_attach(function(client, bufnr)

@@ -1,8 +1,9 @@
-require('Comment').setup({
-  ignore = '^$'
+require("Comment").setup({
+  ignore = "^$"
 })
 
 local map = vim.keymap.set
+local convert = require("wily.utils.keymap").convert
 
-map('n', "<M-s>/", "<Plug>(comment_toggle_linewise_current)")
-map('x', "<M-s>/", "<Plug>(comment_toggle_linewise_visual)")
+map("n", convert("<D-/>"), "<Plug>(comment_toggle_linewise_current)")
+map("x", convert("<D-/>"), "<Plug>(comment_toggle_linewise_visual)")

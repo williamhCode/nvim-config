@@ -1,8 +1,9 @@
 local map = vim.keymap.set
+local convert = require("wily.utils.keymap").convert
 
 -- editing
 map("i", "<C-c>", "<Esc>")
-map("n", "<M-s>a", "ggVG")
+map("n", convert("<D-a>"), "ggVG")
 map({ "i", "c" }, "<M-bs>", "<C-w>", { remap = true })
 
 -- better deleting/cutting
@@ -27,7 +28,11 @@ map({ "n", "x" }, "<leader>y", "\"+y")
 map({ "n", "x" }, "<leader>Y", "\"+Y", { remap = true })
 
 -- file switch
-map("n", "<C-_>", "<C-^>")
+if vim.g.neovide then
+  map("n", "<C-->", "<C-^>")
+else
+  map("n", "<C-_>", "<C-^>")
+end
 
 -- tab
 map("n", "<leader>te", "<cmd>tabe<CR>")
@@ -71,19 +76,19 @@ end)
 -- quickfix shortcuts
 map("n", "<C-j>", "<cmd>cnext<CR>zz")
 map("n", "<C-k>", "<cmd>cprev<CR>zz")
-map("n", "<leader>ds", vim.diagnostic.setqflist)
+-- map("n", "<leader>ds", vim.diagnostic.setqflist)
 
 -- locationlist shortcuts
 map("n", "<C-l>", "<cmd>lnext<CR>zz")
 map("n", "<C-h>", "<cmd>lprev<CR>zz")
 
 -- indentation
-map("i", "<M-s>[", "<C-d>")
-map("i", "<M-s>]", "<C-t>")
-map("n", "<M-s>[", "<<")
-map("n", "<M-s>]", ">>")
-map("x", "<M-s>[", "<gv")
-map("x", "<M-s>]", ">gv")
+map("i", convert("<D-[>"), "<C-d>")
+map("i", convert("<D-]>"), "<C-t>")
+map("n", convert("<D-[>"), "<<")
+map("n", convert("<D-]>"), ">>")
+map("x", convert("<D-[>"), "<gv")
+map("x", convert("<D-]>"), ">gv")
 
 -- terminal
 map("t", "<Esc>", "<C-\\><C-n>")
@@ -143,6 +148,8 @@ local toggle_conf = function(key, option)
   end, { desc = option, exit = true } }
 end
 
+local auto_trigger = false
+
 Hydra({
   name = "Options",
   hint = [[
@@ -153,6 +160,7 @@ Hydra({
     _h_ %{hls} hlsearch
     _e_ %{ea} equalalways
     _r_ %{rnu} relative number        ^
+    _a_ %{auto_trigger} auto trigger  ^
   ]],
   config = {
     exit = true,
@@ -168,6 +176,9 @@ Hydra({
         end,
         virtual_text = function()
           return vim.diagnostic.config().virtual_text and "[x]" or "[ ]"
+        end,
+        auto_trigger = function()
+          return auto_trigger and "[x]" or "[ ]"
         end,
       }
     }
@@ -198,8 +209,13 @@ Hydra({
     toggle_conf("h", "hlsearch"),
     toggle_conf("e", "equalalways"),
     toggle_conf("r", "relativenumber"),
+    { "a", function()
+      auto_trigger = not auto_trigger
+      require("copilot.suggestion").toggle_auto_trigger()
+    end, { desc = "auto_trigger", exit = true } },
+
     { "<leader>o", nil, { desc = false, exit = true } },
-    { "<Esc>", nil, { desc = false, exit = true } }
+    { "<Esc>", nil, { desc = false, exit = true } },
   }
 })
 

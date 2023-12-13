@@ -49,10 +49,20 @@ require("lazy").setup({
       dependencies = { "nvim-lua/plenary.nvim" }
     },
 
+    -- Install stuff
+    {
+      "williamboman/mason.nvim",
+      config = true
+    },
+
     -- Lsp Support
     { "neovim/nvim-lspconfig" },
-    { "williamboman/mason.nvim" },
     { "williamboman/mason-lspconfig.nvim" },
+
+    -- Debugger Support
+    { "mfussenegger/nvim-dap" },
+    { "rcarriga/nvim-dap-ui" },
+    { "jay-babu/mason-nvim-dap.nvim" },
 
     -- Null Ls
     { "jose-elias-alvarez/null-ls.nvim" },
@@ -151,7 +161,7 @@ require("lazy").setup({
         "nvim-lua/plenary.nvim",
       },
       config = true,
-      cond = false,
+      -- cond = false,
     },
     { "sindrets/diffview.nvim" },
 

@@ -7,15 +7,17 @@ local data = {}
 ---@param toggle function
 ---@param close function
 M.set_cmds = function(mapping, toggle, close)
+  mapping = require("wily.utils.keymap").convert(mapping)
   data[mapping] = { toggle, close }
-  vim.keymap.set("n", mapping, function()
-    for key, value in pairs(data) do
-      if key ~= mapping then
-        value[2]()
+  vim.keymap.set("n", mapping,
+    function()
+      for key, value in pairs(data) do
+        if key ~= mapping then
+          value[2]()
+        end
       end
-    end
-    data[mapping][1]()
-  end)
+      data[mapping][1]()
+    end)
 end
 
 return M

@@ -77,6 +77,7 @@ require("onedarkpro").setup({
     ["@text.literal"] = { link = "Comment" },
     ["@text.todo.unchecked"] = {},
     ["@text.todo.checked"] = {},
+    ["@text.literal.block.markdown"] = {},
 
     -- Lsp
     DiagnosticError = { fg = colors.red },
@@ -213,3 +214,4 @@ vim.cmd("colorscheme onedark")
 
 -- vim.cmd("colorscheme catppuccin")
 -- vim.cmd("colorscheme github_light")
+

@@ -96,9 +96,8 @@ require("neo-tree").setup({
   }
 })
 
--- vim.keymap.set("n", "<M-s>b", "<cmd>Neotree toggle<CR>")
 local sidebar = require("wily.utils.sidebar")
-sidebar.set_cmds("<M-s>b",
+sidebar.set_cmds("<D-b>",
   function() vim.cmd("Neotree toggle") end,
   function() vim.cmd("Neotree close") end
 )

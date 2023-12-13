@@ -24,7 +24,7 @@ M.nvim_workspace = function()
 end
 
 M.setup = function()
-  require("mason").setup()
+  -- require("mason").setup()
   -- require("mason-lspconfig").setup({
   --   ensure_installed = settings.servers
   -- })
