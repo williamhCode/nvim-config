@@ -60,10 +60,10 @@ local create_fileswitch_map = function(extensions)
       group = group,
       pattern = "*" .. patterns[1],
       callback = function()
-        local path_root = vim.fn.expand('%:r')
+        local path_root = vim.fn.expand("%:r")
         local file_exists = vim.fn.filereadable(path_root .. patterns[2])
         if file_exists == 1 then
-          vim.keymap.set('n', "<leader>-", ":edit " .. path_root .. patterns[2] .. "<CR>",
+          vim.keymap.set("n", "<leader>-", ":edit " .. path_root .. patterns[2] .. "<CR>",
             { silent = true, buffer = true })
         end
       end
@@ -145,15 +145,26 @@ autocmd("QuickFixCmdPost", {
 
 -- LuaSnip supertab fix
 autocmd("ModeChanged", {
-    group = augroup("wily_clear_supertab", {}),
-    pattern = '*',
-    callback = function()
-        if ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
-            and require('luasnip').session.current_nodes[vim.api.nvim_get_current_buf()]
-            and not require('luasnip').session.jump_active
-        then
-            require('luasnip').unlink_current()
-        end
-    end,
+  group = augroup("wily_clear_supertab", {}),
+  pattern = "*",
+  callback = function()
+    if ((vim.v.event.old_mode == "s" and vim.v.event.new_mode == "n") or vim.v.event.old_mode == "i")
+      and require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
+      and not require("luasnip").session.jump_active
+    then
+      require("luasnip").unlink_current()
+    end
+  end,
 })
 
+-- neovide meta fix
+autocmd("InsertEnter", {
+  callback = function()
+    vim.g.neovide_input_ime = true
+  end,
+})
+autocmd("InsertLeave", {
+  callback = function()
+    vim.g.neovide_input_ime = false
+  end,
+})
