@@ -53,6 +53,7 @@ require("onedarkpro").setup({
     ["@type.qualifier"] = { fg = colors.purple },
     ["@constant.builtin"] = { link = "@constant" },
     ["@function.builtin"] = { fg = colors.cyan },
+    -- ["@punctuation.bracket"] = { bg = colors.gray },
 
     ["@lsp.type.struct.rust"] = { fg = colors.yellow },
 

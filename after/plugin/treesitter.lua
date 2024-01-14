@@ -52,7 +52,7 @@ require("nvim-treesitter.configs").setup({
         ["af"] = "@function.outer",
         ["if"] = "@function.inner",
         ["ac"] = "@class.outer",
-        ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+        ["ic"] = "@class.inner",
       },
       selection_modes = {
         ["@parameter.outer"] = "v", -- charwise
@@ -66,8 +66,6 @@ require("nvim-treesitter.configs").setup({
       set_jumps = true,
       goto_next_start = {
         ["]f"] = "@function.outer",
-        -- ["]o"] = "@loop.*",
-        -- ["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
       },
       goto_next_end = {
         ["]F"] = "@function.outer",

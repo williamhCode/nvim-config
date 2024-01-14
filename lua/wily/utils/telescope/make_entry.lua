@@ -24,7 +24,7 @@ do
     cwd = 2,
   }
 
-  make_entry.gen_from_file = function(opts)
+  function make_entry.gen_from_file(opts)
     opts = opts or {}
 
     local cwd = vim.fn.expand(opts.cwd or vim.loop.cwd())
@@ -42,7 +42,6 @@ do
 
       display, hl_group, icon = utils.transform_devicons(entry.value, display, disable_devicons)
 
-      -- find the index of the end of the tail in the path
       local _, i = string.find(display, tail, 1, true)
 
       if hl_group then
@@ -86,5 +85,6 @@ do
     end
   end
 end
+
 
 return make_entry
