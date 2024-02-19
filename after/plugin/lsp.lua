@@ -16,6 +16,8 @@ lsp.servers({
   -- "wgsl_analyzer",
   "zls",
   "asm_lsp",
+  "tsserver",
+  -- "eslint"
 })
 
 lsp.on_attach(function(client, bufnr)
@@ -125,5 +127,15 @@ lsp.configure("rust_analyzer", {
     }
   }
 })
+
+-- lsp.configure("eslint", {
+--   settings = {
+--     eslint = {
+--       format = {
+--         enable = true
+--       }
+--     }
+--   }
+-- })
 
 lsp.setup()

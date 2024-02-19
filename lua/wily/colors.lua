@@ -213,6 +213,5 @@ require("onedarkpro").setup({
 -- link FidgetTask highlight to background
 vim.cmd("colorscheme onedark")
 
--- vim.cmd("colorscheme catppuccin")
 -- vim.cmd("colorscheme github_light")
 

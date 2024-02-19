@@ -7,6 +7,17 @@ map("n", convert("<D-a>"), "ggVG")
 map({ "i", "c" }, "<M-bs>", "<C-w>", { remap = true })
 
 -- better deleting/cutting
+-- map("x", "*", function()
+--   local currInYank = vim.fn.getreg('"')
+--   vim.cmd [[silent y/\V<C-R>"<CR>]]
+--   vim.fn.setreg('"', currInYank)
+-- end, { silent = true })
+-- map("x", "#", function()
+--   local currInYank = vim.fn.getreg('"')
+--   vim.cmd [[silent y?\V<C-R>"<CR>]]
+--   vim.fn.setreg('"', currInYank)
+-- end, { silent = true })
+
 map({ "n", "x" }, "d", "\"_d")
 map({ "n", "x" }, "D", "\"_D")
 
@@ -26,6 +37,9 @@ map({ "n", "x" }, "<leader>P", "\"+P")
 
 map({ "n", "x" }, "<leader>y", "\"+y")
 map({ "n", "x" }, "<leader>Y", "\"+Y", { remap = true })
+
+map({ "n", "x" }, "<leader>x", "\"+x")
+map({ "n", "x" }, "<leader>X", "\"+X", { remap = true })
 
 -- file switch
 if vim.g.neovide then
@@ -105,7 +119,7 @@ map("n", "]d", vim.diagnostic.goto_next)
 
 -- copy path
 vim.api.nvim_create_user_command("CP", [[let @+ = expand("%")]], {})
-vim.api.nvim_create_user_command("CPF", [[let @+ = expand("%:p")]], {})
+vim.api.nvim_create_user_command("CF", [[let @+ = expand("%:p")]], {})
 vim.api.nvim_create_user_command("CN", [[let @+ = expand("%:t")]], {})
 
 -- user commands
@@ -228,4 +242,3 @@ Hydra({
 map("n", "<leader>M", "<Cmd>Mason<CR>")
 map("n", "<leader>L", "<Cmd>Lazy<CR>")
 map("n", "<leader>gg", "<Cmd>Neogit<CR>")
-
