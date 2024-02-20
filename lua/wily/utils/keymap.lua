@@ -8,5 +8,8 @@ M.convert = function(mapping)
   return mapping
 end
 
+M.map = function(mode, lhs, rhs, opts)
+  vim.keymap.set(mode, M.convert(lhs), rhs, opts)
+end
 
 return M

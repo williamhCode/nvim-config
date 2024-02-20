@@ -1,9 +1,8 @@
-local map = vim.keymap.set
-local convert = require("wily.utils.keymap").convert
+local map = require("wily.utils.keymap").map
 
 -- editing
 map("i", "<C-c>", "<Esc>")
-map("n", convert("<D-a>"), "ggVG")
+map("n", "<D-a>", "ggVG")
 map({ "i", "c" }, "<M-bs>", "<C-w>", { remap = true })
 
 -- better deleting/cutting
@@ -97,12 +96,12 @@ map("n", "<C-l>", "<cmd>lnext<CR>zz")
 map("n", "<C-h>", "<cmd>lprev<CR>zz")
 
 -- indentation
-map("i", convert("<D-[>"), "<C-d>")
-map("i", convert("<D-]>"), "<C-t>")
-map("n", convert("<D-[>"), "<<")
-map("n", convert("<D-]>"), ">>")
-map("x", convert("<D-[>"), "<gv")
-map("x", convert("<D-]>"), ">gv")
+map("i", "<D-[>", "<C-d>")
+map("i", "<D-]>", "<C-t>")
+map("n", "<D-[>", "<<")
+map("n", "<D-]>", ">>")
+map("x", "<D-[>", "<gv")
+map("x", "<D-]>", ">gv")
 
 -- terminal
 map("t", "<Esc>", "<C-\\><C-n>")
