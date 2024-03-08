@@ -1,5 +1,3 @@
----@diagnostic disable: missing-fields
-
 require("nvim-treesitter.configs").setup({
   playground = {
     enable = true,
@@ -20,7 +18,8 @@ require("nvim-treesitter.configs").setup({
     "vimdoc",
     "rust",
     "wgsl",
-    "query"
+    "query",
+    "javascript"
   },
 
   highlight = {

@@ -19,7 +19,7 @@ require("onedarkpro").setup({
     -- diffview = true,
   },
   options = {
-    transparency = true
+    -- transparency = true
   },
   highlights = {
     NormalFloat = { bg = colors.float_bg },
@@ -53,7 +53,7 @@ require("onedarkpro").setup({
     ["@type.qualifier"] = { fg = colors.purple },
     ["@constant.builtin"] = { link = "@constant" },
     ["@function.builtin"] = { fg = colors.cyan },
-    -- ["@punctuation.bracket"] = { bg = colors.gray },
+    ["@punctuation.bracket"] = { fg = colors.fg },
 
     ["@lsp.type.struct.rust"] = { fg = colors.yellow },
 
