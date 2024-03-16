@@ -7,6 +7,9 @@ local term = require("wily.utils.term")
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
--- vim.opt.colorcolumn = "80"
+vim.cmd [[
+set cinkeys-=0#
+set indentkeys-=0#
+]]
 
 vim.keymap.set("n", "<leader>-", "<cmd>ClangdSwitchSourceHeader<cr>")

@@ -7,7 +7,8 @@ require("toggleterm").setup({
   --   end
   -- end,
 
-  open_mapping = "<M-s>j",
+  -- open_mapping = "<M-s>j",
+  open_mapping = require("wily.utils.keymap").convert("<D-j>"),
 
   highlights = {
     NormalFloat = {
@@ -19,9 +20,17 @@ require("toggleterm").setup({
   },
 
   direction = "float",
+  -- direction = "tab",
 
   float_opts = {
     border = "solid",
     -- winblend = 10
+  },
+
+  winbar = {
+    enabled = true,
+    name_formatter = function(term) --  term: Terminal
+      return term.name
+    end
   },
 })

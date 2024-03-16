@@ -1,14 +1,11 @@
-require("harpoon").setup({
-  -- tabline = false,
-})
+local harpoon = require("harpoon")
 
-local mark = require("harpoon.mark")
-local ui = require("harpoon.ui")
+harpoon:setup()
 
 local map = vim.keymap.set
+map("n", "<leader>a", function() harpoon:list():append() end)
+map("n", "<leader>h", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
-map("n", "<leader>a", mark.add_file)
-map("n", "<leader>h", ui.toggle_quick_menu)
 for i = 1, 9 do
-  map("n", string.format("<leader>%d", i), function() ui.nav_file(i) end)
+  map("n", string.format("<leader>%d", i), function() harpoon:list():select(i) end)
 end

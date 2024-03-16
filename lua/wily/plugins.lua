@@ -9,14 +9,16 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
+
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     ----------------- Colors and UI ----------------
     -- Colorschemes
     -- "folke/tokyonight.nvim",
-    -- { "projekt0n/github-nvim-theme" },
+    { "projekt0n/github-nvim-theme" },
     { "olimorris/onedarkpro.nvim" },
+    { "HUAHUAI23/nvim-quietlight" },
 
     -- UI
     {
@@ -49,10 +51,20 @@ require("lazy").setup({
       dependencies = { "nvim-lua/plenary.nvim" }
     },
 
+    -- Install stuff
+    {
+      "williamboman/mason.nvim",
+      config = true
+    },
+
     -- Lsp Support
     { "neovim/nvim-lspconfig" },
-    { "williamboman/mason.nvim" },
     { "williamboman/mason-lspconfig.nvim" },
+
+    -- Debugger Support
+    { "mfussenegger/nvim-dap" },
+    { "rcarriga/nvim-dap-ui" },
+    { "jay-babu/mason-nvim-dap.nvim" },
 
     -- Null Ls
     { "jose-elias-alvarez/null-ls.nvim" },
@@ -129,12 +141,12 @@ require("lazy").setup({
       dependencies = { "nvim-lua/plenary.nvim" },
       -- branch = "0.1.x",
     },
-    {
-      "nvim-telescope/telescope-fzf-native.nvim", build = "make"
-    },
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    { "nvim-telescope/telescope-project.nvim" },
 
     {
       "ThePrimeagen/harpoon",
+      branch = "harpoon2",
       dependencies = { "nvim-lua/plenary.nvim" },
     }, -- File Jumping
 

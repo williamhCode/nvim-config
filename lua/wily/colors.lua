@@ -19,7 +19,7 @@ require("onedarkpro").setup({
     -- diffview = true,
   },
   options = {
-    transparency = true
+    -- transparency = true
   },
   highlights = {
     NormalFloat = { bg = colors.float_bg },
@@ -53,6 +53,7 @@ require("onedarkpro").setup({
     ["@type.qualifier"] = { fg = colors.purple },
     ["@constant.builtin"] = { link = "@constant" },
     ["@function.builtin"] = { fg = colors.cyan },
+    ["@punctuation.bracket"] = { fg = colors.fg },
 
     ["@lsp.type.struct.rust"] = { fg = colors.yellow },
 
@@ -77,6 +78,7 @@ require("onedarkpro").setup({
     ["@text.literal"] = { link = "Comment" },
     ["@text.todo.unchecked"] = {},
     ["@text.todo.checked"] = {},
+    ["@text.literal.block.markdown"] = {},
 
     -- Lsp
     DiagnosticError = { fg = colors.red },
@@ -211,5 +213,7 @@ require("onedarkpro").setup({
 -- link FidgetTask highlight to background
 vim.cmd("colorscheme onedark")
 
--- vim.cmd("colorscheme catppuccin")
+-- vim.opt.background = 'light'
 -- vim.cmd("colorscheme github_light")
+
+-- vim.cmd('colorscheme quietlight')

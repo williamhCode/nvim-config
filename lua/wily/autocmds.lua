@@ -52,6 +52,17 @@ autocmd("FileType", {
   end
 })
 
+--- @return string: the root path of the current file
+local get_path_root = function()
+  local path = vim.fn.expand("%")
+  local prev_path = nil
+  while path ~= prev_path do
+    prev_path = path
+    path = vim.fn.fnamemodify(path, ":r")
+  end
+  return path
+end
+
 -- file switching
 local group = augroup("wily_fileswitch_mapping", {})
 local create_fileswitch_map = function(extensions)
@@ -60,10 +71,13 @@ local create_fileswitch_map = function(extensions)
       group = group,
       pattern = "*" .. patterns[1],
       callback = function()
-        local path_root = vim.fn.expand('%:r')
+        local path_root = get_path_root()
+        if string.find(path_root, "%.") then
+          path_root = string.gsub(path_root, "%..*$", "")
+        end
         local file_exists = vim.fn.filereadable(path_root .. patterns[2])
         if file_exists == 1 then
-          vim.keymap.set('n', "<leader>-", ":edit " .. path_root .. patterns[2] .. "<CR>",
+          vim.keymap.set("n", "<leader>-", ":edit " .. path_root .. patterns[2] .. "<CR>",
             { silent = true, buffer = true })
         end
       end
@@ -75,6 +89,7 @@ end
 
 create_fileswitch_map({ ".pyx", ".pxd" })
 create_fileswitch_map({ ".vert", ".frag" })
+create_fileswitch_map({ ".vert.wgsl", ".frag.wgsl" })
 -- create_fileswitch_map({ ".c", ".h" })
 
 -- nohlsearch when cursor moves or enters insert mode
@@ -135,25 +150,36 @@ endif
 ]])
 
 -- quickfix auto-open
-autocmd("QuickFixCmdPost", {
-  group = augroup("wily_quickfix", {}),
-  pattern = "[^l]*",
-  callback = function()
-    vim.cmd("botright cwindow")
-  end,
-})
+-- autocmd("QuickFixCmdPost", {
+--   group = augroup("wily_quickfix", {}),
+--   pattern = "[^l]*",
+--   callback = function()
+--     vim.cmd("botright cwindow")
+--   end,
+-- })
 
 -- LuaSnip supertab fix
 autocmd("ModeChanged", {
-    group = augroup("wily_clear_supertab", {}),
-    pattern = '*',
-    callback = function()
-        if ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
-            and require('luasnip').session.current_nodes[vim.api.nvim_get_current_buf()]
-            and not require('luasnip').session.jump_active
-        then
-            require('luasnip').unlink_current()
-        end
-    end,
+  group = augroup("wily_clear_supertab", {}),
+  pattern = "*",
+  callback = function()
+    if ((vim.v.event.old_mode == "s" and vim.v.event.new_mode == "n") or vim.v.event.old_mode == "i")
+      and require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
+      and not require("luasnip").session.jump_active
+    then
+      require("luasnip").unlink_current()
+    end
+  end,
 })
 
+-- neovide meta fix
+autocmd("InsertEnter", {
+  callback = function()
+    vim.g.neovide_input_ime = true
+  end,
+})
+autocmd("InsertLeave", {
+  callback = function()
+    vim.g.neovide_input_ime = false
+  end,
+})

@@ -1,11 +1,22 @@
-local map = vim.keymap.set
+local map = require("wily.utils.keymap").map
 
 -- editing
 map("i", "<C-c>", "<Esc>")
-map("n", "<M-s>a", "ggVG")
+map("n", "<D-a>", "ggVG")
 map({ "i", "c" }, "<M-bs>", "<C-w>", { remap = true })
 
 -- better deleting/cutting
+-- map("x", "*", function()
+--   local currInYank = vim.fn.getreg('"')
+--   vim.cmd [[silent y/\V<C-R>"<CR>]]
+--   vim.fn.setreg('"', currInYank)
+-- end, { silent = true })
+-- map("x", "#", function()
+--   local currInYank = vim.fn.getreg('"')
+--   vim.cmd [[silent y?\V<C-R>"<CR>]]
+--   vim.fn.setreg('"', currInYank)
+-- end, { silent = true })
+
 map({ "n", "x" }, "d", "\"_d")
 map({ "n", "x" }, "D", "\"_D")
 
@@ -26,8 +37,15 @@ map({ "n", "x" }, "<leader>P", "\"+P")
 map({ "n", "x" }, "<leader>y", "\"+y")
 map({ "n", "x" }, "<leader>Y", "\"+Y", { remap = true })
 
+map({ "n", "x" }, "<leader>x", "\"+x")
+map({ "n", "x" }, "<leader>X", "\"+X", { remap = true })
+
 -- file switch
-map("n", "<C-_>", "<C-^>")
+if vim.g.neovide or vim.g.neovim_gui then
+  map("n", "<C-->", "<C-^>")
+else
+  map("n", "<C-_>", "<C-^>")
+end
 
 -- tab
 map("n", "<leader>te", "<cmd>tabe<CR>")
@@ -71,19 +89,19 @@ end)
 -- quickfix shortcuts
 map("n", "<C-j>", "<cmd>cnext<CR>zz")
 map("n", "<C-k>", "<cmd>cprev<CR>zz")
-map("n", "<leader>ds", vim.diagnostic.setqflist)
+map("n", "<leader>qs", vim.diagnostic.setqflist)
 
 -- locationlist shortcuts
 map("n", "<C-l>", "<cmd>lnext<CR>zz")
 map("n", "<C-h>", "<cmd>lprev<CR>zz")
 
 -- indentation
-map("i", "<M-s>[", "<C-d>")
-map("i", "<M-s>]", "<C-t>")
-map("n", "<M-s>[", "<<")
-map("n", "<M-s>]", ">>")
-map("x", "<M-s>[", "<gv")
-map("x", "<M-s>]", ">gv")
+map("i", "<D-[>", "<C-d>")
+map("i", "<D-]>", "<C-t>")
+map("n", "<D-[>", "<<")
+map("n", "<D-]>", ">>")
+map("x", "<D-[>", "<gv")
+map("x", "<D-]>", ">gv")
 
 -- terminal
 map("t", "<Esc>", "<C-\\><C-n>")
@@ -97,6 +115,11 @@ term.set_global_term_cmd("<leader>b", "make build")
 map("n", "<leader>df", vim.diagnostic.open_float)
 map("n", "[d", vim.diagnostic.goto_prev)
 map("n", "]d", vim.diagnostic.goto_next)
+
+-- copy path
+vim.api.nvim_create_user_command("CP", [[let @+ = expand("%")]], {})
+vim.api.nvim_create_user_command("CF", [[let @+ = expand("%:p")]], {})
+vim.api.nvim_create_user_command("CN", [[let @+ = expand("%:t")]], {})
 
 -- user commands
 vim.cmd([[
@@ -143,6 +166,8 @@ local toggle_conf = function(key, option)
   end, { desc = option, exit = true } }
 end
 
+local auto_trigger = false
+
 Hydra({
   name = "Options",
   hint = [[
@@ -153,6 +178,7 @@ Hydra({
     _h_ %{hls} hlsearch
     _e_ %{ea} equalalways
     _r_ %{rnu} relative number        ^
+    _a_ %{auto_trigger} auto trigger  ^
   ]],
   config = {
     exit = true,
@@ -168,6 +194,9 @@ Hydra({
         end,
         virtual_text = function()
           return vim.diagnostic.config().virtual_text and "[x]" or "[ ]"
+        end,
+        auto_trigger = function()
+          return auto_trigger and "[x]" or "[ ]"
         end,
       }
     }
@@ -198,8 +227,13 @@ Hydra({
     toggle_conf("h", "hlsearch"),
     toggle_conf("e", "equalalways"),
     toggle_conf("r", "relativenumber"),
+    { "a", function()
+      auto_trigger = not auto_trigger
+      require("copilot.suggestion").toggle_auto_trigger()
+    end, { desc = "auto_trigger", exit = true } },
+
     { "<leader>o", nil, { desc = false, exit = true } },
-    { "<Esc>", nil, { desc = false, exit = true } }
+    { "<Esc>", nil, { desc = false, exit = true } },
   }
 })
 
@@ -207,4 +241,3 @@ Hydra({
 map("n", "<leader>M", "<Cmd>Mason<CR>")
 map("n", "<leader>L", "<Cmd>Lazy<CR>")
 map("n", "<leader>gg", "<Cmd>Neogit<CR>")
-

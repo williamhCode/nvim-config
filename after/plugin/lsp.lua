@@ -126,4 +126,14 @@ lsp.configure("rust_analyzer", {
   }
 })
 
+-- lsp.configure("eslint", {
+--   settings = {
+--     eslint = {
+--       format = {
+--         enable = true
+--       }
+--     }
+--   }
+-- })
+
 lsp.setup()

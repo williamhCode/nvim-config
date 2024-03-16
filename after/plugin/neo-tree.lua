@@ -91,14 +91,21 @@ require("neo-tree").setup({
       ["<TAB>"] = function(state)
         state.commands["open"](state)
         vim.cmd("Neotree focus")
-      end
+      end,
+      -- move file down
+      ["J"] = function(state)
+        local node = state.tree:get_node()
+        local next = node:get_next()
+        if next then
+          node:move(next)
+        end
+      end,
     }
   }
 })
 
--- vim.keymap.set("n", "<M-s>b", "<cmd>Neotree toggle<CR>")
 local sidebar = require("wily.utils.sidebar")
-sidebar.set_cmds("<M-s>b",
+sidebar.set_cmds("<D-b>",
   function() vim.cmd("Neotree toggle") end,
   function() vim.cmd("Neotree close") end
 )
