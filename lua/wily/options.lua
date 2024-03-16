@@ -3,9 +3,9 @@ vim.g.maplocalleader = " "
 
 local opt = vim.opt
 
-vim.opt.shiftwidth = 4
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
+opt.shiftwidth = 4
+opt.tabstop = 4
+opt.softtabstop = 4
 opt.expandtab = true
 opt.shiftround = true
 
@@ -39,6 +39,8 @@ opt.undofile = true
 opt.updatetime = 250
 opt.ttimeoutlen = 0
 
+opt.conceallevel = 2
+
 local function list(items, sep)
   return table.concat(items, sep or ",")
 end
@@ -53,7 +55,7 @@ opt.fillchars = list {
   "msgsep:─",
 }
 
-opt.guicursor:append("a:blinkon1")
+opt.guicursor:append("a:blinkwait100-blinkoff700-blinkon700")
 vim.cmd([[autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]])
 
 vim.diagnostic.config({

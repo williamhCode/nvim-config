@@ -16,8 +16,9 @@ require("lazy").setup({
     ----------------- Colors and UI ----------------
     -- Colorschemes
     -- "folke/tokyonight.nvim",
-    -- { "projekt0n/github-nvim-theme" },
+    { "projekt0n/github-nvim-theme" },
     { "olimorris/onedarkpro.nvim" },
+    { "HUAHUAI23/nvim-quietlight" },
 
     -- UI
     {

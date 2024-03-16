@@ -41,7 +41,7 @@ map({ "n", "x" }, "<leader>x", "\"+x")
 map({ "n", "x" }, "<leader>X", "\"+X", { remap = true })
 
 -- file switch
-if vim.g.neovide then
+if vim.g.neovide or vim.g.neovim_gui then
   map("n", "<C-->", "<C-^>")
 else
   map("n", "<C-_>", "<C-^>")
@@ -89,7 +89,7 @@ end)
 -- quickfix shortcuts
 map("n", "<C-j>", "<cmd>cnext<CR>zz")
 map("n", "<C-k>", "<cmd>cprev<CR>zz")
--- map("n", "<leader>ds", vim.diagnostic.setqflist)
+map("n", "<leader>qs", vim.diagnostic.setqflist)
 
 -- locationlist shortcuts
 map("n", "<C-l>", "<cmd>lnext<CR>zz")

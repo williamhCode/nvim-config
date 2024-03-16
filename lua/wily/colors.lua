@@ -213,5 +213,7 @@ require("onedarkpro").setup({
 -- link FidgetTask highlight to background
 vim.cmd("colorscheme onedark")
 
+-- vim.opt.background = 'light'
 -- vim.cmd("colorscheme github_light")
 
+-- vim.cmd('colorscheme quietlight')

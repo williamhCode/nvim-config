@@ -150,13 +150,13 @@ endif
 ]])
 
 -- quickfix auto-open
-autocmd("QuickFixCmdPost", {
-  group = augroup("wily_quickfix", {}),
-  pattern = "[^l]*",
-  callback = function()
-    vim.cmd("botright cwindow")
-  end,
-})
+-- autocmd("QuickFixCmdPost", {
+--   group = augroup("wily_quickfix", {}),
+--   pattern = "[^l]*",
+--   callback = function()
+--     vim.cmd("botright cwindow")
+--   end,
+-- })
 
 -- LuaSnip supertab fix
 autocmd("ModeChanged", {

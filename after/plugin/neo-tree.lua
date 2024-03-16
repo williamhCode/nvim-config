@@ -91,7 +91,15 @@ require("neo-tree").setup({
       ["<TAB>"] = function(state)
         state.commands["open"](state)
         vim.cmd("Neotree focus")
-      end
+      end,
+      -- move file down
+      ["J"] = function(state)
+        local node = state.tree:get_node()
+        local next = node:get_next()
+        if next then
+          node:move(next)
+        end
+      end,
     }
   }
 })
