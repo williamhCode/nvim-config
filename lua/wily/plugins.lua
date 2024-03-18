@@ -9,7 +9,6 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
-
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
@@ -153,7 +152,7 @@ require("lazy").setup({
     -- Terminal
     {
       "akinsho/toggleterm.nvim",
-      tag = "v2.6.0",
+      version = "*"
     },
 
     -- Git

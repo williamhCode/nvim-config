@@ -7,7 +7,6 @@ require("toggleterm").setup({
   --   end
   -- end,
 
-  -- open_mapping = "<M-s>j",
   open_mapping = require("wily.utils.keymap").convert("<D-j>"),
 
   highlights = {
