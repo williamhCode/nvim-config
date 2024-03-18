@@ -25,6 +25,24 @@ autocmd("BufReadPost", {
   end,
 })
 
+-- fix last location for harpoon
+-- local harpoon = require("harpoon")
+-- autocmd({ "BufLeave", "ExitPre" }, {
+--   group = augroup("wily_fix_harpoon_last_location", {}),
+--   pattern = "*",
+--   callback = function()
+--     local filename = vim.fn.expand("%:p:.")
+--     local harpoon_marks = harpoon:list().items
+--     for _, mark in ipairs(harpoon_marks) do
+--       if mark.value == filename then
+--         mark.context.row = vim.fn.line(".")
+--         mark.context.col = vim.fn.col(".")
+--         return
+--       end
+--     end
+--   end,
+-- })
+
 -- set filetypes
 autocmd({ "BufNewFile", "BufRead" }, {
   group = augroup("wily_glsl_ft", {}),

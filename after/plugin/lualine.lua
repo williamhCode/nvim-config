@@ -39,7 +39,7 @@ require("lualine").setup({
     theme = onedark,
     -- theme = "catppuccin",
     globalstatus = true,
-    component_separators = "|",
+    component_separators = "│",
     section_separators = "",
     disabled_filetypes = {
       statusline = { "alpha" },
@@ -59,12 +59,13 @@ require("lualine").setup({
         "dapui_scopes",
         "dapui_stacks",
         "dapui_watches",
+        "Trouble"
       },
     },
   },
   sections = {
     lualine_a = { "mode" },
-    lualine_b = { "branch" },
+    lualine_b = { "grapple" },
     lualine_c = {
       {
         "diagnostics",

@@ -144,11 +144,11 @@ require("lazy").setup({
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     { "nvim-telescope/telescope-project.nvim" },
 
-  --  {
-  --    "ThePrimeagen/harpoon",
-  --    branch = "harpoon2",
-  --    dependencies = { "nvim-lua/plenary.nvim" },
-  --  }, -- File Jumping
+    -- File Jumping
+    { "cbochs/grapple.nvim" },
+
+    -- List
+    { "folke/trouble.nvim" },
 
     -- Terminal
     {
