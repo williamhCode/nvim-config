@@ -28,6 +28,7 @@ require("lazy").setup({
       "nvim-lualine/lualine.nvim",
       dependencies = { "nvim-tree/nvim-web-devicons" },
     }, -- Status Line
+
     -- Other
     -- {
     --   "norcalli/nvim-colorizer.lua",

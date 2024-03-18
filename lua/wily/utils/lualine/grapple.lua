@@ -4,7 +4,7 @@ local Component = require("lualine.component"):extend()
 
 ---@class grapple.lualine.options
 local defaults = {
-  icon = "󰛢",
+  -- icon = "󰛢",
   inactive = " %s ",
   active = "[%s]",
 }
@@ -35,7 +35,7 @@ function Component:update_status()
   local App = require("grapple.app")
   local app = App.get()
   local quick_select = app.settings:quick_select()
-  local output = {}
+  local output = { "󰛢 " }
   for i, tag in ipairs(tags) do
     -- stylua: ignore
     -- local tag_str = tag.name and tag.name
@@ -48,6 +48,10 @@ function Component:update_status()
       tag_fmt = self.options.active
     end
     table.insert(output, string.format(tag_fmt, tag_str))
+  end
+
+  if #output == 1 then
+    output = { "󰛢" }
   end
 
   return table.concat(output)
