@@ -30,7 +30,7 @@ local map = require("wily.utils.keymap").map
 map("n", "<leader>m", function()
   require("grapple").tag({
     -- use filename for name
-    name = vim.fn.expand("%:t:r"),
+    name = vim.fn.expand("%:t"),
   })
 end)
 -- map("n", "<leader>m", "<cmd>Grapple toggle<cr>");
