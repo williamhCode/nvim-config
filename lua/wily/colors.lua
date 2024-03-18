@@ -179,6 +179,8 @@ require("onedarkpro").setup({
 
     -- Fidget
     -- FidgetTask = { link = "Normal" },
+
+    FloatTitle = { fg = colors.bg, bg = colors.green },
   },
   styles = {
     types = "NONE",
