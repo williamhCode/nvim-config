@@ -27,18 +27,12 @@ require("grapple").setup({
 
 local map = require("wily.utils.keymap").map
 
-map("n", "<leader>m", function()
-  require("grapple").tag({
-    -- use filename for name
-    name = vim.fn.expand("%:t:r"),
-  })
-end)
+map("n", "<leader>m", "<cmd>Grapple tag<cr>");
 -- map("n", "<leader>m", "<cmd>Grapple toggle<cr>");
 map("n", "<leader>k", "<cmd>Grapple toggle_tags<cr>");
 map("n", "<leader>K", "<cmd>Grapple toggle_scopes<cr>");
 -- map("n", "<leader>j", "<cmd>Grapple cycle forward<cr>");
 -- map("n", "<leader>J", "<cmd>Grapple cycle backward<cr>");
-map("n", "<leader>1", "<cmd>Grapple select index=1<cr>");
-map("n", "<leader>2", "<cmd>Grapple select index=2<cr>");
-map("n", "<leader>3", "<cmd>Grapple select index=3<cr>");
-map("n", "<leader>4", "<cmd>Grapple select index=4<cr>");
+for i = 1, 9 do
+  map("n", "<leader>" .. i, "<cmd>Grapple select index=" .. i .. "<cr>")
+end

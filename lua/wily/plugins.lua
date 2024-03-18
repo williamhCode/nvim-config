@@ -9,7 +9,6 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
-
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
@@ -29,6 +28,7 @@ require("lazy").setup({
       "nvim-lualine/lualine.nvim",
       dependencies = { "nvim-tree/nvim-web-devicons" },
     }, -- Status Line
+
     -- Other
     -- {
     --   "norcalli/nvim-colorizer.lua",
@@ -153,7 +153,7 @@ require("lazy").setup({
     -- Terminal
     {
       "akinsho/toggleterm.nvim",
-      tag = "v2.6.0",
+      version = "*"
     },
 
     -- Git
@@ -169,7 +169,7 @@ require("lazy").setup({
 
     -- Misc
     { "mbbill/undotree" },
-    { "anuvyklack/hydra.nvim" },
+    { "nvimtools/hydra.nvim" },
     { "klen/nvim-config-local" },
 
     -- ssh clipboard
