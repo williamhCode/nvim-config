@@ -65,7 +65,7 @@ require("lualine").setup({
   },
   sections = {
     lualine_a = { "mode" },
-    lualine_b = { "grapple" },
+    lualine_b = { require("wily.utils.lualine.grapple") },
     lualine_c = {
       {
         "diagnostics",
