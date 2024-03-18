@@ -169,7 +169,7 @@ require("lazy").setup({
 
     -- Misc
     { "mbbill/undotree" },
-    { "anuvyklack/hydra.nvim" },
+    { "nvimtools/hydra.nvim" },
     { "klen/nvim-config-local" },
   },
   {
