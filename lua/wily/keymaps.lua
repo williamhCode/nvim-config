@@ -230,6 +230,7 @@ Hydra({
     { "a", function()
       auto_trigger = not auto_trigger
       require("copilot.suggestion").toggle_auto_trigger()
+      print("auto_trigger: " .. (auto_trigger and "on" or "off"))
     end, { desc = "auto_trigger", exit = true } },
 
     { "<leader>o", nil, { desc = false, exit = true } },

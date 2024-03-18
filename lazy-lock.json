@@ -51,4 +51,3 @@
   "undotree": { "branch": "master", "commit": "36ff7abb6b60980338344982ad4cdf03f7961ecd" },
   "vimtex": { "branch": "master", "commit": "3913284202709251c7e94d1ba0efb5d51fbd7357" },
   "wgsl.vim": { "branch": "main", "commit": "fdf91e11243266dfe923fc08c2fc9749429bc5aa" }
-}

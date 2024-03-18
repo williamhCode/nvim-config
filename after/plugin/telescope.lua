@@ -47,7 +47,7 @@ require("telescope").setup({
         ["<C-c>"] = require("telescope.actions").close,
       },
       i = {
-        ["<M-h>"] = { "<C-w>", type = "command" },
+        ["<C-s>"] = "select_horizontal"
       }
     },
     -- winblend = 10,

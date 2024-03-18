@@ -4,8 +4,8 @@ require("copilot").setup({
     keymap = {
       accept = "<M-e>",
       next = "<M-n>",
-      -- prev = "<M-p>",
-    }
+      prev = "<M-p>",
+    },
   },
   filetypes = {
     toggleterm = false,
