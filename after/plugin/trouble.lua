@@ -1,6 +1,6 @@
 -- https://github.com/folke/trouble.nvim?tab=readme-ov-file#setup
 require("trouble").setup({
-  mode = "workspace_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
+  mode = "document_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
   padding = false,
   cycle_results = false,
   action_keys = {

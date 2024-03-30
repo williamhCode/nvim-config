@@ -10,7 +10,7 @@ local path = vim.env.HOME .. "/.local/share/nvim/lazy/lualine.nvim/lua/lualine/?
 package.path = package.path .. ";" .. path
 
 local onedark = require("themes.onedark")
-onedark.normal.c = "Normal"
+-- onedark.normal.c = "Normal"
 
 local winbar_settings = {
   lualine_a = {},
@@ -42,8 +42,8 @@ require("lualine").setup({
     theme = onedark,
     -- theme = "catppuccin",
     globalstatus = true,
-    component_separators = "|",
-    -- component_separators = "│",
+    -- component_separators = "|",
+    component_separators = "│",
     section_separators = "",
     disabled_filetypes = {
       statusline = { "alpha" },

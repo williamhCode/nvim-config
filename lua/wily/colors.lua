@@ -68,6 +68,8 @@ require("onedarkpro").setup({
     ["@type.definition.python"] = { link = "@type" },
     ["@type.qualifier.python"] = { link = "@type" },
 
+    ["@operator"] = { fg = colors.white },
+
     ["@type.c"] = { fg = colors.purple },
     ["@operator.c"] = { fg = colors.white },
 
