@@ -41,6 +41,8 @@ opt.ttimeoutlen = 0
 
 opt.conceallevel = 2
 
+opt.guifont = "SF_Mono"
+
 local function list(items, sep)
   return table.concat(items, sep or ",")
 end
@@ -80,5 +82,6 @@ if vim.g.neovide then
   vim.g.neovide_floating_blur_amount_y = 0.0
 
   -- inputs
-  vim.g.neovide_input_macos_alt_is_meta = true
+  vim.g.neovide_input_macos_alt_is_meta = false
+  -- vim.g.neovide_input_ime = false
 end

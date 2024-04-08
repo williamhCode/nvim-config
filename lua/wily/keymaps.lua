@@ -1,5 +1,7 @@
 local map = require("wily.utils.keymap").map
 
+-- map("", "<Space>", "<Nop>", { noremap = true, silent = true })
+
 -- editing
 map("i", "<C-c>", "<Esc>")
 map("n", "<D-a>", "ggVG")

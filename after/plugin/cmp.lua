@@ -29,7 +29,6 @@ local kind_icons = {
   TypeParameter = "  ",
 }
 
----@diagnostic disable: missing-fields
 cmp.setup({
   snippet = {
     expand = function(args)
