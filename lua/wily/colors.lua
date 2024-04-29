@@ -19,7 +19,7 @@ require("onedarkpro").setup({
     -- diffview = true,
   },
   options = {
-    -- transparency = true
+    transparency = true
   },
   highlights = {
     NormalFloat = { bg = colors.float_bg },

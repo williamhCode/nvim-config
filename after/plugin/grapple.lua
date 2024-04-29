@@ -29,8 +29,8 @@ local map = require("wily.utils.keymap").map
 
 map("n", "<leader>m", "<cmd>Grapple tag<cr>");
 -- map("n", "<leader>m", "<cmd>Grapple toggle<cr>");
-map("n", "<leader>k", "<cmd>Grapple toggle_tags<cr>");
-map("n", "<leader>K", "<cmd>Grapple toggle_scopes<cr>");
+map("n", "<leader>h", "<cmd>Grapple toggle_tags<cr>");
+map("n", "<leader>H", "<cmd>Grapple toggle_scopes<cr>");
 -- map("n", "<leader>j", "<cmd>Grapple cycle forward<cr>");
 -- map("n", "<leader>J", "<cmd>Grapple cycle backward<cr>");
 for i = 1, 9 do

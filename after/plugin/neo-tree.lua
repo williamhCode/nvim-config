@@ -52,7 +52,9 @@ require("neo-tree").setup({
       end
     }
   },
+
   filesystem = {
+    hijack_netrw_behavior = "disabled",
     filtered_items = {
       hide_dotfiles = false,
       never_show = {
@@ -63,6 +65,7 @@ require("neo-tree").setup({
     window = {
       mappings = {
         ["O"] = "system_open",
+        ["<BS>"] = "navigate_up_and_close",
       },
     },
     commands = {
@@ -71,6 +74,25 @@ require("neo-tree").setup({
         local path = node:get_id()
         vim.cmd(string.format("silent !open '%s'", path))
       end,
+      navigate_up_and_close = function(state)
+        local fs = require("neo-tree.sources.filesystem")
+        local utils = require("neo-tree.utils")
+        local parent_path, _ = utils.split_path(state.path)
+        if not utils.truthy(parent_path) then
+          return
+        end
+        local path_to_reveal = nil
+        local node = state.tree:get_node()
+        if node then
+          path_to_reveal = node:get_id()
+        end
+        if state.search_pattern then
+          fs.reset_search(state, false)
+        end
+        fs._navigate_internal(state, parent_path, path_to_reveal, function()
+          require("neo-tree.sources.common.commands").close_node(state)
+        end , false)
+      end
     },
   },
   commands = {
@@ -116,6 +138,7 @@ require("neo-tree").setup({
     end,
   },
   window = {
+    position = "left",
     width = function()
       local width = vim.o.columns * 0.2
       width = math.max(width, 30)
@@ -123,7 +146,6 @@ require("neo-tree").setup({
       return math.floor(width)
     end,
     mappings = {
-      -- ["P"] = { "toggle_preview", config = { use_float = false } },
       ["/"] = "none",
       ["z"] = "none",
       ["C"] = "close_all_nodes",
@@ -142,9 +164,10 @@ require("neo-tree").setup({
 
 local sidebar = require("wily.utils.sidebar")
 sidebar.set_cmds("<D-b>",
-  function() vim.cmd("Neotree toggle") end,
+  function() vim.cmd("Neotree toggle ./") end,
   function() vim.cmd("Neotree close") end
 )
 vim.keymap.set("n", "<leader>et", "<cmd>Neotree toggle<CR>")
 vim.keymap.set("n", "<leader>ef", "<cmd>Neotree focus<CR>")
 vim.keymap.set("n", "<leader>er", "<cmd>Neotree reveal<CR>")
+vim.keymap.set("n", "<leader>eo", "<cmd>Neotree position=current dir=%:p:h reveal<CR>")

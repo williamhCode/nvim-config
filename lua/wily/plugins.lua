@@ -64,7 +64,10 @@ require("lazy").setup({
 
     -- Debugger Support
     { "mfussenegger/nvim-dap" },
-    { "rcarriga/nvim-dap-ui" },
+    {
+      "rcarriga/nvim-dap-ui",
+      dependencies = { "nvim-neotest/nvim-nio" }
+    },
     { "jay-babu/mason-nvim-dap.nvim" },
 
     -- Null Ls
@@ -81,6 +84,7 @@ require("lazy").setup({
     { "hrsh7th/cmp-nvim-lsp" },
     { "hrsh7th/cmp-buffer" },
     { "hrsh7th/cmp-path" },
+    { "hrsh7th/cmp-cmdline" },
     { "saadparwaiz1/cmp_luasnip" },
     { "hrsh7th/cmp-nvim-lua" },
 
@@ -117,14 +121,14 @@ require("lazy").setup({
       "iamcco/markdown-preview.nvim",
       ft = "markdown",
       build = ":call mkdp#util#install()",
-      config = function()
-        vim.keymap.set("n", "<leader>tp", "<Plug>MarkdownPreviewToggle")
-      end
+      -- config = function()
+      --   vim.keymap.set("n", "<leader>tp", "<Plug>MarkdownPreviewToggle")
+      -- end
     },
 
     -------------------- Editor --------------------
     -- Navigation
-    -- File Tree
+    -- File Tree/Explorer
     {
       "nvim-neo-tree/neo-tree.nvim",
       branch = "v3.x",
@@ -134,6 +138,10 @@ require("lazy").setup({
         "MunifTanjim/nui.nvim",
       },
       dev = false,
+    },
+    {
+      "stevearc/oil.nvim",
+      dependencies = { "nvim-tree/nvim-web-devicons" },
     },
 
     -- Fuzzy Finder
@@ -167,6 +175,20 @@ require("lazy").setup({
       -- cond = false,
     },
     { "sindrets/diffview.nvim" },
+
+    -- Compile Mode
+    -- {
+    --   "ej-shafran/compile-mode.nvim",
+    --   branch = "latest",
+    --   -- or a specific version:
+    --   -- tag = "v2.0.0"
+    --   dependencies = {
+    --     "nvim-lua/plenary.nvim",
+    --     { "m00qek/baleia.nvim", tag = "v1.3.0" },
+    --   },
+    --   config = true,
+    -- },
+    { "shoumodip/compile.nvim" },
 
     -- Misc
     { "mbbill/undotree" },

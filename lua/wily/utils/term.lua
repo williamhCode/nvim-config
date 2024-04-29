@@ -18,6 +18,13 @@ M.set_term_cmd = function(mapping, cmd)
   end, { buffer = true })
 end
 
+M.set_global_build_cmd = function(mapping, cmd)
+  map("n", mapping, function()
+    vim.cmd("wall")
+    vim.cmd(vim.fn.expandcmd(cmd))
+  end)
+end
+
 M.set_global_term_cmd = function(mapping, cmd)
   map("n", mapping, function()
     vim.cmd("wall")
@@ -25,41 +32,74 @@ M.set_global_term_cmd = function(mapping, cmd)
   end)
 end
 
+Current_make_term = nil
 M.spawn_make = function()
   local lines = {}
-  local makeprg = vim.o.makeprg
-  if not makeprg then return end
-  local cmd = vim.fn.expandcmd(makeprg)
-  local errorformat = vim.o.errorformat
+  local currLine = ""
 
+  ---@param data string[]
   local function on_stdout(t, job, data, name)
     if data then
-      vim.list_extend(lines, data)
+      for _, line in ipairs(data) do
+        currLine = currLine .. line
+        if currLine:sub(-1) == "\r" then
+          table.insert(lines, currLine)
+          currLine = ""
+        end
+      end
     end
   end
+
+  local cmd = vim.fn.expandcmd(vim.o.makeprg);
+  local efm = vim.o.errorformat
 
   local function on_exit(t, job, exit_code, name)
     -- remove ansi codes from lines
     for i, line in ipairs(lines) do
-      lines[i] = vim.fn.substitute(line, [[\%(\e\[[0-9;]*m\)\+]], "", "g")
+      lines[i] = vim.fn.substitute(line, [[\%(\e\[[0-9;]*[a-zA-Z]\)\+\|\r]], "", "g")
     end
 
     vim.fn.setqflist({}, " ", {
       title = cmd,
       lines = lines,
-      efm = errorformat
+      efm = efm,
     })
-    vim.cmd("doautocmd QuickFixCmdPost")
+
+    -- don't open quickfix if successful or interrupted
+    if exit_code == 0 or exit_code == 130 then
+      Current_make_term:close()
+    else
+      Current_make_term:close()
+      -- open quickfix if there are errors
+      local height = math.floor(vim.o.lines * 0.35)
+      vim.cmd("botright copen " .. height)
+      -- vim.cmd("doautocmd QuickFixCmdPost")
+    end
+  end
+
+  vim.cmd("cclose")
+  if Current_make_term then
+    Current_make_term:close()
   end
 
   local make_term = Terminal:new({
     cmd = cmd,
+    direction = "vertical",
     on_stdout = on_stdout,
     on_exit = on_exit,
-    -- close_on_exit = false
+    close_on_exit = false,
+    start_in_insert = false,
   })
+  Current_make_term = make_term
 
   make_term:toggle()
+  vim.cmd("stopinsert")
+end
+
+M.toggle_current_make_term = function()
+  if Current_make_term then
+    Current_make_term:toggle()
+  end
 end
 
 return M
