@@ -164,6 +164,10 @@ require("lazy").setup({
       "akinsho/toggleterm.nvim",
       version = "*"
     },
+    -- {
+    --   "rebelot/terminal.nvim",
+    --   config = true,
+    -- },
 
     -- Git
     {
