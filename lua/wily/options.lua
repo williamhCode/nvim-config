@@ -41,7 +41,8 @@ opt.ttimeoutlen = 0
 
 opt.conceallevel = 2
 
-opt.guifont = "SF_Mono"
+-- opt.guifont = "SF Mono Medium,Symbols Nerd Font:h15"
+opt.guifont = "SF Mono Medium,PingFang TC,Symbols Nerd Font:h15"
 
 local function list(items, sep)
   return table.concat(items, sep or ",")

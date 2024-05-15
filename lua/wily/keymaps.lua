@@ -58,7 +58,7 @@ map({ "n", "x" }, "<leader>X", "\"+X", { remap = true })
 -- map("x", "<D-c>", "\"+y")
 
 -- file switch
-if vim.g.neovide or vim.g.neovim_gui then
+if vim.g.neovide or vim.g.neogui then
   map("n", "<C-->", "<C-^>")
 else
   map("n", "<C-_>", "<C-^>")
@@ -128,12 +128,12 @@ map("t", "<C-w>", "<C-\\><C-n><C-w>")
 
 local term = require("wily.utils.term")
 term.set_global_term_cmd("<leader>r", "make run")
-map("n", "<leader>b", function()
-  vim.cmd("wall")
-  term.spawn_make()
-end)
-map("n", "<leader>t", function()
+term.set_global_build_cmd("<leader>b", "make")
+map("n", "<leader>j", function()
   term.toggle_current_make_term()
+end)
+map("n", "<leader>q", function()
+  term.close_current_make_term()
 end)
 
 -- diagnostics
@@ -188,6 +188,14 @@ Hydra({
 local toggle_conf = function(key, option)
   return { key, function()
     vim.opt[option] = not vim.o[option]
+
+    -- apply to all windows if the option is window scoped
+    local option_scope = vim.api.nvim_get_option_info2(option, {}).scope
+    if option_scope == "win" then
+      for _, win in ipairs(vim.api.nvim_list_wins()) do
+        vim.api.nvim_set_option_value(option, vim.o[option], { win = win })
+      end
+    end
   end, { desc = option, exit = true } }
 end
 
@@ -267,7 +275,7 @@ Hydra({
 map("n", "<leader>M", "<Cmd>Mason<CR>")
 map("n", "<leader>L", "<Cmd>Lazy<CR>")
 map("n", "<leader>k", function()
-  local height = math.floor(vim.o.lines * 0.35)
+  local height = math.floor(vim.o.lines * 0.4)
   vim.cmd("botright copen " .. height)
 end)
 -- map("n", "<leader>gg", "<Cmd>Neogit<CR>")

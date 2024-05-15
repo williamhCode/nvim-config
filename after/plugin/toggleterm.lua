@@ -9,6 +9,8 @@ require("toggleterm").setup({
 
   open_mapping = require("wily.utils.keymap").convert("<D-j>"),
 
+  auto_scroll = false,
+
   highlights = {
     NormalFloat = {
       link = "NormalFloat"
@@ -19,7 +21,7 @@ require("toggleterm").setup({
   },
 
   direction = "float",
-  -- direction = "tab",
+  -- direction = "horizontal",
 
   float_opts = {
     border = "solid",

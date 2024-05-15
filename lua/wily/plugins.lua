@@ -1,6 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
     "git",
     "clone",
@@ -166,7 +165,9 @@ require("lazy").setup({
     },
     -- {
     --   "rebelot/terminal.nvim",
-    --   config = true,
+    --   config = function()
+    --     require("terminal").setup()
+    --   end
     -- },
 
     -- Git
@@ -198,6 +199,7 @@ require("lazy").setup({
     { "mbbill/undotree" },
     { "nvimtools/hydra.nvim" },
     { "klen/nvim-config-local" },
+    { "wakatime/vim-wakatime" },
   },
   {
     dev = {

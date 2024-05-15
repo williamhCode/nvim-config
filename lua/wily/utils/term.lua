@@ -6,7 +6,7 @@ local M = {}
 M.set_build_cmd = function(cmd)
   map("n", "<leader>b", function()
     vim.cmd("wall")
-    vim.cmd(vim.fn.expandcmd(cmd))
+    M.spawn_cmd(vim.fn.expandcmd(cmd))
   end, { buffer = true })
 end
 
@@ -20,7 +20,7 @@ end
 M.set_global_build_cmd = function(mapping, cmd)
   map("n", mapping, function()
     vim.cmd("wall")
-    vim.cmd(vim.fn.expandcmd(cmd))
+    M.spawn_cmd(vim.fn.expandcmd(cmd))
   end)
 end
 
@@ -32,9 +32,9 @@ M.set_global_term_cmd = function(mapping, cmd)
 end
 
 local Terminal = require("toggleterm.terminal").Terminal
-Current_make_term = nil
+Current_cmd_term = nil
 
-M.spawn_make = function()
+M.spawn_cmd = function(cmd)
   local lines = {}
   local currLine = ""
 
@@ -51,7 +51,7 @@ M.spawn_make = function()
     end
   end
 
-  local cmd = vim.fn.expandcmd(vim.o.makeprg);
+  cmd = vim.fn.expandcmd(cmd);
   local efm = vim.o.errorformat
 
   local function on_exit(t, job, exit_code, name)
@@ -60,44 +60,52 @@ M.spawn_make = function()
       lines[i] = vim.fn.substitute(line, [[\%(\e\[[0-9;]*[a-zA-Z]\)\+\|\r]], "", "g")
     end
 
-    -- don't populate quickfix if successful or interrupted
-    if exit_code == 0 or exit_code == 130 then
-      Current_make_term:close()
-    else
-      Current_make_term:close()
+    vim.fn.setqflist({}, " ", {
+      title = cmd,
+      lines = lines,
+      efm = efm,
+    })
 
-      vim.fn.setqflist({}, " ", {
-        title = cmd,
-        lines = lines,
-        efm = efm,
-      })
-      -- open quickfix if there are errors
-      local height = math.floor(vim.o.lines * 0.35)
+    -- vim.cmd("wincmd p")
+    Current_cmd_term:close()
+    -- open quickfix if there are errors
+    if not (exit_code == 0 or exit_code == 130) then
+      -- local width = math.floor(vim.o.columns * 0.4)
+      -- vim.cmd("botright vert copen " .. width)
+
+      local height = math.floor(vim.o.lines * 0.4)
       vim.cmd("botright copen " .. height)
-      -- vim.cmd("doautocmd QuickFixCmdPost")
     end
   end
 
   vim.cmd("cclose")
-  if Current_make_term then
-    Current_make_term:close()
+  if Current_cmd_term then
+    Current_cmd_term:close()
   end
 
-  Current_make_term = Terminal:new({
+  Current_cmd_term = Terminal:new({
     cmd = cmd,
-    direction = "vertical",
+    direction = "horizontal",
     on_stdout = on_stdout,
     on_exit = on_exit,
     close_on_exit = false,
+    auto_scroll = true,
   })
 
-  Current_make_term:toggle()
+  Current_cmd_term:toggle()
   vim.cmd("stopinsert")
+  -- vim.cmd("wincmd p")
 end
 
 M.toggle_current_make_term = function()
-  if Current_make_term then
-    Current_make_term:toggle()
+  if Current_cmd_term then
+    Current_cmd_term:toggle()
+  end
+end
+
+M.close_current_make_term = function()
+  if Current_cmd_term then
+    Current_cmd_term:close()
   end
 end
 
