@@ -50,6 +50,7 @@ require("lazy").setup({
       "epwalsh/obsidian.nvim",
       dependencies = { "nvim-lua/plenary.nvim" }
     },
+    { "Hoffs/omnisharp-extended-lsp.nvim" },
 
     -- Install stuff
     {
@@ -138,11 +139,15 @@ require("lazy").setup({
     -- Fuzzy Finder
     {
       "nvim-telescope/telescope.nvim",
-      dependencies = { "nvim-lua/plenary.nvim" },
-      -- branch = "0.1.x",
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+        {
+          "nvim-telescope/telescope-fzf-native.nvim",
+          build = "make",
+        },
+      },
+      branch = "0.1.x",
     },
-    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-    { "nvim-telescope/telescope-project.nvim" },
 
     -- File Jumping
     { "cbochs/grapple.nvim" },
