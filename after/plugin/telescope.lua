@@ -4,26 +4,7 @@ local utils = require("telescope.utils")
 local builtin = require("telescope.builtin")
 local map = vim.keymap.set
 
-local project_actions = require("telescope._extensions.project.actions")
-local command = [[
-selected=$({ 
-    echo ~/;
-    echo ~/.dotfiles;
-    echo ~/.config/nvim; 
-    echo ~/Documents/Notes;
-    echo ~/Documents/Work/Resume stuff;
-    find ~/Documents/Coding -mindepth 2 -maxdepth 2 -type d; 
-})
-echo $selected
-]]
-local base_dirs = vim.fn.systemlist(command)
--- resolve paths
-for i, dir in ipairs(base_dirs) do
-  base_dirs[i] = vim.fn.resolve(dir)
-end
--- vim.print(base_dirs)
-
-require("telescope").setup({
+telescope.setup({
   defaults = {
     prompt_prefix = "   ",
     selection_caret = "  ",
@@ -118,6 +99,3 @@ end)
 map("n", "<C-p>", ":Telescope<CR>")
 map("n", "<leader>sg", builtin.live_grep)
 map("n", "<leader>sb", builtin.buffers)
-
--- telescope project
--- map("n", "<leader>sp", function() telescope.extensions.project.project({display_type = "full"}) end)
