@@ -19,7 +19,7 @@ require("onedarkpro").setup({
     -- diffview = true,
   },
   options = {
-    -- transparency = true
+    transparency = true
   },
   highlights = {
     NormalFloat = { bg = colors.float_bg },
@@ -35,6 +35,7 @@ require("onedarkpro").setup({
     CursorLineNr = { fg = colors.fg },
     TabLineSel = { fg = colors.bg, bg = colors.fg },
     SpecialKey = { fg = colors.comment },
+    -- LineNr = { fg = colors.comment },
 
     -- Syntax
     PreProc = { fg = colors.purple },
@@ -183,6 +184,9 @@ require("onedarkpro").setup({
     -- FidgetTask = { link = "Normal" },
 
     FloatTitle = { fg = colors.bg, bg = colors.green },
+
+    QuickFixLine = { bg = colors.color_column, style = "bold,italic" },
+    qfLineNr = { fg = colors.comment },
   },
   styles = {
     types = "NONE",

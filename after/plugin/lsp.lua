@@ -71,7 +71,7 @@ lsp.on_attach(function(client, bufnr)
   map("n", "gs", vim.lsp.buf.signature_help, opts)
   map("i", "<M-x>", vim.lsp.buf.signature_help, opts)
   if client.name ~= "texlab" then
-    map("n", "<leader>lca", vim.lsp.buf.code_action, opts)
+    map({ "n", "v" }, "<leader>lca", vim.lsp.buf.code_action, opts)
     map("n", "<leader>lrn", vim.lsp.buf.rename, opts)
   end
   map({ "n", "v" }, "<M-F>", function() vim.lsp.buf.format({ async = true }) end, opts)
@@ -110,6 +110,22 @@ lsp.configure("lua_ls", {
       },
     }
   }
+})
+
+lsp.configure("clangd", {
+  cmd = {
+    "clangd",
+    "--background-index",
+    "--clang-tidy",
+  }
+  -- settings = {
+  --   clangd = {
+  --     arguments = {
+  --       "--clang-tidy",
+  --       "--background-index",
+  --     }
+  --   }
+  -- }
 })
 
 lsp.configure("pyright", {
