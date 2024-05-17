@@ -27,7 +27,7 @@ do
   function make_entry.gen_from_file(opts)
     opts = opts or {}
 
-    local cwd = vim.fn.expand(opts.cwd or vim.loop.cwd())
+    local cwd = vim.fn.expand(opts.cwd or vim.uv.cwd())
 
     local disable_devicons = opts.disable_devicons
 
@@ -64,7 +64,7 @@ do
 
       if k == "path" then
         local retpath = Path:new({ t.cwd, t.value }):absolute()
-        if not vim.loop.fs_access(retpath, "R", nil) then
+        if not vim.uv.fs_access(retpath, "R", nil) then
           retpath = t.value
         end
         return retpath

@@ -1,7 +1,8 @@
 local map = require("wily.utils.keymap").map
 
+-- map("", "<Space>", "<Nop>", { noremap = true, silent = true })
+
 -- editing
-map("i", "<C-c>", "<Esc>")
 map("n", "<D-a>", "ggVG")
 map({ "i", "c" }, "<M-bs>", "<C-w>", { remap = true })
 
@@ -30,6 +31,20 @@ map("n", "x", "d")
 map("n", "X", "D")
 map("n", "xx", "dd")
 
+map({ "i", "c" }, "<C-v>", "<C-r>\"")
+
+-- cmd line
+vim.cmd [[set cedit=\<C-Y>]]
+map("c", "<C-a>", "<Home>")
+map("c", "<C-b>", "<Left>")
+map("c", "<C-d>", "<Del>")
+map("c", "<C-e>", "<End>")
+map("c", "<C-f>", "<Right>")
+map("c", "<C-n>", "<Down>")
+map("c", "<C-p>", "<Up>")
+map("c", "<M-b>", "<S-Left>")
+map("c", "<M-f>", "<S-Right>")
+
 -- system clipboard
 map({ "n", "x" }, "<leader>p", "\"+p")
 map({ "n", "x" }, "<leader>P", "\"+P")
@@ -40,16 +55,18 @@ map({ "n", "x" }, "<leader>Y", "\"+Y", { remap = true })
 map({ "n", "x" }, "<leader>x", "\"+x")
 map({ "n", "x" }, "<leader>X", "\"+X", { remap = true })
 
+-- map("x", "<D-c>", "\"+y")
+
 -- file switch
-if vim.g.neovide or vim.g.neovim_gui then
+if vim.g.neovide or vim.g.neogui then
   map("n", "<C-->", "<C-^>")
 else
   map("n", "<C-_>", "<C-^>")
 end
 
 -- tab
-map("n", "<leader>te", "<cmd>tabe<CR>")
-map("n", "<leader>tq", "<cmd>tabc<CR>")
+-- map("n", "<leader>te", "<cmd>tabe<CR>")
+-- map("n", "<leader>tq", "<cmd>tabc<CR>")
 map("n", "<leader>]", "<cmd>tabn<CR>")
 map("n", "<leader>[", "<cmd>tabp<CR>")
 
@@ -87,9 +104,11 @@ map({ "n", "x" }, "<leader>cq", function()
 end)
 
 -- quickfix shortcuts
-map("n", "<C-j>", "<cmd>cnext<CR>zz")
-map("n", "<C-k>", "<cmd>cprev<CR>zz")
-map("n", "<leader>qs", vim.diagnostic.setqflist)
+map("n", "<C-j>", "<cmd>cnext<CR>")
+map("n", "<C-k>", "<cmd>cprev<CR>")
+-- map("n", "<C-j>", "<cmd>NextError<CR>")
+-- map("n", "<C-k>", "<cmd>PrevError<CR>")
+-- map("n", "<leader>qs", vim.diagnostic.setqflist)
 
 -- locationlist shortcuts
 map("n", "<C-l>", "<cmd>lnext<CR>zz")
@@ -109,7 +128,13 @@ map("t", "<C-w>", "<C-\\><C-n><C-w>")
 
 local term = require("wily.utils.term")
 term.set_global_term_cmd("<leader>r", "make run")
-term.set_global_term_cmd("<leader>b", "make build")
+term.set_global_build_cmd("<leader>b", "make")
+map("n", "<leader>j", function()
+  term.toggle_current_make_term()
+end)
+map("n", "<leader>q", function()
+  term.close_current_make_term()
+end)
 
 -- diagnostics
 map("n", "<leader>df", vim.diagnostic.open_float)
@@ -163,6 +188,14 @@ Hydra({
 local toggle_conf = function(key, option)
   return { key, function()
     vim.opt[option] = not vim.o[option]
+
+    -- apply to all windows if the option is window scoped
+    local option_scope = vim.api.nvim_get_option_info2(option, {}).scope
+    if option_scope == "win" then
+      for _, win in ipairs(vim.api.nvim_list_wins()) do
+        vim.api.nvim_set_option_value(option, vim.o[option], { win = win })
+      end
+    end
   end, { desc = option, exit = true } }
 end
 
@@ -241,4 +274,8 @@ Hydra({
 -- ui's
 map("n", "<leader>M", "<Cmd>Mason<CR>")
 map("n", "<leader>L", "<Cmd>Lazy<CR>")
-map("n", "<leader>gg", "<Cmd>Neogit<CR>")
+map("n", "<leader>k", function()
+  local height = math.floor(vim.o.lines * 0.4)
+  vim.cmd("botright copen " .. height)
+end)
+-- map("n", "<leader>gg", "<Cmd>Neogit<CR>")

@@ -45,7 +45,7 @@ autocmd({ "BufNewFile", "BufRead" }, {
 -- press q to close buffer
 autocmd("FileType", {
   group = augroup("wily_close_buffers", {}),
-  pattern = { "qf", "help" },
+  pattern = { "qf", "help", "toggleterm" },
   callback = function()
     vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = true })
     vim.opt_local.buflisted = false
@@ -119,7 +119,7 @@ au!
 augroup end
 ]])
 
--- avoid scrolling when switching buffers
+-- avoid centering cursor when switching buffers
 vim.cmd([[
 " Save current view settings on a per-window, per-buffer basis.
 function! AutoSaveWinView()
@@ -150,13 +150,14 @@ endif
 ]])
 
 -- quickfix auto-open
--- autocmd("QuickFixCmdPost", {
---   group = augroup("wily_quickfix", {}),
---   pattern = "[^l]*",
---   callback = function()
---     vim.cmd("botright cwindow")
---   end,
--- })
+autocmd("QuickFixCmdPost", {
+  group = augroup("wily_quickfix", {}),
+  pattern = "[^l]*",
+  callback = function()
+    local height = math.floor(vim.o.lines * 0.35)
+    vim.cmd("botright cwindow " .. height)
+  end,
+})
 
 -- LuaSnip supertab fix
 autocmd("ModeChanged", {
