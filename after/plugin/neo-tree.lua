@@ -91,7 +91,7 @@ require("neo-tree").setup({
         end
         fs._navigate_internal(state, parent_path, path_to_reveal, function()
           require("neo-tree.sources.common.commands").close_node(state)
-        end , false)
+        end, false)
       end
     },
   },
@@ -157,7 +157,7 @@ require("neo-tree").setup({
         vim.cmd("Neotree focus")
       end,
       -- copy filename
-      ["Y"] = "copy_selector"
+      ["Y"] = "copy_selector",
     }
   }
 })
