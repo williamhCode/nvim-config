@@ -11,6 +11,9 @@ if not vim.uv.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua"
+package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua"
+
 require("lazy").setup({
     ----------------- Colors and UI ----------------
     -- Colorschemes
@@ -29,16 +32,16 @@ require("lazy").setup({
       dependencies = { "nvim-tree/nvim-web-devicons" },
     }, -- Status Line
 
-    {
-      "vhyrro/luarocks.nvim",
-      priority = 1001, -- this plugin needs to run before anything else
-      opts = {
-        rocks = { "magick" },
-      },
-    },
+    -- {
+    --   "vhyrro/luarocks.nvim",
+    --   priority = 1000, -- this plugin needs to run before anything else
+    --   opts = {
+    --     rocks = { "magick" },
+    --   },
+    -- },
     {
       "3rd/image.nvim",
-      dependencies = { "luarocks.nvim" },
+      -- dependencies = { "luarocks.nvim" },
       config = true
     },
 
