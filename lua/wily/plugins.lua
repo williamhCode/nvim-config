@@ -29,6 +29,19 @@ require("lazy").setup({
       dependencies = { "nvim-tree/nvim-web-devicons" },
     }, -- Status Line
 
+    {
+      "vhyrro/luarocks.nvim",
+      priority = 1001, -- this plugin needs to run before anything else
+      opts = {
+        rocks = { "magick" },
+      },
+    },
+    {
+      "3rd/image.nvim",
+      dependencies = { "luarocks.nvim" },
+      config = true
+    },
+
     -- Other
     -- {
     --   "norcalli/nvim-colorizer.lua",
