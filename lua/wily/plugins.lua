@@ -82,6 +82,8 @@ require("lazy").setup({
     },
     { "jay-babu/mason-nvim-dap.nvim" },
 
+    { "Hoffs/omnisharp-extended-lsp.nvim" },
+
     -- Null Ls
     { "jose-elias-alvarez/null-ls.nvim" },
     { "jay-babu/mason-null-ls.nvim" },
