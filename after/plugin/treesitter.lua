@@ -20,7 +20,9 @@ require("nvim-treesitter.configs").setup({
     "wgsl",
     "query",
     "javascript",
-    "typescript"
+    "typescript",
+    "vue",
+    "css",
   },
 
   highlight = {

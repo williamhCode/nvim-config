@@ -83,6 +83,8 @@ require("onedarkpro").setup({
     ["@text.todo.checked"] = {},
     ["@text.literal.block.markdown"] = {},
 
+    -- TreesitterContext = { bg = colors.selection},
+
     -- Lsp
     DiagnosticError = { fg = colors.red },
     DiagnosticWarn = { fg = colors.yellow },
