@@ -41,9 +41,6 @@ opt.ttimeoutlen = 0
 
 opt.conceallevel = 2
 
-opt.guifont = "SF Mono Medium,Symbols Nerd Font:h15"
--- opt.guifont = "SF Mono Medium,PingFang TC,Symbols Nerd Font:h15"
-
 local function list(items, sep)
   return table.concat(items, sep or ",")
 end
@@ -85,4 +82,26 @@ if vim.g.neovide then
   -- inputs
   vim.g.neovide_input_macos_alt_is_meta = false
   -- vim.g.neovide_input_ime = false
+end
+
+if vim.g.neogui then
+  vim.g.neogui_opts = {
+    window = {
+      vsync = true,
+      highDpi = true,
+      borderless = false,
+      blur = 20,
+    },
+    margins = {
+      top = 5,
+      bottom = 5,
+      left = 5,
+      right = 5,
+    },
+    multigrid = true,
+    bgColor = 0x282c34,
+    transparency = 0.90,
+  }
+  opt.guifont = "SF Mono Medium,Symbols Nerd Font:h15"
+  -- opt.guifont = "SF Mono Medium,PingFang TC,Symbols Nerd Font:h15"
 end
