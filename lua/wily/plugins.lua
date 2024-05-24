@@ -31,6 +31,14 @@ require("lazy").setup({
       "nvim-lualine/lualine.nvim",
       dependencies = { "nvim-tree/nvim-web-devicons" },
     }, -- Status Line
+    {
+      "lukas-reineke/indent-blankline.nvim",
+      main = "ibl",
+      opts = {
+        indent = { highlight = "LineNr", char = "│" },
+        scope = { enabled = true },
+      },
+    },
 
     -- {
     --   "vhyrro/luarocks.nvim",
@@ -57,6 +65,7 @@ require("lazy").setup({
 
     ------------------- Coding --------------------
     { "numToStr/Comment.nvim" }, -- Commenting
+    { "JoosepAlviste/nvim-ts-context-commentstring" },
 
     -- Language Support
     -- { "Vimjas/vim-python-pep8-indent" }, -- Cython Indentation
@@ -115,6 +124,12 @@ require("lazy").setup({
     },
     { "nvim-treesitter/playground", },
     { "nvim-treesitter/nvim-treesitter-textobjects" },
+    {
+      "nvim-treesitter/nvim-treesitter-context",
+      opts = {
+        max_lines = 1,
+      }
+    },
     {
       "m-demare/hlargs.nvim",
       dependencies = { "nvim-treesitter/nvim-treesitter" },
