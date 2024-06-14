@@ -39,7 +39,9 @@ opt.undofile = true
 opt.updatetime = 250
 opt.ttimeoutlen = 0
 
-opt.conceallevel = 2
+-- opt.conceallevel = 2
+
+opt.grepprg = "rg --vimgrep --smart-case --hidden --glob=!.git/"
 
 local function list(items, sep)
   return table.concat(items, sep or ",")
@@ -80,7 +82,7 @@ if vim.g.neovide then
   vim.g.neovide_floating_blur_amount_y = 0.0
 
   -- inputs
-  vim.g.neovide_input_macos_alt_is_meta = false
+  vim.g.neovide_input_macos_option_key_is_meta = "only_left"
   -- vim.g.neovide_input_ime = false
 end
 
@@ -100,8 +102,12 @@ if vim.g.neogui then
     },
     multigrid = true,
     bgColor = 0x282c34,
-    transparency = 0.90,
+    transparency = 0.92,
+    maxFps = 120,
   }
-  opt.guifont = "SF Mono Medium,Symbols Nerd Font:h15"
-  -- opt.guifont = "SF Mono Medium,PingFang TC,Symbols Nerd Font:h15"
 end
+-- opt.guifont = "JetBrains Mono,PingFang TC,Symbols Nerd Font:h15"
+opt.guifont = "JetBrains Mono,PingFang TC,Symbols Nerd Font:h13"
+-- opt.guifont = "SF Mono Medium,PingFang TC,Symbols Nerd Font:h12"
+-- opt.guifont = "SF Mono,PingFang TC,Symbols Nerd Font:h12"
+-- opt.guifont = "SF Mono,PingFang TC,Symbols Nerd Font:h15"

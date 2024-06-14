@@ -14,11 +14,12 @@ lsp.servers({
   "cmake",
   -- "rust_analyzer",
   "marksman",
-  "wgsl_analyzer",
+  -- "wgsl_analyzer",
   -- "zls",
   -- "asm_lsp",
   "tsserver",
   "volar",
+  "html"
 })
 
 lsp.on_attach(function(client, bufnr)

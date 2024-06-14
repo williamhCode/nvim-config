@@ -15,9 +15,9 @@ require("lazy").setup({
     ----------------- Colors and UI ----------------
     -- Colorschemes
     -- "folke/tokyonight.nvim",
-    { "projekt0n/github-nvim-theme" },
+    -- { "projekt0n/github-nvim-theme" },
     { "olimorris/onedarkpro.nvim" },
-    { "HUAHUAI23/nvim-quietlight" },
+    -- { "HUAHUAI23/nvim-quietlight" },
 
     -- UI
     {
@@ -29,18 +29,18 @@ require("lazy").setup({
       dependencies = { "nvim-tree/nvim-web-devicons" },
     }, -- Status Line
 
-    {
-      "vhyrro/luarocks.nvim",
-      priority = 1001, -- this plugin needs to run before anything else
-      opts = {
-        rocks = { "magick" },
-      },
-    },
-    {
-      "3rd/image.nvim",
-      dependencies = { "luarocks.nvim" },
-      config = true
-    },
+    -- {
+    --   "vhyrro/luarocks.nvim",
+    --   priority = 1001, -- this plugin needs to run before anything else
+    --   opts = {
+    --     rocks = { "magick" },
+    --   },
+    -- },
+    -- {
+    --   "3rd/image.nvim",
+    --   dependencies = { "luarocks.nvim" },
+    --   config = true
+    -- },
 
     -- Other
     -- {
@@ -58,7 +58,7 @@ require("lazy").setup({
     -- Language Support
     -- { "Vimjas/vim-python-pep8-indent" }, -- Cython Indentation
     { "rust-lang/rust.vim" },
-    { "DingDean/wgsl.vim" },
+    -- { "DingDean/wgsl.vim" },
     {
       "epwalsh/obsidian.nvim",
       dependencies = { "nvim-lua/plenary.nvim" }
@@ -117,6 +117,21 @@ require("lazy").setup({
       "m-demare/hlargs.nvim",
       dependencies = { "nvim-treesitter/nvim-treesitter" },
     },
+    {
+      "nvim-treesitter/nvim-treesitter-context",
+      opts = {
+        max_lines = 1,
+        -- enable = false,
+      }
+    },
+
+    -- Indent Blankline
+    -- {
+    --   "lukas-reineke/indent-blankline.nvim",
+    --   main = "ibl",
+    --   opts = {
+    --   }
+    -- },
 
     -- Latex support
     {
@@ -165,10 +180,14 @@ require("lazy").setup({
       -- branch = "0.1.x",
     },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-    { "nvim-telescope/telescope-project.nvim" },
 
     -- File Jumping
-    { "cbochs/grapple.nvim" },
+    {
+      "cbochs/grapple.nvim",
+      dependencies = {
+        { "nvim-tree/nvim-web-devicons" }
+      },
+    },
 
     -- List
     { "folke/trouble.nvim" },
@@ -186,14 +205,14 @@ require("lazy").setup({
     -- },
 
     -- Git
-    {
-      "NeogitOrg/neogit",
-      dependencies = {
-        "nvim-lua/plenary.nvim",
-      },
-      config = true,
-      -- cond = false,
-    },
+    -- {
+    --   "NeogitOrg/neogit",
+    --   dependencies = {
+    --     "nvim-lua/plenary.nvim",
+    --   },
+    --   config = true,
+    --   -- cond = false,
+    -- },
     { "sindrets/diffview.nvim" },
 
     -- Compile Mode
@@ -208,7 +227,7 @@ require("lazy").setup({
     --   },
     --   config = true,
     -- },
-    { "shoumodip/compile.nvim" },
+    -- { "shoumodip/compile.nvim" },
 
     -- Misc
     { "mbbill/undotree" },

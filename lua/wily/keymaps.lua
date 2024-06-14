@@ -60,6 +60,7 @@ map({ "n", "x" }, "<leader>X", "\"+X", { remap = true })
 -- file switch
 if vim.g.neovide or vim.g.neogui then
   map("n", "<C-->", "<C-^>")
+  map("i", "<D-bs>", "<C-u>")
 else
   map("n", "<C-_>", "<C-^>")
 end
@@ -132,9 +133,9 @@ term.set_global_build_cmd("<leader>b", "make")
 map("n", "<leader>j", function()
   term.toggle_current_make_term()
 end)
-map("n", "<leader>q", function()
-  term.close_current_make_term()
-end)
+-- map("n", "<leader>q", function()
+--   term.close_current_make_term()
+-- end)
 
 -- diagnostics
 map("n", "<leader>df", vim.diagnostic.open_float)

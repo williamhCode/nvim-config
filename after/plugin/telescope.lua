@@ -4,25 +4,6 @@ local utils = require("telescope.utils")
 local builtin = require("telescope.builtin")
 local map = vim.keymap.set
 
-local project_actions = require("telescope._extensions.project.actions")
-local command = [[
-selected=$({ 
-    echo ~/;
-    echo ~/.dotfiles;
-    echo ~/.config/nvim; 
-    echo ~/Documents/Notes;
-    echo ~/Documents/Work/Resume stuff;
-    find ~/Documents/Coding -mindepth 2 -maxdepth 2 -type d; 
-})
-echo $selected
-]]
-local base_dirs = vim.fn.systemlist(command)
--- resolve paths
-for i, dir in ipairs(base_dirs) do
-  base_dirs[i] = vim.fn.resolve(dir)
-end
--- vim.print(base_dirs)
-
 require("telescope").setup({
   defaults = {
     prompt_prefix = "   ",
@@ -63,7 +44,7 @@ require("telescope").setup({
       additional_args = { "--hidden" }
     },
     buffers = {
-      sort_lastused = true,
+      sort_mru = true,
     },
     oldfiles = {
       cwd_only = true,
@@ -77,19 +58,10 @@ require("telescope").setup({
   },
 
   extensions = {
-    project = {
-      -- base_dirs = base_dirs,
-      on_project_selected = function(prompt_bufnr)
-        project_actions.change_working_directory(prompt_bufnr, false)
-        -- local harpoon = require("harpoon")
-        -- harpoon:list():select(1)
-      end
-    }
   }
 })
 
 telescope.load_extension("fzf")
--- telescope.load_extension("project")
 
 local opts = {
   path_display = function(opts, path)
@@ -116,8 +88,7 @@ map("n", "<leader>so", function()
 end)
 
 map("n", "<C-p>", ":Telescope<CR>")
-map("n", "<leader>sg", builtin.live_grep)
 map("n", "<leader>sb", builtin.buffers)
-
--- telescope project
--- map("n", "<leader>sp", function() telescope.extensions.project.project({display_type = "full"}) end)
+map("n", "<leader>sg", builtin.live_grep)
+map("n", "<leader>s/", "<cmd>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=smart_case<cr>")
+map("n", "<leader>sk", "<cmd>Telescope quickfix<cr>")

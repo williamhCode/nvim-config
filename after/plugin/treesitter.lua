@@ -23,6 +23,7 @@ require("nvim-treesitter.configs").setup({
     "typescript",
     "vue",
     "css",
+    "html"
   },
 
   highlight = {
@@ -55,6 +56,8 @@ require("nvim-treesitter.configs").setup({
         ["if"] = "@function.inner",
         ["ac"] = "@class.outer",
         ["ic"] = "@class.inner",
+        ["aa"] = "@attribute.outer",
+        ["ia"] = "@attribute.inner",
       },
       selection_modes = {
         ["@parameter.outer"] = "v", -- charwise

@@ -35,7 +35,7 @@ require("onedarkpro").setup({
     CursorLineNr = { fg = colors.fg },
     TabLineSel = { fg = colors.bg, bg = colors.fg },
     SpecialKey = { fg = colors.comment },
-    -- LineNr = { fg = colors.comment },
+    LineNr = { fg = colors.gray },
 
     -- Syntax
     PreProc = { fg = colors.purple },
@@ -189,6 +189,10 @@ require("onedarkpro").setup({
 
     QuickFixLine = { bg = colors.color_column, style = "bold,italic" },
     qfLineNr = { fg = colors.comment },
+
+    -- trouble
+    TroubleNormal = { link = "Normal" },
+    TroubleNormalNC = { link = "Normal" },
   },
   styles = {
     types = "NONE",
