@@ -18,8 +18,9 @@ lsp.servers({
   -- "zls",
   -- "asm_lsp",
   "tsserver",
-  "volar",
-  "html"
+  -- "volar",
+  "html",
+  "nim_langserver",
 })
 
 lsp.on_attach(function(client, bufnr)
@@ -53,21 +54,21 @@ lsp.on_attach(function(client, bufnr)
 
   local map = vim.keymap.set
   local opts = { buffer = bufnr }
-  map("n", "<leader>sd", "<cmd>Telescope lsp_document_symbols<CR>", opts)
+  map("n", "<leader>ss", "<cmd>Telescope lsp_document_symbols<CR>", opts)
   if client.name == "omnisharp" then
     vim.cmd [[
     nnoremap gr <cmd>lua require('omnisharp_extended').telescope_lsp_references()<cr>
-    nnoremap gd <cmd>lua require('omnisharp_extended').telescope_lsp_definition()<cr>
+    " nnoremap gd <cmd>lua require('omnisharp_extended').telescope_lsp_definition()<cr>
     nnoremap gt <cmd>lua require('omnisharp_extended').telescope_lsp_type_definition()<cr>
     nnoremap gI <cmd>lua require('omnisharp_extended').telescope_lsp_implementation()<cr>
     ]]
   else
     map("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
-    map("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
+    -- map("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
     map("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
     map("n", "gI", "<cmd>Telescope lsp_implementations<CR>", opts)
   end
-  map("n", "gD", vim.lsp.buf.declaration, opts)
+  map("n", "gd", vim.lsp.buf.declaration, opts)
   map("n", "gh", vim.lsp.buf.hover, opts)
   map("n", "gs", vim.lsp.buf.signature_help, opts)
   map("i", "<M-x>", vim.lsp.buf.signature_help, opts)
@@ -165,12 +166,8 @@ lsp.configure("tsserver", {
       {
         name = "@vue/typescript-plugin",
         location = vue_language_server_path,
-        languages = { "javascript", "typescript", "vue" },
+        languages = { "vue" },
       },
-    },
-    typescript = {
-      -- tsdk =
-      -- vim.fs.normalize("~/.local/share/nvim/mason/packages/typescript-language-server/node_modules/typescript/lib"),
     },
   },
   filetypes = {
@@ -181,6 +178,12 @@ lsp.configure("tsserver", {
 })
 
 -- lsp.configure("volar", {
+--   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+--   init_options = {
+--     vue = {
+--       hybridMode = false,
+--     },
+--   },
 -- })
 
 lsp.configure("omnisharp", {

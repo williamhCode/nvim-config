@@ -3,8 +3,8 @@ local toggleterm = require("toggleterm")
 
 local M = {}
 
-M.set_build_cmd = function(cmd)
-  map("n", "<leader>b", function()
+M.set_build_cmd = function(mapping, cmd)
+  map("n", mapping, function()
     vim.cmd("wall")
     M.spawn_cmd(vim.fn.expandcmd(cmd))
   end, { buffer = true })

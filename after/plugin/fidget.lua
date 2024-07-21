@@ -1,7 +1,7 @@
 require("fidget").setup({
   progress = {
     ignore_done_already = true,
-    ignore = { "jdtls" },
+    ignore = { "jdtls", "nim_langserver" },
 
     display = {
       render_limit = 5,

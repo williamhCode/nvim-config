@@ -63,7 +63,6 @@ require("lualine").setup({
         "dapui_scopes",
         "dapui_stacks",
         "dapui_watches",
-        "Trouble"
       },
     },
   },

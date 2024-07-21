@@ -189,10 +189,6 @@ require("onedarkpro").setup({
 
     QuickFixLine = { bg = colors.color_column, style = "bold,italic" },
     qfLineNr = { fg = colors.comment },
-
-    -- trouble
-    TroubleNormal = { link = "Normal" },
-    TroubleNormalNC = { link = "Normal" },
   },
   styles = {
     types = "NONE",

@@ -15,7 +15,7 @@ require("lazy").setup({
     ----------------- Colors and UI ----------------
     -- Colorschemes
     -- "folke/tokyonight.nvim",
-    -- { "projekt0n/github-nvim-theme" },
+    { "projekt0n/github-nvim-theme" },
     { "olimorris/onedarkpro.nvim" },
     -- { "HUAHUAI23/nvim-quietlight" },
 
@@ -59,10 +59,12 @@ require("lazy").setup({
     -- { "Vimjas/vim-python-pep8-indent" }, -- Cython Indentation
     { "rust-lang/rust.vim" },
     -- { "DingDean/wgsl.vim" },
-    {
-      "epwalsh/obsidian.nvim",
-      dependencies = { "nvim-lua/plenary.nvim" }
-    },
+    { "catgoose/vue-goto-definition.nvim" },
+
+    -- {
+    --   "epwalsh/obsidian.nvim",
+    --   dependencies = { "nvim-lua/plenary.nvim" }
+    -- },
 
     -- Install stuff
     {
@@ -155,6 +157,12 @@ require("lazy").setup({
       -- end
     },
 
+    {
+      "gregorias/coerce.nvim",
+      tag = "v1.1",
+      config = true,
+    },
+
     -------------------- Editor --------------------
     -- Navigation
     -- File Tree/Explorer
@@ -188,9 +196,6 @@ require("lazy").setup({
         { "nvim-tree/nvim-web-devicons" }
       },
     },
-
-    -- List
-    { "folke/trouble.nvim" },
 
     -- Terminal
     {

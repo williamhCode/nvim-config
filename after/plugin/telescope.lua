@@ -48,6 +48,9 @@ require("telescope").setup({
     },
     oldfiles = {
       cwd_only = true,
+    },
+    lsp_document_symbols = {
+      symbol_width = 40,
     }
   },
   fzf = {
@@ -92,3 +95,4 @@ map("n", "<leader>sb", builtin.buffers)
 map("n", "<leader>sg", builtin.live_grep)
 map("n", "<leader>s/", "<cmd>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=smart_case<cr>")
 map("n", "<leader>sk", "<cmd>Telescope quickfix<cr>")
+map("n", "<leader>sd", "<cmd>Telescope diagnostics bufnr=0 sort_by=severity<cr>")

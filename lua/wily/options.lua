@@ -57,7 +57,7 @@ opt.fillchars = list {
   "msgsep:─",
 }
 
-opt.guicursor:append("a:blinkwait100-blinkoff700-blinkon700")
+opt.guicursor = "n-v-c-ci-sm:block,i-ve:ver25,r-cr-o:hor20,a:blinkwait100-blinkoff700-blinkon700"
 vim.cmd([[autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]])
 
 vim.diagnostic.config({
@@ -73,8 +73,8 @@ if vim.g.neovide then
   local alpha = function()
     return string.format("%x", math.floor((255 * vim.g.transparency) or 0.8))
   end
-  vim.g.neovide_transparency = 1.0
-  -- vim.g.transparency = 1.0
+  vim.g.neovide_transparency = 0.92
+  -- vim.g.transparency = 0.92
   -- vim.g.neovide_background_color = "#282c34" .. alpha()
 
   vim.g.neovide_floating_shadow = false
@@ -87,10 +87,10 @@ if vim.g.neovide then
 end
 
 if vim.g.neogui then
-  vim.g.neogui_opts = {
+  vim.g.set_neogui_opts {
     window = {
       vsync = true,
-      highDpi = true,
+      high_dpi = true,
       borderless = false,
       blur = 20,
     },
@@ -100,14 +100,20 @@ if vim.g.neogui then
       left = 5,
       right = 5,
     },
-    multigrid = true,
-    bgColor = 0x282c34,
+    -- multigrid = false,
+    mac_opt_is_meta = true,
+    cursor_idle_time = 10,
+    scroll_speed = 1,
+
+    bg_color = 0x282c34,
     transparency = 0.92,
-    maxFps = 120,
+    max_fps = 120,
   }
 end
+
 -- opt.guifont = "JetBrains Mono,PingFang TC,Symbols Nerd Font:h15"
-opt.guifont = "JetBrains Mono,PingFang TC,Symbols Nerd Font:h13"
--- opt.guifont = "SF Mono Medium,PingFang TC,Symbols Nerd Font:h12"
+-- opt.guifont = "JetBrains Mono,PingFang TC,Symbols Nerd Font:h13"
+opt.guifont = "JetBrains Mono Medium,PingFang TC,Symbols Nerd Font:h13"
+-- opt.guifont = "SF Mono,PingFang TC,Symbols Nerd Font:h13"
 -- opt.guifont = "SF Mono,PingFang TC,Symbols Nerd Font:h12"
 -- opt.guifont = "SF Mono,PingFang TC,Symbols Nerd Font:h15"
