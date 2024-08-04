@@ -19,7 +19,7 @@ opt.sidescrolloff = 10
 opt.splitright = true
 opt.splitbelow = true
 
--- opt.pumblend = 10
+opt.pumblend = 10
 opt.pumheight = 12
 -- opt.winblend = 10
 
@@ -87,7 +87,7 @@ if vim.g.neovide then
 end
 
 if vim.g.neogui then
-  vim.g.set_neogui_opts {
+  vim.g.neogui_opts = {
     window = {
       vsync = true,
       high_dpi = true,
@@ -100,20 +100,16 @@ if vim.g.neogui then
       left = 5,
       right = 5,
     },
-    -- multigrid = false,
+    multigrid = true,
     mac_opt_is_meta = true,
     cursor_idle_time = 10,
     scroll_speed = 1,
 
     bg_color = 0x282c34,
-    transparency = 0.92,
-    max_fps = 120,
+    opacity = 0.92,
+    max_fps = 60,
   }
 end
 
--- opt.guifont = "JetBrains Mono,PingFang TC,Symbols Nerd Font:h15"
--- opt.guifont = "JetBrains Mono,PingFang TC,Symbols Nerd Font:h13"
-opt.guifont = "JetBrains Mono Medium,PingFang TC,Symbols Nerd Font:h13"
--- opt.guifont = "SF Mono,PingFang TC,Symbols Nerd Font:h13"
--- opt.guifont = "SF Mono,PingFang TC,Symbols Nerd Font:h12"
+opt.guifont = "JetBrains Mono,PingFang TC,Symbols Nerd Font:h15"
 -- opt.guifont = "SF Mono,PingFang TC,Symbols Nerd Font:h15"

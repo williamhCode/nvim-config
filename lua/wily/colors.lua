@@ -98,8 +98,9 @@ require("onedarkpro").setup({
 
     DiagnosticUnderlineError = { fg = "NONE", sp = colors.red, style = "undercurl" },
     DiagnosticUnderlineWarn = { fg = "NONE", sp = colors.yellow, style = "undercurl" },
-    DiagnosticUnderlineInfo = { fg = "NONE", sp = colors.blue, style = "undercurl" },
-    DiagnosticUnderlineHint = { fg = "NONE", sp = colors.purple, style = "undercurl" },
+    DiagnosticUnderlineInfo = { fg = "NONE", sp = colors.blue, style = "underdashed" },
+    DiagnosticUnderlineHint = { fg = "NONE", sp = colors.purple, style = "underdotted" },
+    DiagnosticDeprecated = { fg = "NONE", sp = colors.purple, style = "underdotted" },
 
     DiagnosticVirtualTextError = { fg = colors.red, bg = utils.darken(colors.red, 0.1, colors.bg) },
     DiagnosticVirtualTextWarn = { fg = colors.yellow, bg = utils.darken(colors.yellow, 0.1, colors.bg) },

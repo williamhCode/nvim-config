@@ -61,10 +61,36 @@ require("telescope").setup({
   },
 
   extensions = {
+    ["ui-select"] = {
+      -- layout_strategy = "flex",
+      layout_config = {
+        width = 100,
+        height = 30,
+      },
+
+      -- require("telescope.themes").get_dropdown {
+      --   -- even more opts
+      -- }
+
+      -- pseudo code / specification for writing custom displays, like the one
+      -- for "codeactions"
+      -- specific_opts = {
+      --   [kind] = {
+      --     make_indexed = function(items) -> indexed_items, width,
+      --     make_displayer = function(widths) -> displayer
+      --     make_display = function(displayer) -> function(e)
+      --     make_ordinal = function(e) -> string
+      --   },
+      --   -- for example to disable the custom builtin "codeactions" display
+      --      do the following
+      --   codeactions = false,
+      -- }
+    }
   }
 })
 
 telescope.load_extension("fzf")
+-- telescope.load_extension("ui-select")
 
 local opts = {
   path_display = function(opts, path)

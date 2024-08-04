@@ -91,7 +91,7 @@ require("lazy").setup({
     { "jay-babu/mason-null-ls.nvim" },
 
     -- Lsp Extras
-    { "Issafalcon/lsp-overloads.nvim" }, -- Signature Help
+    -- { "Issafalcon/lsp-overloads.nvim" }, -- Signature Help
     { "folke/neodev.nvim" },             -- Nvim Workspace
     { "j-hui/fidget.nvim", },            -- Lsp Progress
 
@@ -188,6 +188,7 @@ require("lazy").setup({
       -- branch = "0.1.x",
     },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    { "nvim-telescope/telescope-ui-select.nvim" },
 
     -- File Jumping
     {

@@ -12,7 +12,7 @@ lsp.servers({
   "bashls",
   "texlab",
   "cmake",
-  -- "rust_analyzer",
+  "rust_analyzer",
   "marksman",
   -- "wgsl_analyzer",
   -- "zls",
@@ -24,15 +24,15 @@ lsp.servers({
 })
 
 lsp.on_attach(function(client, bufnr)
-  if client.server_capabilities.signatureHelpProvider then
-    require("lsp-overloads").setup(client, {
-      ui = {
-        border = "none",
-        close_events = { "CursorMoved", "CursorMovedI", "InsertCharPre" },
-        -- floating_window_above_cur_line = true,
-      },
-    })
-  end
+  -- if client.server_capabilities.signatureHelpProvider then
+  --   require("lsp-overloads").setup(client, {
+  --     ui = {
+  --       border = "none",
+  --       -- close_events = { "CursorMoved", "CursorMovedI", "InsertCharPre" },
+  --       -- floating_window_above_cur_line = true,
+  --     },
+  --   })
+  -- end
 
   if client.server_capabilities.documentHighlightProvider then
     local group = vim.api.nvim_create_augroup("lsp_document_highlight", { clear = false })
@@ -64,19 +64,19 @@ lsp.on_attach(function(client, bufnr)
     ]]
   else
     map("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
-    -- map("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
+    -- map("n", "<C-]>", "<cmd>Telescope lsp_definitions<CR>", opts)
     map("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
     map("n", "gI", "<cmd>Telescope lsp_implementations<CR>", opts)
   end
   map("n", "gd", vim.lsp.buf.declaration, opts)
   map("n", "gh", vim.lsp.buf.hover, opts)
   map("n", "gs", vim.lsp.buf.signature_help, opts)
-  map("i", "<M-x>", vim.lsp.buf.signature_help, opts)
+  map("i", "<C-s>", vim.lsp.buf.signature_help, opts)
   if client.name ~= "texlab" then
     map({ "n", "v" }, "<leader>lca", vim.lsp.buf.code_action, opts)
     map("n", "<leader>lrn", vim.lsp.buf.rename, opts)
   end
-  map({ "n", "v" }, "<M-F>", function() vim.lsp.buf.format({ async = true }) end, opts)
+  -- map({ "n", "v" }, "<M-F>", function() vim.lsp.buf.format({ async = true }) end, opts)
 end)
 
 -- server setups

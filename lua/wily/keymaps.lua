@@ -1,3 +1,5 @@
+-- see all modes
+-- :h map-table
 local map = require("wily.utils.keymap").map
 
 -- map("", "<Space>", "<Nop>", { noremap = true, silent = true })
@@ -280,4 +282,43 @@ map("n", "<leader>k", function()
   local height = math.floor(vim.o.lines * 0.4)
   vim.cmd("botright copen " .. height)
 end)
--- map("n", "<leader>gg", "<Cmd>Neogit<CR>")
+map("n", "<leader>gg", "<Cmd>Neogit<CR>")
+
+-- neogui
+if vim.g.neogui then
+  -- all modes
+  local mode = {"", "!", "t", "l"};
+  map(mode, "<D-l>", "<cmd>NeoguiSession prev<cr>")
+  map(mode, "<D-r>", "<cmd>NeoguiSession select sort=time<cr>")
+  map("n", "<D-f>", function()
+    local cmd = [[
+    echo "$({
+      echo ~/;
+      echo ~/.dotfiles;
+      echo ~/.config/nvim; 
+      echo ~/Documents/Notes;
+      echo ~/Documents/Work/Resume stuff;
+      find ~/Documents/Coding -mindepth 2 -maxdepth 2 -type d; 
+    })"
+    ]]
+    local output = vim.fn.system(cmd)
+
+    local dirs = {}
+    for dir in string.gmatch(output, "([^\n]+)") do
+      table.insert(dirs, dir)
+    end
+
+    vim.ui.select(dirs, {
+      prompt = "Choose a directory:",
+      -- format_item = function(item)
+      --   return "(" .. item.id .. ") - " .. item.name
+      -- end
+    }, function(choice)
+      if choice == nil then return end
+      local dir = choice
+      local fmod = vim.fn.fnamemodify
+      local name = fmod(fmod(dir, ":h"), ":t") .. "/" .. fmod(dir, ":t")
+      vim.cmd(string.format("NeoguiSession new dir=%s name=%s", dir, name))
+    end)
+  end)
+end
