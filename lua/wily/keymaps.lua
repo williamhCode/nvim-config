@@ -34,6 +34,11 @@ map("n", "X", "D")
 map("n", "xx", "dd")
 
 map({ "i", "c" }, "<C-v>", "<C-r>\"")
+if vim.g.neogui then
+  map("n", "<D-v>", "\"+p")
+  map({ "i", "c" }, "<D-v>", "<C-r>+")
+  map({ "i", "c", "t" }, "<D-bs>", "<C-u>")
+end
 
 -- cmd line
 vim.cmd [[set cedit=\<C-Y>]]
@@ -62,7 +67,6 @@ map({ "n", "x" }, "<leader>X", "\"+X", { remap = true })
 -- file switch
 if vim.g.neovide or vim.g.neogui then
   map("n", "<C-->", "<C-^>")
-  map("i", "<D-bs>", "<C-u>")
 else
   map("n", "<C-_>", "<C-^>")
 end
@@ -126,7 +130,7 @@ map("x", "<D-[>", "<gv")
 map("x", "<D-]>", ">gv")
 
 -- terminal
-map("t", "<Esc>", "<C-\\><C-n>")
+map("t", "<C-\\>", "<C-\\><C-n>")
 map("t", "<C-w>", "<C-\\><C-n><C-w>")
 
 local term = require("wily.utils.term")
@@ -290,7 +294,7 @@ if vim.g.neogui then
   local mode = {"", "!", "t", "l"};
   map(mode, "<D-l>", "<cmd>NeoguiSession prev<cr>")
   map(mode, "<D-r>", "<cmd>NeoguiSession select sort=time<cr>")
-  map("n", "<D-f>", function()
+  map(mode, "<D-f>", function()
     local cmd = [[
     echo "$({
       echo ~/;

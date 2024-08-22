@@ -19,7 +19,7 @@ opt.sidescrolloff = 10
 opt.splitright = true
 opt.splitbelow = true
 
-opt.pumblend = 10
+-- opt.pumblend = 10
 opt.pumheight = 12
 -- opt.winblend = 10
 

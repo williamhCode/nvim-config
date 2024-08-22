@@ -90,7 +90,7 @@ require("telescope").setup({
 })
 
 telescope.load_extension("fzf")
--- telescope.load_extension("ui-select")
+telescope.load_extension("ui-select")
 
 local opts = {
   path_display = function(opts, path)

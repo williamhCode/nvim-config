@@ -130,7 +130,22 @@ lsp.configure("clangd", {
   -- }
 })
 
+local util = require("lspconfig.util")
+
 lsp.configure("pyright", {
+  root_dir = function(fname)
+    local root_files = {
+      "pyproject.toml",
+      "setup.py",
+      "setup.cfg",
+      "requirements.txt",
+      "Pipfile",
+      "pyrightconfig.json",
+      ".git",
+      ".venv",
+    }
+    return util.root_pattern(unpack(root_files))(fname)
+  end,
   settings = {
     python = {
       analysis = {
