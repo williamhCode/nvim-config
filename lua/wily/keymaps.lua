@@ -2,24 +2,11 @@
 -- :h map-table
 local map = require("wily.utils.keymap").map
 
--- map("", "<Space>", "<Nop>", { noremap = true, silent = true })
-
 -- editing
 map("n", "<D-a>", "ggVG")
 map({ "i", "c" }, "<M-bs>", "<C-w>", { remap = true })
 
--- better deleting/cutting
--- map("x", "*", function()
---   local currInYank = vim.fn.getreg('"')
---   vim.cmd [[silent y/\V<C-R>"<CR>]]
---   vim.fn.setreg('"', currInYank)
--- end, { silent = true })
--- map("x", "#", function()
---   local currInYank = vim.fn.getreg('"')
---   vim.cmd [[silent y?\V<C-R>"<CR>]]
---   vim.fn.setreg('"', currInYank)
--- end, { silent = true })
-
+-- differentiate between deleting and cutting
 map({ "n", "x" }, "d", "\"_d")
 map({ "n", "x" }, "D", "\"_D")
 
@@ -33,13 +20,6 @@ map("n", "x", "d")
 map("n", "X", "D")
 map("n", "xx", "dd")
 
-map({ "i", "c" }, "<C-v>", "<C-r>\"")
-if vim.g.neogui then
-  map("n", "<D-v>", "\"+p")
-  map({ "i", "c" }, "<D-v>", "<C-r>+")
-  map({ "i", "c", "t" }, "<D-bs>", "<C-u>")
-end
-
 -- cmd line
 vim.cmd [[set cedit=\<C-Y>]]
 map("c", "<C-a>", "<Home>")
@@ -51,6 +31,17 @@ map("c", "<C-n>", "<Down>")
 map("c", "<C-p>", "<Up>")
 map("c", "<M-b>", "<S-Left>")
 map("c", "<M-f>", "<S-Right>")
+
+-- pasting
+map({ "i", "c" }, "<C-v>", "<C-r>\"")
+map("t", "<C-v>", "<C-\\><C-n>pi")
+
+if vim.g.neogui then
+  map({ "i", "c" }, "<D-v>", "<C-r>+")
+  map("t", "<D-v>", "<C-\\><C-n>\"+pi")
+
+  map({ "i", "c", "t" }, "<D-bs>", "<C-u>")
+end
 
 -- system clipboard
 map({ "n", "x" }, "<leader>p", "\"+p")
@@ -288,12 +279,14 @@ map("n", "<leader>k", function()
 end)
 map("n", "<leader>gg", "<Cmd>Neogit<CR>")
 
+
 -- neogui
 if vim.g.neogui then
   -- all modes
   local mode = {"", "!", "t", "l"};
   map(mode, "<D-l>", "<cmd>NeoguiSession prev<cr>")
   map(mode, "<D-r>", "<cmd>NeoguiSession select sort=time<cr>")
+
   map(mode, "<D-f>", function()
     local cmd = [[
     echo "$({
@@ -322,7 +315,37 @@ if vim.g.neogui then
       local dir = choice
       local fmod = vim.fn.fnamemodify
       local name = fmod(fmod(dir, ":h"), ":t") .. "/" .. fmod(dir, ":t")
-      vim.cmd(string.format("NeoguiSession new dir=%s name=%s", dir, name))
+      vim.g.neogui_session("new", { dir = dir, name = name })
     end)
   end)
+
+  vim.g.neogui_startup = function()
+    local cmd = [[
+    echo "$({
+      echo ~/;
+      echo ~/.dotfiles;
+      echo ~/.config/nvim; 
+      echo ~/Documents/Notes;
+      echo ~/Documents/Work/Resume stuff;
+      find ~/Documents/Coding -mindepth 2 -maxdepth 2 -type d; 
+    })"
+    ]]
+    local output = vim.fn.system(cmd)
+
+    local dirs = {}
+    for dir in string.gmatch(output, "([^\n]+)") do
+      table.insert(dirs, dir)
+    end
+
+    vim.ui.select(dirs, {
+      prompt = "Choose a directory:",
+    }, function(choice)
+      if choice == nil then return end
+      local dir = choice
+      local fmod = vim.fn.fnamemodify
+      local name = fmod(fmod(dir, ":h"), ":t") .. "/" .. fmod(dir, ":t")
+      vim.g.neogui_session("new", { dir = dir, name = name, switch_to = false })
+      vim.g.neogui_session("kill")
+    end)
+  end
 end

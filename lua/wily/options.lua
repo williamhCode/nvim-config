@@ -91,18 +91,18 @@ if vim.g.neogui then
     window = {
       vsync = true,
       high_dpi = true,
-      borderless = false,
+      borderless = true,
       blur = 20,
     },
     margins = {
-      top = 5,
+      top = 0,
       bottom = 5,
       left = 5,
       right = 5,
     },
     multigrid = true,
     mac_opt_is_meta = true,
-    cursor_idle_time = 10,
+    cursor_idle_time = 100,
     scroll_speed = 1,
 
     bg_color = 0x282c34,
