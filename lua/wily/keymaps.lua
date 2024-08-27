@@ -53,8 +53,6 @@ map({ "n", "x" }, "<leader>Y", "\"+Y", { remap = true })
 map({ "n", "x" }, "<leader>x", "\"+x")
 map({ "n", "x" }, "<leader>X", "\"+X", { remap = true })
 
--- map("x", "<D-c>", "\"+y")
-
 -- file switch
 if vim.g.neovide or vim.g.neogui then
   map("n", "<C-->", "<C-^>")
@@ -122,7 +120,7 @@ map("x", "<D-]>", ">gv")
 
 -- terminal
 map("t", "<C-\\>", "<C-\\><C-n>")
-map("t", "<C-w>", "<C-\\><C-n><C-w>")
+-- map("t", "<C-w>", "<C-\\><C-n><C-w>")
 
 local term = require("wily.utils.term")
 term.set_global_term_cmd("<leader>r", "make run")
