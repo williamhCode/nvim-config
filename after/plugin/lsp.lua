@@ -19,7 +19,6 @@ lsp.servers({
   -- "zls",
   -- "tsserver",
   "html",
-  "nim_langserver",
 })
 
 lsp.on_attach(function(client, bufnr)
