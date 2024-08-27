@@ -19,7 +19,12 @@ require("nvim-treesitter.configs").setup({
     "rust",
     "wgsl",
     "query",
-    "javascript"
+    "javascript",
+    "typescript",
+    "vue",
+    "css",
+    "html",
+    "nim"
   },
 
   highlight = {
@@ -52,6 +57,8 @@ require("nvim-treesitter.configs").setup({
         ["if"] = "@function.inner",
         ["ac"] = "@class.outer",
         ["ic"] = "@class.inner",
+        ["aa"] = "@attribute.outer",
+        ["ia"] = "@attribute.inner",
       },
       selection_modes = {
         ["@parameter.outer"] = "v", -- charwise
@@ -65,15 +72,19 @@ require("nvim-treesitter.configs").setup({
       set_jumps = true,
       goto_next_start = {
         ["]f"] = "@function.outer",
+        ["]c"] = "@class.outer",
       },
       goto_next_end = {
         ["]F"] = "@function.outer",
+        ["]C"] = "@class.outer",
       },
       goto_previous_start = {
         ["[f"] = "@function.outer",
+        ["[c"] = "@class.outer",
       },
       goto_previous_end = {
         ["[F"] = "@function.outer",
+        ["[C"] = "@class.outer",
       },
     },
   },

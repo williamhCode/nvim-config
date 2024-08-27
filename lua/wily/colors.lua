@@ -35,6 +35,7 @@ require("onedarkpro").setup({
     CursorLineNr = { fg = colors.fg },
     TabLineSel = { fg = colors.bg, bg = colors.fg },
     SpecialKey = { fg = colors.comment },
+    LineNr = { fg = colors.gray },
 
     -- Syntax
     PreProc = { fg = colors.purple },
@@ -68,6 +69,8 @@ require("onedarkpro").setup({
     ["@type.definition.python"] = { link = "@type" },
     ["@type.qualifier.python"] = { link = "@type" },
 
+    ["@operator"] = { fg = colors.white },
+
     ["@type.c"] = { fg = colors.purple },
     ["@operator.c"] = { fg = colors.white },
 
@@ -79,6 +82,8 @@ require("onedarkpro").setup({
     ["@text.todo.unchecked"] = {},
     ["@text.todo.checked"] = {},
     ["@text.literal.block.markdown"] = {},
+
+    -- TreesitterContext = { bg = colors.selection},
 
     -- Lsp
     DiagnosticError = { fg = colors.red },
@@ -93,8 +98,9 @@ require("onedarkpro").setup({
 
     DiagnosticUnderlineError = { fg = "NONE", sp = colors.red, style = "undercurl" },
     DiagnosticUnderlineWarn = { fg = "NONE", sp = colors.yellow, style = "undercurl" },
-    DiagnosticUnderlineInfo = { fg = "NONE", sp = colors.blue, style = "undercurl" },
-    DiagnosticUnderlineHint = { fg = "NONE", sp = colors.purple, style = "undercurl" },
+    DiagnosticUnderlineInfo = { fg = "NONE", sp = colors.blue, style = "underdashed" },
+    DiagnosticUnderlineHint = { fg = "NONE", sp = colors.purple, style = "underdotted" },
+    DiagnosticDeprecated = { fg = "NONE", sp = colors.purple, style = "underdotted" },
 
     DiagnosticVirtualTextError = { fg = colors.red, bg = utils.darken(colors.red, 0.1, colors.bg) },
     DiagnosticVirtualTextWarn = { fg = colors.yellow, bg = utils.darken(colors.yellow, 0.1, colors.bg) },
@@ -181,6 +187,9 @@ require("onedarkpro").setup({
     -- FidgetTask = { link = "Normal" },
 
     FloatTitle = { fg = colors.bg, bg = colors.green },
+
+    QuickFixLine = { bg = colors.color_column, style = "bold,italic" },
+    qfLineNr = { fg = colors.comment },
   },
   styles = {
     types = "NONE",

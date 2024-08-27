@@ -1,5 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
     "git",
     "clone",
@@ -17,7 +17,7 @@ require("lazy").setup({
     -- "folke/tokyonight.nvim",
     { "projekt0n/github-nvim-theme" },
     { "olimorris/onedarkpro.nvim" },
-    { "HUAHUAI23/nvim-quietlight" },
+    -- { "HUAHUAI23/nvim-quietlight" },
 
     -- UI
     {
@@ -28,6 +28,19 @@ require("lazy").setup({
       "nvim-lualine/lualine.nvim",
       dependencies = { "nvim-tree/nvim-web-devicons" },
     }, -- Status Line
+
+    -- {
+    --   "vhyrro/luarocks.nvim",
+    --   priority = 1001, -- this plugin needs to run before anything else
+    --   opts = {
+    --     rocks = { "magick" },
+    --   },
+    -- },
+    -- {
+    --   "3rd/image.nvim",
+    --   dependencies = { "luarocks.nvim" },
+    --   config = true
+    -- },
 
     -- Other
     -- {
@@ -45,11 +58,13 @@ require("lazy").setup({
     -- Language Support
     -- { "Vimjas/vim-python-pep8-indent" }, -- Cython Indentation
     { "rust-lang/rust.vim" },
-    { "DingDean/wgsl.vim" },
-    {
-      "epwalsh/obsidian.nvim",
-      dependencies = { "nvim-lua/plenary.nvim" }
-    },
+    -- { "DingDean/wgsl.vim" },
+    { "catgoose/vue-goto-definition.nvim" },
+
+    -- {
+    --   "epwalsh/obsidian.nvim",
+    --   dependencies = { "nvim-lua/plenary.nvim" }
+    -- },
 
     -- Install stuff
     {
@@ -63,15 +78,20 @@ require("lazy").setup({
 
     -- Debugger Support
     { "mfussenegger/nvim-dap" },
-    { "rcarriga/nvim-dap-ui" },
+    {
+      "rcarriga/nvim-dap-ui",
+      dependencies = { "nvim-neotest/nvim-nio" }
+    },
     { "jay-babu/mason-nvim-dap.nvim" },
+
+    { "Hoffs/omnisharp-extended-lsp.nvim" },
 
     -- Null Ls
     { "jose-elias-alvarez/null-ls.nvim" },
     { "jay-babu/mason-null-ls.nvim" },
 
     -- Lsp Extras
-    { "Issafalcon/lsp-overloads.nvim" }, -- Signature Help
+    -- { "Issafalcon/lsp-overloads.nvim" }, -- Signature Help
     { "folke/neodev.nvim" },             -- Nvim Workspace
     { "j-hui/fidget.nvim", },            -- Lsp Progress
 
@@ -80,6 +100,7 @@ require("lazy").setup({
     { "hrsh7th/cmp-nvim-lsp" },
     { "hrsh7th/cmp-buffer" },
     { "hrsh7th/cmp-path" },
+    { "hrsh7th/cmp-cmdline" },
     { "saadparwaiz1/cmp_luasnip" },
     { "hrsh7th/cmp-nvim-lua" },
 
@@ -98,6 +119,21 @@ require("lazy").setup({
       "m-demare/hlargs.nvim",
       dependencies = { "nvim-treesitter/nvim-treesitter" },
     },
+    {
+      "nvim-treesitter/nvim-treesitter-context",
+      opts = {
+        max_lines = 1,
+        -- enable = false,
+      }
+    },
+
+    -- Indent Blankline
+    -- {
+    --   "lukas-reineke/indent-blankline.nvim",
+    --   main = "ibl",
+    --   opts = {
+    --   }
+    -- },
 
     -- Latex support
     {
@@ -116,14 +152,20 @@ require("lazy").setup({
       "iamcco/markdown-preview.nvim",
       ft = "markdown",
       build = ":call mkdp#util#install()",
-      config = function()
-        vim.keymap.set("n", "<leader>tp", "<Plug>MarkdownPreviewToggle")
-      end
+      -- config = function()
+      --   vim.keymap.set("n", "<leader>tp", "<Plug>MarkdownPreviewToggle")
+      -- end
+    },
+
+    {
+      "gregorias/coerce.nvim",
+      tag = "v1.1",
+      config = true,
     },
 
     -------------------- Editor --------------------
     -- Navigation
-    -- File Tree
+    -- File Tree/Explorer
     {
       "nvim-neo-tree/neo-tree.nvim",
       branch = "v3.x",
@@ -134,6 +176,10 @@ require("lazy").setup({
       },
       dev = false,
     },
+    {
+      "stevearc/oil.nvim",
+      dependencies = { "nvim-tree/nvim-web-devicons" },
+    },
 
     -- Fuzzy Finder
     {
@@ -142,30 +188,52 @@ require("lazy").setup({
       -- branch = "0.1.x",
     },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-    { "nvim-telescope/telescope-project.nvim" },
+    { "nvim-telescope/telescope-ui-select.nvim" },
 
     -- File Jumping
-    { "cbochs/grapple.nvim" },
-
-    -- List
-    { "folke/trouble.nvim" },
+    {
+      "cbochs/grapple.nvim",
+      dependencies = {
+        { "nvim-tree/nvim-web-devicons" }
+      },
+    },
 
     -- Terminal
     {
       "akinsho/toggleterm.nvim",
       version = "*"
     },
+    -- {
+    --   "rebelot/terminal.nvim",
+    --   config = function()
+    --     require("terminal").setup()
+    --   end
+    -- },
 
     -- Git
-    {
-      "NeogitOrg/neogit",
-      dependencies = {
-        "nvim-lua/plenary.nvim",
-      },
-      config = true,
-      -- cond = false,
-    },
+    -- {
+    --   "NeogitOrg/neogit",
+    --   dependencies = {
+    --     "nvim-lua/plenary.nvim",
+    --   },
+    --   config = true,
+    --   -- cond = false,
+    -- },
     { "sindrets/diffview.nvim" },
+
+    -- Compile Mode
+    -- {
+    --   "ej-shafran/compile-mode.nvim",
+    --   branch = "latest",
+    --   -- or a specific version:
+    --   -- tag = "v2.0.0"
+    --   dependencies = {
+    --     "nvim-lua/plenary.nvim",
+    --     { "m00qek/baleia.nvim", tag = "v1.3.0" },
+    --   },
+    --   config = true,
+    -- },
+    -- { "shoumodip/compile.nvim" },
 
     -- Misc
     { "mbbill/undotree" },
@@ -174,6 +242,7 @@ require("lazy").setup({
 
     -- ssh clipboard
     { "ojroques/nvim-osc52" },
+    { "wakatime/vim-wakatime" },
   },
   {
     dev = {

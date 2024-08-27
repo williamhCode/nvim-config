@@ -4,25 +4,6 @@ local utils = require("telescope.utils")
 local builtin = require("telescope.builtin")
 local map = vim.keymap.set
 
-local project_actions = require("telescope._extensions.project.actions")
-local command = [[
-selected=$({ 
-    echo ~/;
-    echo ~/.dotfiles;
-    echo ~/.config/nvim; 
-    echo ~/Documents/Notes;
-    echo ~/Documents/Work/Resume stuff;
-    find ~/Documents/Coding -mindepth 2 -maxdepth 2 -type d; 
-})
-echo $selected
-]]
-local base_dirs = vim.fn.systemlist(command)
--- resolve paths
-for i, dir in ipairs(base_dirs) do
-  base_dirs[i] = vim.fn.resolve(dir)
-end
--- vim.print(base_dirs)
-
 require("telescope").setup({
   defaults = {
     prompt_prefix = "   ",
@@ -63,10 +44,13 @@ require("telescope").setup({
       additional_args = { "--hidden" }
     },
     buffers = {
-      sort_lastused = true,
+      sort_mru = true,
     },
     oldfiles = {
       cwd_only = true,
+    },
+    lsp_document_symbols = {
+      symbol_width = 40,
     }
   },
   fzf = {
@@ -77,19 +61,36 @@ require("telescope").setup({
   },
 
   extensions = {
-    project = {
-      -- base_dirs = base_dirs,
-      on_project_selected = function(prompt_bufnr)
-        project_actions.change_working_directory(prompt_bufnr, false)
-        -- local harpoon = require("harpoon")
-        -- harpoon:list():select(1)
-      end
+    ["ui-select"] = {
+      -- layout_strategy = "flex",
+      layout_config = {
+        width = 100,
+        height = 30,
+      },
+
+      -- require("telescope.themes").get_dropdown {
+      --   -- even more opts
+      -- }
+
+      -- pseudo code / specification for writing custom displays, like the one
+      -- for "codeactions"
+      -- specific_opts = {
+      --   [kind] = {
+      --     make_indexed = function(items) -> indexed_items, width,
+      --     make_displayer = function(widths) -> displayer
+      --     make_display = function(displayer) -> function(e)
+      --     make_ordinal = function(e) -> string
+      --   },
+      --   -- for example to disable the custom builtin "codeactions" display
+      --      do the following
+      --   codeactions = false,
+      -- }
     }
   }
 })
 
 telescope.load_extension("fzf")
--- telescope.load_extension("project")
+telescope.load_extension("ui-select")
 
 local opts = {
   path_display = function(opts, path)
@@ -105,19 +106,19 @@ local entry_maker = require("wily.utils.telescope.make_entry").gen_from_file(opt
 
 map("n", "<leader>sf", function()
   require("wily.utils.telescope").better_find_files({
-    entry_maker = entry_maker,
+    -- entry_maker = entry_maker,
   })
 end)
 
 map("n", "<leader>so", function()
   builtin.oldfiles({
-    entry_maker = entry_maker,
+    -- entry_maker = entry_maker,
   })
 end)
 
 map("n", "<C-p>", ":Telescope<CR>")
-map("n", "<leader>sg", builtin.live_grep)
 map("n", "<leader>sb", builtin.buffers)
-
--- telescope project
--- map("n", "<leader>sp", function() telescope.extensions.project.project({display_type = "full"}) end)
+map("n", "<leader>sg", builtin.live_grep)
+map("n", "<leader>s/", "<cmd>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=smart_case<cr>")
+map("n", "<leader>sk", "<cmd>Telescope quickfix<cr>")
+map("n", "<leader>sd", "<cmd>Telescope diagnostics bufnr=0 sort_by=severity<cr>")
