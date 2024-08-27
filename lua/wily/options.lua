@@ -102,7 +102,7 @@ if vim.g.neogui then
     },
     multigrid = true,
     mac_opt_is_meta = true,
-    cursor_idle_time = 100,
+    cursor_idle_time = 10,
     scroll_speed = 1,
 
     bg_color = 0x282c34,

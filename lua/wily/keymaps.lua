@@ -279,13 +279,16 @@ map("n", "<leader>k", function()
 end)
 map("n", "<leader>gg", "<Cmd>Neogit<CR>")
 
-
 -- neogui
 if vim.g.neogui then
   -- all modes
   local mode = {"", "!", "t", "l"};
-  map(mode, "<D-l>", "<cmd>NeoguiSession prev<cr>")
-  map(mode, "<D-r>", "<cmd>NeoguiSession select sort=time<cr>")
+  map(mode, "<D-=>", "<cmd>Neogui font_size_change 1<cr>")
+  map(mode, "<D-->", "<cmd>Neogui font_size_change -1<cr>")
+  map(mode, "<D-0>", "<cmd>Neogui font_size_reset<cr>")
+
+  map(mode, "<D-l>", "<cmd>Neogui session_prev<cr>")
+  map(mode, "<D-r>", "<cmd>Neogui session_select sort=time<cr>")
 
   map(mode, "<D-f>", function()
     local cmd = [[
@@ -307,15 +310,12 @@ if vim.g.neogui then
 
     vim.ui.select(dirs, {
       prompt = "Choose a directory:",
-      -- format_item = function(item)
-      --   return "(" .. item.id .. ") - " .. item.name
-      -- end
     }, function(choice)
       if choice == nil then return end
       local dir = choice
       local fmod = vim.fn.fnamemodify
       local name = fmod(fmod(dir, ":h"), ":t") .. "/" .. fmod(dir, ":t")
-      vim.g.neogui_session("new", { dir = dir, name = name })
+      vim.g.neogui_cmd("session_new", { dir = dir, name = name })
     end)
   end)
 
@@ -344,8 +344,8 @@ if vim.g.neogui then
       local dir = choice
       local fmod = vim.fn.fnamemodify
       local name = fmod(fmod(dir, ":h"), ":t") .. "/" .. fmod(dir, ":t")
-      vim.g.neogui_session("new", { dir = dir, name = name, switch_to = false })
-      vim.g.neogui_session("kill")
+      vim.g.neogui_cmd("session_new", { dir = dir, name = name, switch_to = false })
+      vim.g.neogui_cmd("session_kill")
     end)
   end
 end
