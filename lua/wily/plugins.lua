@@ -242,7 +242,7 @@ require("lazy").setup({
 
     -- ssh clipboard
     { "ojroques/nvim-osc52" },
-    { "wakatime/vim-wakatime" },
+    -- { "wakatime/vim-wakatime" },
   },
   {
     dev = {

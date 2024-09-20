@@ -8,7 +8,7 @@ lsp.servers({
   "clangd",
   "jdtls",
   -- "omnisharp_mono",
-  "omnisharp",
+  -- "omnisharp",
   "bashls",
   -- "texlab",
   "cmake",
