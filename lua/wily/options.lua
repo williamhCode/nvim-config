@@ -3,6 +3,9 @@ vim.g.maplocalleader = " "
 
 local opt = vim.opt
 
+opt.background = "light"
+-- opt.background = "dark"
+
 opt.shiftwidth = 4
 opt.tabstop = 4
 opt.softtabstop = 4
@@ -87,6 +90,13 @@ if vim.g.neovide then
 end
 
 if vim.g.neogui then
+  local bg_color
+  if vim.o.background == "light" then
+    bg_color = 0xfaf4ed
+  else
+    bg_color = 0x282c34
+  end
+
   vim.g.neogui_opts = {
     window = {
       vsync = true,
@@ -105,11 +115,25 @@ if vim.g.neogui then
     cursor_idle_time = 10,
     scroll_speed = 1,
 
-    bg_color = 0x282c34,
-    opacity = 0.92,
+    bg_color = bg_color,
+    opacity = 0.95,
+
+    gamma_light = 1.0,
+    gamma_dark = 2.2,
+
     max_fps = 60,
   }
 end
 
-opt.guifont = "JetBrains Mono,PingFang TC,Symbols Nerd Font:h15"
--- opt.guifont = "SF Mono,PingFang TC,Symbols Nerd Font:h15"
+opt.guifont = "JetBrains Mono Medium,PingFang TC,Symbols Nerd Font:h15"
+-- opt.guifont = "SF Mono,PingFang TC,Symbols Nerd Font:h15:w14.5"
+-- opt.guifont = "Courier New,Symbols Nerd Font:h15"
+-- opt.guifont = "BoxDrawingOnly,Courier:h15"
+
+_ = [[
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz
+1234567890
+]]
+
+

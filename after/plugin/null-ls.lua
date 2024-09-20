@@ -6,9 +6,9 @@ local null_ls = require("null-ls")
 local helpers = require("null-ls.helpers")
 
 null_ls.setup({
-  on_attach = function(client, bufnr)
-    vim.opt.formatexpr = ""
-  end,
+  -- on_attach = function(client, bufnr)
+  --   vim.opt.formatexpr = ""
+  -- end,
   sources = {
     null_ls.builtins.formatting.black,
     null_ls.builtins.formatting.prettier,

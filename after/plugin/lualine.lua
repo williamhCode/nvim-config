@@ -12,6 +12,13 @@ package.path = package.path .. ";" .. path
 local onedark = require("themes.onedark")
 -- onedark.normal.c = "Normal"
 
+local theme
+if vim.o.background == "light" then
+  theme = "auto"
+else
+  theme = onedark
+end
+
 local winbar_settings = {
   lualine_a = {},
   lualine_b = {},
@@ -39,8 +46,7 @@ local winbar_settings = {
 
 require("lualine").setup({
   options = {
-    theme = onedark,
-    -- theme = "catppuccin",
+    theme = theme,
     globalstatus = true,
     -- component_separators = "|",
     component_separators = "│",

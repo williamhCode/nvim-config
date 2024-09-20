@@ -29,8 +29,12 @@ require("nvim-treesitter.configs").setup({
 
   highlight = {
     enable = true,
-    disable = { "latex", "bash", "vim" },
-    additional_vim_regex_highlighting = { "vim", "markdown" },
+    disable = {
+      -- "latex",
+      "bash",
+      "vim",
+    },
+    additional_vim_regex_highlighting = { "latex", "vim", "markdown" },
   },
 
   indent = {
