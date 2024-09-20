@@ -4,11 +4,11 @@ local utils = require("wily.utils.colors")
 local color = require("onedarkpro.helpers")
 local colors = color.get_colors()
 
--- colors.git_add = "#73C991"
--- colors.git_add = "#60A27A"
--- colors.git_change = "#CE9866"
--- colors.git_delete = "#C74E39"
--- colors.git_delete = "#e06c75"
+colors.git_add = "#73C991"
+colors.git_add = "#60A27A"
+colors.git_change = "#CE9866"
+colors.git_delete = "#C74E39"
+colors.git_delete = "#e06c75"
 
 require("onedarkpro").setup({
   plugins = {
@@ -208,23 +208,38 @@ require("onedarkpro").setup({
   },
 })
 
--- require("catppuccin").setup({
---   flavour = "latte",
---   integrations = {
---     cmp = true,
---     neotree = true,
---     treesitter = true,
---     telescope = {
---       enabled = true,
---       -- style = "nvchad"
---     }
---   },
--- })
+require("catppuccin").setup({
+  flavour = "latte",
+  integrations = {
+    alpha = true,
+    cmp = true,
+    neotree = true,
+    treesitter = true,
+    telescope = {
+      enabled = true,
+      -- style = "nvchad"
+    }
+  },
+})
+-- vim.cmd('colorscheme catppuccin')
 
--- link FidgetTask highlight to background
-vim.cmd("colorscheme onedark")
+require("rose-pine").setup({
+  variant = "auto",      -- auto, main, moon, or dawn
+  dark_variant = "main", -- main, moon, or dawn
+  styles = {
+    bold = true,
+    italic = true,
+    transparency = true,
+    -- transparency = false,
+  },
+  highlight_groups = {
+    DashboardHeader = { fg = "gold" },
+  },
+})
 
--- vim.opt.background = 'light'
--- vim.cmd("colorscheme github_light")
 
--- vim.cmd('colorscheme quietlight')
+if vim.o.background == "light" then
+  vim.cmd("colorscheme rose-pine")
+else
+  vim.cmd("colorscheme onedark")
+end

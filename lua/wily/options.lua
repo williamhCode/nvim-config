@@ -3,6 +3,9 @@ vim.g.maplocalleader = " "
 
 local opt = vim.opt
 
+opt.background = "light"
+-- opt.background = "dark"
+
 opt.shiftwidth = 4
 opt.tabstop = 4
 opt.softtabstop = 4
@@ -112,3 +115,51 @@ vim.cmd([[autocmd BufEnter *.s :setlocal filetype=asm]])
 -- end
 
 -- opt.guifont = "JetBrains Mono,PingFang TC,Symbols Nerd Font:h15"
+if vim.g.neogui then
+  local bg_color
+  if vim.o.background == "light" then
+    bg_color = 0xfaf4ed
+  else
+    bg_color = 0x282c34
+  end
+
+  vim.g.neogui_opts = {
+    window = {
+      vsync = true,
+      high_dpi = true,
+      borderless = true,
+      blur = 20,
+    },
+    margins = {
+      top = 0,
+      bottom = 5,
+      left = 5,
+      right = 5,
+    },
+    multigrid = true,
+    mac_opt_is_meta = true,
+    cursor_idle_time = 10,
+    scroll_speed = 1,
+
+    bg_color = bg_color,
+    opacity = 0.95,
+
+    gamma_light = 1.0,
+    gamma_dark = 2.2,
+
+    max_fps = 60,
+  }
+end
+
+opt.guifont = "JetBrains Mono Medium,PingFang TC,Symbols Nerd Font:h15"
+-- opt.guifont = "SF Mono,PingFang TC,Symbols Nerd Font:h15:w14.5"
+-- opt.guifont = "Courier New,Symbols Nerd Font:h15"
+-- opt.guifont = "BoxDrawingOnly,Courier:h15"
+
+_ = [[
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz
+1234567890
+]]
+
+

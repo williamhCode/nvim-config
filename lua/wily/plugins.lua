@@ -17,16 +17,25 @@ require("lazy").setup({
     -- "folke/tokyonight.nvim",
     { "projekt0n/github-nvim-theme" },
     { "olimorris/onedarkpro.nvim" },
+    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
     -- { "HUAHUAI23/nvim-quietlight" },
+    { "rose-pine/neovim", name = "rose-pine" },
+
+    -- Devicons
+    {
+      "nvim-tree/nvim-web-devicons",
+      priority = 1000,
+      opts = {
+          variant = "dark"
+      }
+    },
 
     -- UI
     {
       "goolord/alpha-nvim",
-      dependencies = { "nvim-tree/nvim-web-devicons" },
     }, -- Greeter
     {
       "nvim-lualine/lualine.nvim",
-      dependencies = { "nvim-tree/nvim-web-devicons" },
     }, -- Status Line
 
     -- {
@@ -87,7 +96,7 @@ require("lazy").setup({
     { "Hoffs/omnisharp-extended-lsp.nvim" },
 
     -- Null Ls
-    { "jose-elias-alvarez/null-ls.nvim" },
+    { "nvimtools/none-ls.nvim" },
     { "jay-babu/mason-null-ls.nvim" },
 
     -- Lsp Extras
@@ -143,6 +152,9 @@ require("lazy").setup({
         vim.g.vimtex_quickfix_open_on_warning = 0
         vim.g.vimtex_view_method = "sioyek"
         vim.g.vimtex_format_enabled = 1
+
+        vim.g.vimtex_syntax_enabled = 1
+        vim.g.vimtex_syntax_conceal_disable = 1
       end
     },
 
@@ -171,14 +183,12 @@ require("lazy").setup({
       branch = "v3.x",
       dependencies = {
         "nvim-lua/plenary.nvim",
-        "nvim-tree/nvim-web-devicons",
         "MunifTanjim/nui.nvim",
       },
       dev = false,
     },
     {
       "stevearc/oil.nvim",
-      dependencies = { "nvim-tree/nvim-web-devicons" },
     },
 
     -- Fuzzy Finder
@@ -193,9 +203,6 @@ require("lazy").setup({
     -- File Jumping
     {
       "cbochs/grapple.nvim",
-      dependencies = {
-        { "nvim-tree/nvim-web-devicons" }
-      },
     },
 
     -- Terminal
@@ -246,7 +253,7 @@ require("lazy").setup({
   },
   {
     dev = {
-      path = "/Users/williamhou/Documents/Coding/nvim-plugins",
+      path = "/Users/williamhou/Documents/Coding/nvim-related",
     }
   }
 )
