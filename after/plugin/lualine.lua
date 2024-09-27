@@ -48,8 +48,7 @@ require("lualine").setup({
   options = {
     theme = theme,
     globalstatus = true,
-    -- component_separators = "|",
-    component_separators = "│",
+    component_separators = "",
     section_separators = "",
     disabled_filetypes = {
       statusline = { "alpha" },

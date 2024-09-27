@@ -65,6 +65,14 @@ vim.cmd([[autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatop
 
 vim.diagnostic.config({
   virtual_text = false,
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = " ",
+      [vim.diagnostic.severity.WARN] = " ",
+      [vim.diagnostic.severity.INFO] = " ",
+      [vim.diagnostic.severity.HINT] = "󰌵 ",
+    }
+  }
 })
 
 vim.filetype.add({ extension = { wgsl = "wgsl" } })
@@ -116,17 +124,16 @@ if vim.g.neogui then
     scroll_speed = 1,
 
     bg_color = bg_color,
-    opacity = 0.95,
+    opacity = 0.92,
 
-    gamma_light = 1.0,
-    gamma_dark = 2.2,
+    gamma = 1.7,
 
     max_fps = 60,
   }
 end
 
 opt.guifont = "JetBrains Mono Medium,PingFang TC,Symbols Nerd Font:h15"
--- opt.guifont = "SF Mono,PingFang TC,Symbols Nerd Font:h15:w14.5"
+-- opt.guifont = "Hack Nerd Font,PingFang TC,Symbols Nerd Font:h15:w14.5"
 -- opt.guifont = "Courier New,Symbols Nerd Font:h15"
 -- opt.guifont = "BoxDrawingOnly,Courier:h15"
 

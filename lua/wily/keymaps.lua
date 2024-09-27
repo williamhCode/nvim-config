@@ -133,14 +133,8 @@ end)
 -- end)
 
 -- diagnostics
-map("n", "<leader>df", vim.diagnostic.open_float)
-map("n", "[d", vim.diagnostic.goto_prev)
-map("n", "]d", vim.diagnostic.goto_next)
-
--- copy path
-vim.api.nvim_create_user_command("CP", [[let @+ = expand("%:.")]], {})
-vim.api.nvim_create_user_command("CF", [[let @+ = expand("%:p")]], {})
-vim.api.nvim_create_user_command("CN", [[let @+ = expand("%:t")]], {})
+map("n", "]d", function() vim.diagnostic.jump({count=1, float=true}) end)
+map("n", "[d", function() vim.diagnostic.jump({count=-1, float=true}) end)
 
 -- user commands
 vim.cmd([[

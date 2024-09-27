@@ -223,20 +223,51 @@ require("catppuccin").setup({
 })
 -- vim.cmd('colorscheme catppuccin')
 
+-- rose pine configuration
+local transparency = true
+local highlight_groups
+if not transparency then
+  highlight_groups = {
+    DashboardHeader = { fg = "gold" },
+  };
+else
+  local groups = require("rose-pine.config").options.groups
+  local styles = require("rose-pine.config").options.styles
+  highlight_groups = {
+    DashboardHeader = { fg = "gold" },
+
+    DiagnosticVirtualTextError = { fg = groups.error },
+    DiagnosticVirtualTextHint = { fg = groups.hint },
+    DiagnosticVirtualTextInfo = { fg = groups.info },
+    DiagnosticVirtualTextOk = { fg = groups.ok },
+    DiagnosticVirtualTextWarn = { fg = groups.warn },
+
+    -- FloatBorder = { fg = "muted", bg = "NONE" },
+    -- FloatTitle = { fg = "foam", bg = "NONE", bold = styles.bold },
+    Folded = { fg = "text", bg = "NONE" },
+    -- NormalFloat = { bg = "NONE" },
+    Normal = { fg = "text", bg = "NONE" },
+    NormalNC = { fg = "text", bg = "NONE" },
+    -- Pmenu = { fg = "subtle", bg = "NONE" },
+    -- PmenuKind = { fg = "foam", bg = "NONE" },
+    SignColumn = { fg = "text", bg = "NONE" },
+    StatusLine = { fg = "subtle", bg = "NONE" },
+    StatusLineNC = { fg = "muted", bg = "NONE" },
+    TabLine = { bg = "NONE", fg = "subtle" },
+    TabLineFill = { bg = "NONE" },
+    TabLineSel = { fg = "text", bg = "NONE", bold = styles.bold },
+  };
+end
 require("rose-pine").setup({
   variant = "auto",      -- auto, main, moon, or dawn
   dark_variant = "main", -- main, moon, or dawn
+  -- extend_background_behind_borders = false,
   styles = {
     bold = true,
     italic = true,
-    transparency = true,
-    -- transparency = false,
   },
-  highlight_groups = {
-    DashboardHeader = { fg = "gold" },
-  },
+  highlight_groups = highlight_groups
 })
-
 
 if vim.o.background == "light" then
   vim.cmd("colorscheme rose-pine")
