@@ -17,7 +17,7 @@ lsp.servers({
   -- "wgsl_analyzer",
   -- "zls",
   -- "asm_lsp",
-  "tsserver",
+  "ts_ls",
   -- "volar",
   "html",
   "nim_langserver",
@@ -173,7 +173,7 @@ local mason_registry = require("mason-registry")
 local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path() ..
   "/node_modules/@vue/language-server"
 
-lsp.configure("tsserver", {
+lsp.configure("ts_ls", {
   init_options = {
     plugins = {
       {

@@ -208,21 +208,6 @@ require("onedarkpro").setup({
   },
 })
 
-require("catppuccin").setup({
-  flavour = "latte",
-  integrations = {
-    alpha = true,
-    cmp = true,
-    neotree = true,
-    treesitter = true,
-    telescope = {
-      enabled = true,
-      -- style = "nvchad"
-    }
-  },
-})
--- vim.cmd('colorscheme catppuccin')
-
 -- rose pine configuration
 local transparency = true
 local highlight_groups

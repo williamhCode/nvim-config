@@ -106,9 +106,6 @@ end)
 -- quickfix shortcuts
 map("n", "<C-j>", "<cmd>cnext<CR>")
 map("n", "<C-k>", "<cmd>cprev<CR>")
--- map("n", "<C-j>", "<cmd>NextError<CR>")
--- map("n", "<C-k>", "<cmd>PrevError<CR>")
--- map("n", "<leader>qs", vim.diagnostic.setqflist)
 
 -- locationlist shortcuts
 map("n", "<C-l>", "<cmd>lnext<CR>zz")
@@ -132,9 +129,6 @@ term.set_global_build_cmd("<leader>b", "make")
 map("n", "<leader>j", function()
   term.toggle_current_make_term()
 end)
--- map("n", "<leader>q", function()
---   term.close_current_make_term()
--- end)
 
 -- diagnostics
 map("n", "]d", function() vim.diagnostic.jump({count=1, float=true}) end)

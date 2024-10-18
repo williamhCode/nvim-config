@@ -90,7 +90,6 @@ end
 create_fileswitch_map({ ".pyx", ".pxd" })
 create_fileswitch_map({ ".vert", ".frag" })
 create_fileswitch_map({ ".vert.wgsl", ".frag.wgsl" })
--- create_fileswitch_map({ ".c", ".h" })
 
 -- nohlsearch when cursor moves or enters insert mode
 vim.cmd([[

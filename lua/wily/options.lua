@@ -75,7 +75,6 @@ vim.diagnostic.config({
 
 vim.filetype.add({ extension = { wgsl = "wgsl" } })
 
-
 -- neovide option
 if vim.g.neovide then
   -- UI and colors
