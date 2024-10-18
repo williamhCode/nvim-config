@@ -2,6 +2,10 @@
 -- :h map-table
 local map = require("wily.utils.keymap").map
 
+vim.keymap.del("n", "grn")
+vim.keymap.del("n", "gra")
+vim.keymap.del("n", "grr")
+
 -- editing
 map("n", "<D-a>", "ggVG")
 map({ "i", "c" }, "<M-bs>", "<C-w>", { remap = true })
@@ -36,7 +40,7 @@ map("c", "<M-f>", "<S-Right>")
 map({ "i", "c" }, "<C-v>", "<C-r>\"")
 map("t", "<C-v>", "<C-\\><C-n>pi")
 
-if vim.g.neogui then
+if vim.g.neogurt then
   map({ "i", "c" }, "<D-v>", "<C-r>+")
   map("t", "<D-v>", "<C-\\><C-n>\"+pi")
 
@@ -54,7 +58,7 @@ map({ "n", "x" }, "<leader>x", "\"+x")
 map({ "n", "x" }, "<leader>X", "\"+X", { remap = true })
 
 -- file switch
-if vim.g.neovide or vim.g.neogui then
+if vim.g.neovide or vim.g.neogurt then
   map("n", "<C-->", "<C-^>")
 else
   map("n", "<C-_>", "<C-^>")
@@ -271,16 +275,16 @@ map("n", "<leader>k", function()
 end)
 map("n", "<leader>gg", "<Cmd>Neogit<CR>")
 
--- neogui
-if vim.g.neogui then
+-- neogurt
+if vim.g.neogurt then
   -- all modes
   local mode = {"", "!", "t", "l"};
-  map(mode, "<D-=>", "<cmd>Neogui font_size_change 1<cr>")
-  map(mode, "<D-->", "<cmd>Neogui font_size_change -1<cr>")
-  map(mode, "<D-0>", "<cmd>Neogui font_size_reset<cr>")
+  map(mode, "<D-=>", "<cmd>Neogurt font_size_change 1 all=false<cr>")
+  map(mode, "<D-->", "<cmd>Neogurt font_size_change -1 all=false<cr>")
+  map(mode, "<D-0>", "<cmd>Neogurt font_size_reset all=false<cr>")
 
-  map(mode, "<D-l>", "<cmd>Neogui session_prev<cr>")
-  map(mode, "<D-r>", "<cmd>Neogui session_select sort=time<cr>")
+  map(mode, "<D-l>", "<cmd>Neogurt session_prev<cr>")
+  map(mode, "<D-r>", "<cmd>Neogurt session_select sort=time<cr>")
 
   map(mode, "<D-f>", function()
     local cmd = [[
@@ -307,11 +311,11 @@ if vim.g.neogui then
       local dir = choice
       local fmod = vim.fn.fnamemodify
       local name = fmod(fmod(dir, ":h"), ":t") .. "/" .. fmod(dir, ":t")
-      vim.g.neogui_cmd("session_new", { dir = dir, name = name })
+      vim.g.neogurt_cmd("session_new", { dir = dir, name = name })
     end)
   end)
 
-  vim.g.neogui_startup = function()
+  vim.g.neogurt_startup = function()
     local cmd = [[
     echo "$({
       echo ~/;
@@ -336,8 +340,8 @@ if vim.g.neogui then
       local dir = choice
       local fmod = vim.fn.fnamemodify
       local name = fmod(fmod(dir, ":h"), ":t") .. "/" .. fmod(dir, ":t")
-      vim.g.neogui_cmd("session_new", { dir = dir, name = name, switch_to = false })
-      vim.g.neogui_cmd("session_kill")
+      vim.g.neogurt_cmd("session_new", { dir = dir, name = name, switch_to = false })
+      vim.g.neogurt_cmd("session_kill")
     end)
   end
 end

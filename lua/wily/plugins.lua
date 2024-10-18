@@ -14,11 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     ----------------- Colors and UI ----------------
     -- Colorschemes
-    -- "folke/tokyonight.nvim",
-    { "projekt0n/github-nvim-theme" },
     { "olimorris/onedarkpro.nvim" },
-    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-    -- { "HUAHUAI23/nvim-quietlight" },
     { "rose-pine/neovim", name = "rose-pine" },
 
     -- Devicons
@@ -38,42 +34,15 @@ require("lazy").setup({
       "nvim-lualine/lualine.nvim",
     }, -- Status Line
 
-    -- {
-    --   "vhyrro/luarocks.nvim",
-    --   priority = 1001, -- this plugin needs to run before anything else
-    --   opts = {
-    --     rocks = { "magick" },
-    --   },
-    -- },
-    -- {
-    --   "3rd/image.nvim",
-    --   dependencies = { "luarocks.nvim" },
-    --   config = true
-    -- },
-
-    -- Other
-    -- {
-    --   "norcalli/nvim-colorizer.lua",
-    --   config = function()
-    --     require("colorizer").setup({
-    --       "*", "!lazy"
-    --     })
-    --   end
-    -- }, -- highlight colors
-
     ------------------- Coding --------------------
     { "numToStr/Comment.nvim" }, -- Commenting
 
-    -- Language Support
-    -- { "Vimjas/vim-python-pep8-indent" }, -- Cython Indentation
-    { "rust-lang/rust.vim" },
-    -- { "DingDean/wgsl.vim" },
-    { "catgoose/vue-goto-definition.nvim" },
-
-    -- {
-    --   "epwalsh/obsidian.nvim",
-    --   dependencies = { "nvim-lua/plenary.nvim" }
-    -- },
+    -- Change case
+    {
+      "gregorias/coerce.nvim",
+      tag = "v1.1",
+      config = true,
+    },
 
     -- Install stuff
     {
@@ -122,12 +91,8 @@ require("lazy").setup({
       "nvim-treesitter/nvim-treesitter",
       build = ":TSUpdate",
     },
-    { "nvim-treesitter/playground", },
     { "nvim-treesitter/nvim-treesitter-textobjects" },
-    {
-      "m-demare/hlargs.nvim",
-      dependencies = { "nvim-treesitter/nvim-treesitter" },
-    },
+    { "m-demare/hlargs.nvim" },
     {
       "nvim-treesitter/nvim-treesitter-context",
       opts = {
@@ -135,14 +100,6 @@ require("lazy").setup({
         -- enable = false,
       }
     },
-
-    -- Indent Blankline
-    -- {
-    --   "lukas-reineke/indent-blankline.nvim",
-    --   main = "ibl",
-    --   opts = {
-    --   }
-    -- },
 
     -- Latex support
     {
@@ -154,7 +111,21 @@ require("lazy").setup({
         vim.g.vimtex_format_enabled = 1
 
         vim.g.vimtex_syntax_enabled = 1
-        vim.g.vimtex_syntax_conceal_disable = 1
+        vim.g.vimtex_syntax_conceal = {
+          accents = 1,
+          ligatures = 1,
+          cites = 1,
+          fancy = 0,
+          spacing = 1,
+          greek = 1,
+          math_bounds = 1,
+          math_delimiters = 1,
+          math_fracs = 0,
+          math_super_sub = 0,
+          math_symbols = 1,
+          sections = 0,
+          styles = 1,
+        }
       end
     },
 
@@ -164,15 +135,6 @@ require("lazy").setup({
       "iamcco/markdown-preview.nvim",
       ft = "markdown",
       build = ":call mkdp#util#install()",
-      -- config = function()
-      --   vim.keymap.set("n", "<leader>tp", "<Plug>MarkdownPreviewToggle")
-      -- end
-    },
-
-    {
-      "gregorias/coerce.nvim",
-      tag = "v1.1",
-      config = true,
     },
 
     -------------------- Editor --------------------
@@ -210,37 +172,9 @@ require("lazy").setup({
       "akinsho/toggleterm.nvim",
       version = "*"
     },
-    -- {
-    --   "rebelot/terminal.nvim",
-    --   config = function()
-    --     require("terminal").setup()
-    --   end
-    -- },
 
-    -- Git
-    -- {
-    --   "NeogitOrg/neogit",
-    --   dependencies = {
-    --     "nvim-lua/plenary.nvim",
-    --   },
-    --   config = true,
-    --   -- cond = false,
-    -- },
+    -- Git stuff
     { "sindrets/diffview.nvim" },
-
-    -- Compile Mode
-    -- {
-    --   "ej-shafran/compile-mode.nvim",
-    --   branch = "latest",
-    --   -- or a specific version:
-    --   -- tag = "v2.0.0"
-    --   dependencies = {
-    --     "nvim-lua/plenary.nvim",
-    --     { "m00qek/baleia.nvim", tag = "v1.3.0" },
-    --   },
-    --   config = true,
-    -- },
-    -- { "shoumodip/compile.nvim" },
 
     -- Misc
     { "mbbill/undotree" },

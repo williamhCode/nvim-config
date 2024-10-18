@@ -42,8 +42,6 @@ opt.undofile = true
 opt.updatetime = 250
 opt.ttimeoutlen = 0
 
--- opt.conceallevel = 2
-
 opt.grepprg = "rg --vimgrep --smart-case --hidden --glob=!.git/"
 
 local function list(items, sep)
@@ -97,7 +95,7 @@ if vim.g.neovide then
   -- vim.g.neovide_input_ime = false
 end
 
-if vim.g.neogui then
+if vim.g.neogurt then
   local bg_color
   if vim.o.background == "light" then
     bg_color = 0xfaf4ed
@@ -105,7 +103,7 @@ if vim.g.neogui then
     bg_color = 0x282c34
   end
 
-  vim.g.neogui_opts = {
+  vim.g.neogurt_opts = {
     window = {
       vsync = true,
       high_dpi = true,
@@ -132,8 +130,10 @@ if vim.g.neogui then
   }
 end
 
+-- opt.linespace = 0
 opt.guifont = "JetBrains Mono Medium,PingFang TC,Symbols Nerd Font:h15"
 -- opt.guifont = "Hack Nerd Font,PingFang TC,Symbols Nerd Font:h15:w14.5"
+-- opt.guifont = "SF Mono,PingFang TC,Symbols Nerd Font:h15:w14.5"
 -- opt.guifont = "Courier New,Symbols Nerd Font:h15"
 -- opt.guifont = "BoxDrawingOnly,Courier:h15"
 
@@ -142,5 +142,3 @@ ABCDEFGHIJKLMNOPQRSTUVWXYZ
 abcdefghijklmnopqrstuvwxyz
 1234567890
 ]]
-
-

@@ -33,7 +33,7 @@ dashboard.section.header.val = vim.split(wily, "\n")
 
 
 -- braille testing
-local _ = [[
+local braille = [[
   U+280x	⠀	⠁	⠂	⠃	⠄	⠅	⠆	⠇	⠈	⠉	⠊	⠋	⠌	⠍	⠎	⠏
   U+281x	⠐	⠑	⠒	⠓	⠔	⠕	⠖	⠗	⠘	⠙	⠚	⠛	⠜	⠝	⠞	⠟
   U+282x	⠠	⠡	⠢	⠣	⠤	⠥	⠦	⠧	⠨	⠩	⠪	⠫	⠬	⠭	⠮	⠯
@@ -53,7 +53,7 @@ local _ = [[
   U+28Fx	⣰	⣱	⣲	⣳	⣴	⣵	⣶	⣷	⣸	⣹	⣺	⣻	⣼	⣽	⣾	⣿
 ]]
 
--- nerd testing
+-- box_drawing testing
 local box_drawing = [[
           0 1 2 3 4 5 6 7 8 9 A B C D E F
   U+250x  ─ ━ │ ┃ ┄ ┅ ┆ ┇ ┈ ┉ ┊ ┋ ┌ ┍ ┎ ┏
