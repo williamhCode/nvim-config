@@ -57,24 +57,21 @@ lsp.on_attach(function(client, bufnr)
   map("n", "<leader>ss", "<cmd>Telescope lsp_document_symbols<CR>", opts)
   if client.name == "omnisharp" then
     vim.cmd [[
-    nnoremap gr <cmd>lua require('omnisharp_extended').telescope_lsp_references()<cr>
+    nnoremap grr <cmd>lua require('omnisharp_extended').telescope_lsp_references()<cr>
     " nnoremap <C-]> <cmd>lua require('omnisharp_extended').telescope_lsp_definition()<cr>
     nnoremap gt <cmd>lua require('omnisharp_extended').telescope_lsp_type_definition()<cr>
-    nnoremap gI <cmd>lua require('omnisharp_extended').telescope_lsp_implementation()<cr>
+    nnoremap gri <cmd>lua require('omnisharp_extended').telescope_lsp_implementation()<cr>
     ]]
   else
-    map("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
+    map("n", "grr", "<cmd>Telescope lsp_references<CR>", opts)
     -- map("n", "<C-]>", "<cmd>Telescope lsp_definitions<CR>", opts)
     map("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
-    map("n", "gI", "<cmd>Telescope lsp_implementations<CR>", opts)
+    map("n", "gri", "<cmd>Telescope lsp_implementations<CR>", opts)
   end
   map("n", "gd", vim.lsp.buf.declaration, opts)
   map("n", "gh", vim.lsp.buf.hover, opts)
   map("n", "gs", vim.lsp.buf.signature_help, opts)
   map("i", "<C-s>", vim.lsp.buf.signature_help, opts)
-  map({ "n", "v" }, "<leader>lca", vim.lsp.buf.code_action, opts)
-  map("n", "<leader>lrn", vim.lsp.buf.rename, opts)
-  -- map({ "n", "v" }, "<M-F>", function() vim.lsp.buf.format({ async = true }) end, opts)
 end)
 
 -- server setups

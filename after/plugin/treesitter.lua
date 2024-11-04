@@ -13,6 +13,7 @@ require("nvim-treesitter.configs").setup({
     "cpp",
     "glsl",
     "latex",
+    "make",
     "markdown",
     "markdown_inline",
     "vimdoc",
@@ -24,7 +25,9 @@ require("nvim-treesitter.configs").setup({
     "vue",
     "css",
     "html",
-    "nim"
+    "nim",
+    "gitignore",
+    "json",
   },
 
   highlight = {
@@ -34,7 +37,11 @@ require("nvim-treesitter.configs").setup({
       "bash",
       "vim",
     },
-    additional_vim_regex_highlighting = { "latex", "vim", "markdown" },
+    additional_vim_regex_highlighting = {
+      -- "latex",
+      "vim",
+      "markdown",
+    },
   },
 
   indent = {

@@ -16,6 +16,8 @@ require("lazy").setup({
     -- Colorschemes
     { "olimorris/onedarkpro.nvim" },
     { "rose-pine/neovim", name = "rose-pine" },
+  -- -  "rose-pine": { "branch": "main", "commit": "d396005db5bbd1d4ec7772a7c96c96f4c4802328" },
+
 
     -- Devicons
     {
@@ -106,6 +108,8 @@ require("lazy").setup({
       "lervag/vimtex",
       ft = "tex",
       config = function()
+        -- vim.g.vimtex_compiler_latexmk_engines = "xelatex"
+
         vim.g.vimtex_quickfix_open_on_warning = 0
         vim.g.vimtex_view_method = "sioyek"
         vim.g.vimtex_format_enabled = 1
@@ -131,10 +135,13 @@ require("lazy").setup({
 
     -- Copilot
     { "zbirenbaum/copilot.lua" },
+
+    -- Markdown Preview
     {
       "iamcco/markdown-preview.nvim",
-      ft = "markdown",
-      build = ":call mkdp#util#install()",
+      cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+      ft = { "markdown" },
+      build = function() vim.fn["mkdp#util#install"]() end,
     },
 
     -------------------- Editor --------------------

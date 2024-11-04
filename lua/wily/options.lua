@@ -109,13 +109,14 @@ if vim.g.neogurt then
       borderless = true,
       blur = 20,
     },
+
     margins = {
       top = 0,
       bottom = 5,
       left = 5,
       right = 5,
     },
-    multigrid = true,
+
     mac_opt_is_meta = true,
     cursor_idle_time = 10,
     scroll_speed = 1,
@@ -129,7 +130,7 @@ if vim.g.neogurt then
   }
 end
 
--- opt.linespace = 0
+opt.linespace = 0
 opt.guifont = "JetBrains Mono Medium,PingFang TC,Symbols Nerd Font:h15"
 -- opt.guifont = "Hack Nerd Font,PingFang TC,Symbols Nerd Font:h15:w14.5"
 -- opt.guifont = "SF Mono,PingFang TC,Symbols Nerd Font:h15:w14.5"

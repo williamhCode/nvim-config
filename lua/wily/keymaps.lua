@@ -2,10 +2,6 @@
 -- :h map-table
 local map = require("wily.utils.keymap").map
 
-vim.keymap.del("n", "grn")
-vim.keymap.del("n", "gra")
-vim.keymap.del("n", "grr")
-
 -- editing
 map("n", "<D-a>", "ggVG")
 map({ "i", "c" }, "<M-bs>", "<C-w>", { remap = true })
@@ -273,14 +269,14 @@ map("n", "<leader>gg", "<Cmd>Neogit<CR>")
 if vim.g.neogurt then
   -- all modes
   local mode = {"", "!", "t", "l"};
-  map(mode, "<D-=>", "<cmd>Neogurt font_size_change 1 all=false<cr>")
-  map(mode, "<D-->", "<cmd>Neogurt font_size_change -1 all=false<cr>")
-  map(mode, "<D-0>", "<cmd>Neogurt font_size_reset all=false<cr>")
+  map(mode, "<D-=>", "<cmd>Neogurt font_size_change 1<cr>")
+  map(mode, "<D-->", "<cmd>Neogurt font_size_change -1<cr>")
+  map(mode, "<D-0>", "<cmd>Neogurt font_size_reset<cr>")
 
   map(mode, "<D-l>", "<cmd>Neogurt session_prev<cr>")
   map(mode, "<D-r>", "<cmd>Neogurt session_select sort=time<cr>")
 
-  map(mode, "<D-f>", function()
+  local choose_session = function(startup)
     local cmd = [[
     echo "$({
       echo ~/;
@@ -305,37 +301,21 @@ if vim.g.neogurt then
       local dir = choice
       local fmod = vim.fn.fnamemodify
       local name = fmod(fmod(dir, ":h"), ":t") .. "/" .. fmod(dir, ":t")
-      vim.g.neogurt_cmd("session_new", { dir = dir, name = name })
+      if startup then
+        local currId = vim.g.neogurt_cmd("session_info").id
+        vim.g.neogurt_cmd("session_new", { dir = dir, name = name })
+        vim.g.neogurt_cmd("session_kill", { id = currId })
+      else
+        vim.g.neogurt_cmd("session_new", { dir = dir, name = name })
+      end
     end)
+  end
+
+  map(mode, "<D-f>", function()
+    choose_session(false)
   end)
 
   vim.g.neogurt_startup = function()
-    local cmd = [[
-    echo "$({
-      echo ~/;
-      echo ~/.dotfiles;
-      echo ~/.config/nvim; 
-      echo ~/Documents/Notes;
-      echo ~/Documents/Work/Resume stuff;
-      find ~/Documents/Coding -mindepth 2 -maxdepth 2 -type d; 
-    })"
-    ]]
-    local output = vim.fn.system(cmd)
-
-    local dirs = {}
-    for dir in string.gmatch(output, "([^\n]+)") do
-      table.insert(dirs, dir)
-    end
-
-    vim.ui.select(dirs, {
-      prompt = "Choose a directory:",
-    }, function(choice)
-      if choice == nil then return end
-      local dir = choice
-      local fmod = vim.fn.fnamemodify
-      local name = fmod(fmod(dir, ":h"), ":t") .. "/" .. fmod(dir, ":t")
-      vim.g.neogurt_cmd("session_new", { dir = dir, name = name, switch_to = false })
-      vim.g.neogurt_cmd("session_kill")
-    end)
+    choose_session(true)
   end
 end
