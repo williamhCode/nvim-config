@@ -32,7 +32,7 @@ opt.smartcase = true
 opt.completeopt = "menu,menuone,noinsert,noselect"
 opt.wildmode = "longest:full,full"
 
-opt.mousescroll = "ver:1,hor:3"
+opt.mousescroll = { "ver:1", "hor:3" }
 opt.cursorline = true
 opt.termguicolors = true
 opt.showmode = false
@@ -48,9 +48,8 @@ local function list(items, sep)
   return table.concat(items, sep or ",")
 end
 
+-- https://github.com/neovim/neovim/issues/15670
 opt.fillchars = list {
-  -- "vert:▏",
-  "vert:│",
   "diff:╱",
   "foldclose:",
   "foldopen:",
@@ -58,7 +57,13 @@ opt.fillchars = list {
   "msgsep:─",
 }
 
-opt.guicursor = "n-v-c-ci-sm:block,i-ve:ver25,r-cr-o:hor20,a:blinkwait100-blinkoff700-blinkon700"
+opt.guicursor = {
+  "n-v-c-ci-sm:block",
+  "i-ve:ver25",
+  "r-cr-o:hor20",
+  "a:blinkwait100-blinkoff700-blinkon700",
+}
+
 vim.cmd([[autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]])
 
 vim.diagnostic.config({
@@ -70,6 +75,11 @@ vim.diagnostic.config({
       [vim.diagnostic.severity.INFO] = " ",
       [vim.diagnostic.severity.HINT] = "󰌵 ",
     }
+  },
+  severity_sort = true,
+  jump = {
+    float = { scope = "line" },
+    wrap = true,
   }
 })
 
@@ -103,19 +113,15 @@ if vim.g.neogurt then
   end
 
   vim.g.neogurt_opts = {
-    window = {
-      vsync = true,
-      high_dpi = true,
-      borderless = true,
-      blur = 20,
-    },
+    vsync = true,
+    high_dpi = true,
+    borderless = true,
+    blur = 20,
 
-    margins = {
-      top = 0,
-      bottom = 5,
-      left = 5,
-      right = 5,
-    },
+    margin_top = 0,
+    margin_bottom = 5,
+    margin_left = 5,
+    margin_right = 5,
 
     mac_opt_is_meta = true,
     cursor_idle_time = 10,
@@ -132,13 +138,3 @@ end
 
 opt.linespace = 0
 opt.guifont = "JetBrains Mono Medium,PingFang TC,Symbols Nerd Font:h15"
--- opt.guifont = "Hack Nerd Font,PingFang TC,Symbols Nerd Font:h15:w14.5"
--- opt.guifont = "SF Mono,PingFang TC,Symbols Nerd Font:h15:w14.5"
--- opt.guifont = "Courier New,Symbols Nerd Font:h15"
--- opt.guifont = "BoxDrawingOnly,Courier:h15"
-
-_ = [[
-ABCDEFGHIJKLMNOPQRSTUVWXYZ
-abcdefghijklmnopqrstuvwxyz
-1234567890
-]]

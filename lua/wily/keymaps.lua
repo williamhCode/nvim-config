@@ -126,10 +126,6 @@ map("n", "<leader>j", function()
   term.toggle_current_make_term()
 end)
 
--- diagnostics
-map("n", "]d", function() vim.diagnostic.jump({count=1, float=true}) end)
-map("n", "[d", function() vim.diagnostic.jump({count=-1, float=true}) end)
-
 -- user commands
 vim.cmd([[
 " remove trailing whitespace
@@ -284,7 +280,7 @@ if vim.g.neogurt then
       echo ~/.config/nvim; 
       echo ~/Documents/Notes;
       echo ~/Documents/Work/Resume stuff;
-      find ~/Documents/Coding -mindepth 2 -maxdepth 2 -type d; 
+      find ~/Documents/Coding -mindepth 2 -maxdepth 2 -type d | sort -r;
     })"
     ]]
     local output = vim.fn.system(cmd)

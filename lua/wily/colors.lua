@@ -98,6 +98,8 @@ require("onedarkpro").setup({
 
     DiagnosticUnderlineError = { fg = "NONE", sp = colors.red, style = "undercurl" },
     DiagnosticUnderlineWarn = { fg = "NONE", sp = colors.yellow, style = "undercurl" },
+    -- DiagnosticUnderlineError = { fg = "NONE", sp = colors.red, style = "underdouble" },
+    -- DiagnosticUnderlineWarn = { fg = "NONE", sp = colors.yellow, style = "underdouble" },
     DiagnosticUnderlineInfo = { fg = "NONE", sp = colors.blue, style = "underdashed" },
     DiagnosticUnderlineHint = { fg = "NONE", sp = colors.purple, style = "underdotted" },
     DiagnosticDeprecated = { fg = "NONE", sp = colors.purple, style = "underdotted" },
@@ -210,22 +212,42 @@ require("onedarkpro").setup({
 
 -- rose pine configuration
 local transparency = true
-local highlight_groups
-if not transparency then
-  highlight_groups = {
-    DashboardHeader = { fg = "gold" },
-  };
-else
-  local groups = require("rose-pine.config").options.groups
-  local styles = require("rose-pine.config").options.styles
-  highlight_groups = {
-    DashboardHeader = { fg = "gold" },
 
+local groups = require("rose-pine.config").options.groups
+local styles = require("rose-pine.config").options.styles
+
+local highlight_groups = {
+  WinBar = { fg = "text", bg = "NONE", bold = true },
+  WinBarNC = { fg = "subtle", bg = "NONE", bold = true, inherit = false },
+  DashboardHeader = { fg = "gold" },
+  ["@property"] = { italic = true },
+  ["@parameter"] = { italic = true },
+  ["@lsp.typemod.variable.globalScope"] = { italic = true },
+
+  -- TelescopeBorder = { fg = "overlay", bg = "overlay" },
+  -- TelescopeNormal = { fg = "subtle", bg = "overlay" },
+  -- TelescopeSelection = { fg = "text", bg = "highlight_med" },
+  -- TelescopeSelectionCaret = { fg = "love", bg = "highlight_med" },
+  -- TelescopeMultiSelection = { fg = "text", bg = "highlight_high" },
+
+  TelescopeTitle = { fg = "base", bg = "love" },
+  TelescopePromptTitle = { fg = "base", bg = "pine" },
+  TelescopePreviewTitle = { fg = "base", bg = "iris" },
+
+  TelescopePromptNormal = { fg = "text", bg = "overlay" },
+  TelescopePromptBorder = { bg = "overlay" },
+}
+
+if transparency then
+  highlight_groups = vim.tbl_extend("force", highlight_groups, {
     DiagnosticVirtualTextError = { fg = groups.error },
     DiagnosticVirtualTextHint = { fg = groups.hint },
     DiagnosticVirtualTextInfo = { fg = groups.info },
     DiagnosticVirtualTextOk = { fg = groups.ok },
     DiagnosticVirtualTextWarn = { fg = groups.warn },
+
+    -- DiagnosticUnderlineError = { fg = "NONE", underdouble = true },
+    -- DiagnosticUnderlineWarn = { fg = "NONE", underdouble = true },
 
     -- FloatBorder = { fg = "muted", bg = "NONE" },
     -- FloatTitle = { fg = "foam", bg = "NONE", bold = styles.bold },
@@ -241,15 +263,23 @@ else
     TabLine = { bg = "NONE", fg = "subtle" },
     TabLineFill = { bg = "NONE" },
     TabLineSel = { fg = "text", bg = "NONE", bold = styles.bold },
-  };
+  });
 end
+
 require("rose-pine").setup({
   variant = "auto",      -- auto, main, moon, or dawn
   dark_variant = "main", -- main, moon, or dawn
+  dim_inactive_windows = false,
   -- extend_background_behind_borders = false,
+  enable = {
+    legacy_highlights = false,
+    migrations = false,
+    terminal = true,
+  },
   styles = {
     bold = true,
-    italic = true,
+    italic = false,
+    -- transparency = true,
   },
   highlight_groups = highlight_groups
 })

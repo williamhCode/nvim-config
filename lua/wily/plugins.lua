@@ -16,8 +16,6 @@ require("lazy").setup({
     -- Colorschemes
     { "olimorris/onedarkpro.nvim" },
     { "rose-pine/neovim", name = "rose-pine" },
-  -- -  "rose-pine": { "branch": "main", "commit": "d396005db5bbd1d4ec7772a7c96c96f4c4802328" },
-
 
     -- Devicons
     {

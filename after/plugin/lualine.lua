@@ -19,7 +19,7 @@ else
   theme = onedark
 end
 
-local winbar_settings = {
+local winbar = {
   lualine_a = {},
   lualine_b = {},
   lualine_c = {
@@ -27,13 +27,13 @@ local winbar_settings = {
       "filetype",
       padding = { left = 1, right = 0 },
       icon_only = true,
-      color = { bg = "bg" }
+      color = { bg = "bg", },
     },
     {
       "filename",
       padding = 0,
       path = 0,
-      color = { fg = "fg", bg = "bg", gui = "bold" },
+      color = "WinBar",
       symbols = {
         modified = "●",
       }
@@ -43,6 +43,9 @@ local winbar_settings = {
   lualine_y = {},
   lualine_z = {}
 }
+
+local inactive_winbar = vim.deepcopy(winbar)
+inactive_winbar.lualine_c[2].color = "WinBarNC"
 
 require("lualine").setup({
   options = {
@@ -126,7 +129,7 @@ require("lualine").setup({
       },
     },
   },
-  winbar = winbar_settings,
-  inactive_winbar = winbar_settings,
+  winbar = winbar,
+  inactive_winbar = inactive_winbar,
 })
 
