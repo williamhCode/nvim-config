@@ -28,6 +28,7 @@ require("nvim-treesitter.configs").setup({
     "nim",
     "gitignore",
     "json",
+    "yaml",
   },
 
   highlight = {

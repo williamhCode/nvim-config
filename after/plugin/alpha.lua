@@ -31,7 +31,6 @@ local yoshi = [[
 ]]
 dashboard.section.header.val = vim.split(wily, "\n")
 
-
 -- braille testing
 local braille = [[
   U+280x	⠀	⠁	⠂	⠃	⠄	⠅	⠆	⠇	⠈	⠉	⠊	⠋	⠌	⠍	⠎	⠏

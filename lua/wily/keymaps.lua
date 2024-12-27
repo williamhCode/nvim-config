@@ -352,9 +352,11 @@ if vim.g.neogurt then
       prompt = "New Session",
     }, function(choice)
       if choice == nil then return end
-      local dir = choice
-      local fmod = vim.fn.fnamemodify
-      local name = fmod(fmod(dir, ":h"), ":t") .. "/" .. fmod(dir, ":t")
+
+        local fmod = vim.fn.fnamemodify
+        local dir = fmod(choice, ":p")
+        local name = fmod(dir, ":h:h:t") .. "/" .. fmod(dir, ":h:t")
+
       if startup then
         local currId = vim.g.neogurt_cmd("session_info").id
         vim.g.neogurt_cmd("session_new", { dir = dir, name = name })
