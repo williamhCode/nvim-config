@@ -230,7 +230,6 @@ require("rose-pine").setup({
     bold = true,
     italic = true,
     transparency = true,
-    -- transparency = false,
   },
   highlight_groups = {
     DashboardHeader = { fg = "gold" },

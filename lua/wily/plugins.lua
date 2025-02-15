@@ -66,7 +66,7 @@ require("lazy").setup({
 
     -- Language Support
     -- { "Vimjas/vim-python-pep8-indent" }, -- Cython Indentation
-    { "rust-lang/rust.vim" },
+    -- { "rust-lang/rust.vim" },
     -- { "DingDean/wgsl.vim" },
     { "catgoose/vue-goto-definition.nvim" },
 
