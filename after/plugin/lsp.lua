@@ -16,8 +16,6 @@ lsp.servers({
   -- "marksman",
   -- "wgsl_analyzer",
   "asm_lsp",
-  -- "zls",
-  -- "tsserver",
   "html",
 })
 
@@ -33,17 +31,17 @@ lsp.on_attach(function(client, bufnr)
   -- end
 
   if client.server_capabilities.documentHighlightProvider then
-    local group = vim.api.nvim_create_augroup("lsp_document_highlight", { clear = false })
-    vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
+    local group = vim.api.nvim_create_augroup("LspDocumentHighlight", { clear = false })
+    vim.api.nvim_clear_autocmds { buffer = bufnr, group = group }
     vim.api.nvim_create_autocmd("CursorHold", {
-      callback = vim.lsp.buf.document_highlight,
       buffer = bufnr,
       group = group,
+      callback = vim.lsp.buf.document_highlight,
     })
     vim.api.nvim_create_autocmd("CursorMoved", {
-      callback = vim.lsp.buf.clear_references,
       buffer = bufnr,
       group = group,
+      callback = vim.lsp.buf.clear_references,
     })
   end
 
@@ -55,26 +53,21 @@ lsp.on_attach(function(client, bufnr)
   map("n", "<leader>ss", "<cmd>Telescope lsp_document_symbols<CR>", opts)
   if client.name == "omnisharp" then
     vim.cmd [[
-    nnoremap gr <cmd>lua require('omnisharp_extended').telescope_lsp_references()<cr>
-    " nnoremap gd <cmd>lua require('omnisharp_extended').telescope_lsp_definition()<cr>
+    nnoremap grr <cmd>lua require('omnisharp_extended').telescope_lsp_references()<cr>
+    " nnoremap <C-]> <cmd>lua require('omnisharp_extended').telescope_lsp_definition()<cr>
     nnoremap gt <cmd>lua require('omnisharp_extended').telescope_lsp_type_definition()<cr>
-    nnoremap gI <cmd>lua require('omnisharp_extended').telescope_lsp_implementation()<cr>
+    nnoremap gri <cmd>lua require('omnisharp_extended').telescope_lsp_implementation()<cr>
     ]]
   else
-    map("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
+    map("n", "grr", "<cmd>Telescope lsp_references<CR>", opts)
     -- map("n", "<C-]>", "<cmd>Telescope lsp_definitions<CR>", opts)
     map("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
-    map("n", "gI", "<cmd>Telescope lsp_implementations<CR>", opts)
+    map("n", "gri", "<cmd>Telescope lsp_implementations<CR>", opts)
   end
   map("n", "gd", vim.lsp.buf.declaration, opts)
   map("n", "gh", vim.lsp.buf.hover, opts)
   map("n", "gs", vim.lsp.buf.signature_help, opts)
-  map("i", "<C-s>", vim.lsp.buf.signature_help, opts)
-  if client.name ~= "texlab" then
-    map({ "n", "v" }, "<leader>lca", vim.lsp.buf.code_action, opts)
-    map("n", "<leader>lrn", vim.lsp.buf.rename, opts)
-  end
-  -- map({ "n", "v" }, "<M-F>", function() vim.lsp.buf.format({ async = true }) end, opts)
+  -- map("i", "<C-s>", vim.lsp.buf.signature_help, opts)
 end)
 
 -- server setups
@@ -173,7 +166,7 @@ local mason_registry = require("mason-registry")
 local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path() ..
   "/node_modules/@vue/language-server"
 
-lsp.configure("tsserver", {
+lsp.configure("ts_ls", {
   init_options = {
     plugins = {
       {

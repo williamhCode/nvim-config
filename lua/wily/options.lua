@@ -32,7 +32,7 @@ opt.smartcase = true
 opt.completeopt = "menu,menuone,noinsert,noselect"
 opt.wildmode = "longest:full,full"
 
-opt.mousescroll = "ver:1,hor:3"
+opt.mousescroll = { "ver:1", "hor:3" }
 opt.cursorline = true
 opt.termguicolors = true
 opt.showmode = false
@@ -42,17 +42,14 @@ opt.undofile = true
 opt.updatetime = 250
 opt.ttimeoutlen = 0
 
--- opt.conceallevel = 2
-
 opt.grepprg = "rg --vimgrep --smart-case --hidden --glob=!.git/"
 
 local function list(items, sep)
   return table.concat(items, sep or ",")
 end
 
+-- https://github.com/neovim/neovim/issues/15670
 opt.fillchars = list {
-  -- "vert:▏",
-  "vert:│",
   "diff:╱",
   "foldclose:",
   "foldopen:",
@@ -60,11 +57,30 @@ opt.fillchars = list {
   "msgsep:─",
 }
 
-opt.guicursor = "n-v-c-ci-sm:block,i-ve:ver25,r-cr-o:hor20,a:blinkwait100-blinkoff700-blinkon700"
+opt.guicursor = {
+  "n-v-c-ci-sm:block",
+  "i-ve:ver25",
+  "r-cr-o:hor20",
+  "a:blinkwait100-blinkoff700-blinkon700",
+}
+
 vim.cmd([[autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]])
 
 vim.diagnostic.config({
   virtual_text = false,
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = " ",
+      [vim.diagnostic.severity.WARN] = " ",
+      [vim.diagnostic.severity.INFO] = " ",
+      [vim.diagnostic.severity.HINT] = "󰌵 ",
+    }
+  },
+  severity_sort = true,
+  jump = {
+    float = { scope = "line" },
+    wrap = true,
+  }
 })
 
 vim.filetype.add({ extension = { wgsl = "wgsl" } })
@@ -89,33 +105,7 @@ vim.cmd([[autocmd BufEnter *.s :setlocal filetype=asm]])
 --   -- vim.g.neovide_input_ime = false
 -- end
 
--- if vim.g.neogui then
---   vim.g.neogui_opts = {
---     window = {
---       vsync = true,
---       high_dpi = true,
---       borderless = true,
---       blur = 20,
---     },
---     margins = {
---       top = 0,
---       bottom = 5,
---       left = 5,
---       right = 5,
---     },
---     multigrid = true,
---     mac_opt_is_meta = true,
---     cursor_idle_time = 10,
---     scroll_speed = 1,
-
---     bg_color = 0x282c34,
---     opacity = 0.92,
---     max_fps = 60,
---   }
--- end
-
--- opt.guifont = "JetBrains Mono,PingFang TC,Symbols Nerd Font:h15"
-if vim.g.neogui then
+if vim.g.neogurt then
   local bg_color
   if vim.o.background == "light" then
     bg_color = 0xfaf4ed
@@ -123,43 +113,29 @@ if vim.g.neogui then
     bg_color = 0x282c34
   end
 
-  vim.g.neogui_opts = {
-    window = {
-      vsync = true,
-      high_dpi = true,
-      borderless = true,
-      blur = 20,
-    },
-    margins = {
-      top = 0,
-      bottom = 5,
-      left = 5,
-      right = 5,
-    },
-    multigrid = true,
+  vim.g.neogurt_opts = {
+    vsync = true,
+    high_dpi = true,
+    borderless = true,
+    blur = 20,
+
+    margin_top = 0,
+    margin_bottom = 5,
+    margin_left = 5,
+    margin_right = 5,
+
     mac_opt_is_meta = true,
     cursor_idle_time = 10,
     scroll_speed = 1,
 
     bg_color = bg_color,
-    opacity = 0.95,
+    opacity = 0.92,
 
-    gamma_light = 1.0,
-    gamma_dark = 2.2,
+    gamma = 1.7,
 
     max_fps = 60,
   }
 end
 
+opt.linespace = 0
 opt.guifont = "JetBrains Mono Medium,PingFang TC,Symbols Nerd Font:h15"
--- opt.guifont = "SF Mono,PingFang TC,Symbols Nerd Font:h15:w14.5"
--- opt.guifont = "Courier New,Symbols Nerd Font:h15"
--- opt.guifont = "BoxDrawingOnly,Courier:h15"
-
-_ = [[
-ABCDEFGHIJKLMNOPQRSTUVWXYZ
-abcdefghijklmnopqrstuvwxyz
-1234567890
-]]
-
-

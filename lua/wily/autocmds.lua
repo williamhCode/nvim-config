@@ -90,7 +90,6 @@ end
 create_fileswitch_map({ ".pyx", ".pxd" })
 create_fileswitch_map({ ".vert", ".frag" })
 create_fileswitch_map({ ".vert.wgsl", ".frag.wgsl" })
--- create_fileswitch_map({ ".c", ".h" })
 
 -- nohlsearch when cursor moves or enters insert mode
 vim.cmd([[
@@ -187,3 +186,15 @@ autocmd("InsertLeave", {
 
 -- fix lualine changing showtabline
 vim.cmd[[autocmd BufEnter * :set showtabline=1]]
+
+-- remember folds
+autocmd({"BufWinLeave"}, {
+    pattern = {"*.*"},
+    desc = "save view (folds), when closing file",
+    command = "mkview",
+})
+autocmd({"BufWinEnter"}, {
+    pattern = {"*.*"},
+    desc = "load view (folds), when opening file",
+    command = "silent! loadview"
+})

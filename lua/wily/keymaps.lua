@@ -36,7 +36,7 @@ map("c", "<M-f>", "<S-Right>")
 map({ "i", "c" }, "<C-v>", "<C-r>\"")
 map("t", "<C-v>", "<C-\\><C-n>pi")
 
-if vim.g.neogui then
+if vim.g.neogurt then
   map({ "i", "c" }, "<D-v>", "<C-r>+")
   map("t", "<D-v>", "<C-\\><C-n>\"+pi")
 
@@ -54,15 +54,13 @@ map({ "n", "x" }, "<leader>x", "\"+x")
 map({ "n", "x" }, "<leader>X", "\"+X", { remap = true })
 
 -- file switch
-if vim.g.neovide or vim.g.neogui then
+if vim.g.neovide or vim.g.neogurt then
   map("n", "<C-->", "<C-^>")
 else
   map("n", "<C-_>", "<C-^>")
 end
 
 -- tab
--- map("n", "<leader>te", "<cmd>tabe<CR>")
--- map("n", "<leader>tq", "<cmd>tabc<CR>")
 map("n", "<leader>]", "<cmd>tabn<CR>")
 map("n", "<leader>[", "<cmd>tabp<CR>")
 
@@ -102,9 +100,6 @@ end)
 -- quickfix shortcuts
 map("n", "<C-j>", "<cmd>cnext<CR>")
 map("n", "<C-k>", "<cmd>cprev<CR>")
--- map("n", "<C-j>", "<cmd>NextError<CR>")
--- map("n", "<C-k>", "<cmd>PrevError<CR>")
--- map("n", "<leader>qs", vim.diagnostic.setqflist)
 
 -- locationlist shortcuts
 map("n", "<C-l>", "<cmd>lnext<CR>zz")
@@ -128,19 +123,6 @@ term.set_global_build_cmd("<leader>b", "make")
 map("n", "<leader>j", function()
   term.toggle_current_make_term()
 end)
--- map("n", "<leader>q", function()
---   term.close_current_make_term()
--- end)
-
--- diagnostics
-map("n", "<leader>df", vim.diagnostic.open_float)
-map("n", "[d", vim.diagnostic.goto_prev)
-map("n", "]d", vim.diagnostic.goto_next)
-
--- copy path
-vim.api.nvim_create_user_command("CP", [[let @+ = expand("%:.")]], {})
-vim.api.nvim_create_user_command("CF", [[let @+ = expand("%:p")]], {})
-vim.api.nvim_create_user_command("CN", [[let @+ = expand("%:t")]], {})
 
 -- user commands
 vim.cmd([[
@@ -277,18 +259,27 @@ map("n", "<leader>k", function()
 end)
 map("n", "<leader>gg", "<Cmd>Neogit<CR>")
 
--- neogui
-if vim.g.neogui then
+-- neogurt
+if vim.g.neogurt then
   -- all modes
   local mode = {"", "!", "t", "l"};
-  map(mode, "<D-=>", "<cmd>Neogui font_size_change 1<cr>")
-  map(mode, "<D-->", "<cmd>Neogui font_size_change -1<cr>")
-  map(mode, "<D-0>", "<cmd>Neogui font_size_reset<cr>")
 
-  map(mode, "<D-l>", "<cmd>Neogui session_prev<cr>")
-  map(mode, "<D-r>", "<cmd>Neogui session_select sort=time<cr>")
+  map(mode, "<D-t>", "<cmd>tabnew<cr>")
+  map(mode, "<D-w>", "<cmd>tabclose<cr>")
+  map(mode, "<D-}>", "<cmd>tabnext<cr>")
+  map(mode, "<D-{>", "<cmd>tabprev<cr>")
 
-  map(mode, "<D-f>", function()
+  map(mode, "<D-=>", "<cmd>Neogurt font_size_change 1<cr>")
+  map(mode, "<D-->", "<cmd>Neogurt font_size_change -1<cr>")
+  map(mode, "<D-0>", "<cmd>Neogurt font_size_reset<cr>")
+
+  map(mode, "<D-l>", "<cmd>Neogurt session_prev<cr>")
+  map(mode, "<D-R>", "<cmd>Neogurt session_restart<cr>")
+
+  local choose_session = function(startup)
+    local curr_id = vim.g.neogurt_cmd("session_info").id
+    local session_list = vim.g.neogurt_cmd("session_list", { sort = "time" })
+
     local cmd = [[
     echo "$({
       echo ~/;
@@ -296,7 +287,58 @@ if vim.g.neogui then
       echo ~/.config/nvim; 
       echo ~/Documents/Notes;
       echo ~/Documents/Work/Resume stuff;
-      find ~/Documents/Coding -mindepth 2 -maxdepth 2 -type d; 
+      find ~/Documents/Coding -mindepth 2 -maxdepth 2 -type d | sort -r;
+    })"
+    ]]
+    local output = vim.fn.system(cmd)
+
+    for dir in string.gmatch(output, "([^\n]+)") do
+      table.insert(session_list, { dir = dir })
+    end
+
+    vim.ui.select(session_list, {
+      prompt = "Sessions",
+      format_item = function(session)
+        if session.id ~= nil then
+          if session.id == curr_id then
+            return "* " .. session.name
+          else
+            return "- " .. session.name
+          end
+        else
+          return session.dir
+        end
+      end
+    }, function(choice)
+      if choice == nil then return end
+
+      if choice.id ~= nil then
+        vim.g.neogurt_cmd("session_switch", { id = choice.id })
+      else
+        local fmod = vim.fn.fnamemodify
+        local dir = fmod(choice.dir, ":p")
+        local name = fmod(dir, ":h:h:t") .. "/" .. fmod(dir, ":h:t")
+
+        if startup then
+          local currId = vim.g.neogurt_cmd("session_info").id
+          vim.g.neogurt_cmd("session_new", { dir = dir, name = name })
+          vim.g.neogurt_cmd("session_kill", { id = currId })
+        else
+          vim.g.neogurt_cmd("session_new", { dir = dir, name = name })
+        end
+      end
+    end)
+  end
+
+  local new_session = function(startup)
+    local cmd = [[
+    echo "$({
+      echo ~/;
+      echo ~/.dotfiles;
+      echo ~/.config/nvim; 
+      echo ~/Documents/Notes;
+      echo ~/Documents/Work/Resume stuff;
+      find ~/Documents/Coding -mindepth 2 -maxdepth 2 -type d | sort -r;
     })"
     ]]
     local output = vim.fn.system(cmd)
@@ -307,43 +349,33 @@ if vim.g.neogui then
     end
 
     vim.ui.select(dirs, {
-      prompt = "Choose a directory:",
+      prompt = "New Session",
     }, function(choice)
       if choice == nil then return end
-      local dir = choice
-      local fmod = vim.fn.fnamemodify
-      local name = fmod(fmod(dir, ":h"), ":t") .. "/" .. fmod(dir, ":t")
-      vim.g.neogui_cmd("session_new", { dir = dir, name = name })
+
+        local fmod = vim.fn.fnamemodify
+        local dir = fmod(choice, ":p")
+        local name = fmod(dir, ":h:h:t") .. "/" .. fmod(dir, ":h:t")
+
+      if startup then
+        local currId = vim.g.neogurt_cmd("session_info").id
+        vim.g.neogurt_cmd("session_new", { dir = dir, name = name })
+        vim.g.neogurt_cmd("session_kill", { id = currId })
+      else
+        vim.g.neogurt_cmd("session_new", { dir = dir, name = name })
+      end
     end)
+  end
+
+  map(mode, "<D-r>", function()
+    choose_session(false)
   end)
 
-  vim.g.neogui_startup = function()
-    local cmd = [[
-    echo "$({
-      echo ~/;
-      echo ~/.dotfiles;
-      echo ~/.config/nvim; 
-      echo ~/Documents/Notes;
-      echo ~/Documents/Work/Resume stuff;
-      find ~/Documents/Coding -mindepth 2 -maxdepth 2 -type d; 
-    })"
-    ]]
-    local output = vim.fn.system(cmd)
+  map(mode, "<D-f>", function()
+    new_session(false)
+  end)
 
-    local dirs = {}
-    for dir in string.gmatch(output, "([^\n]+)") do
-      table.insert(dirs, dir)
-    end
-
-    vim.ui.select(dirs, {
-      prompt = "Choose a directory:",
-    }, function(choice)
-      if choice == nil then return end
-      local dir = choice
-      local fmod = vim.fn.fnamemodify
-      local name = fmod(fmod(dir, ":h"), ":t") .. "/" .. fmod(dir, ":t")
-      vim.g.neogui_cmd("session_new", { dir = dir, name = name, switch_to = false })
-      vim.g.neogui_cmd("session_kill")
-    end)
+  vim.g.neogurt_startup = function()
+    new_session(true)
   end
 end
