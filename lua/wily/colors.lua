@@ -210,37 +210,89 @@ require("onedarkpro").setup({
   },
 })
 
-require("catppuccin").setup({
-  flavour = "latte",
-  integrations = {
-    alpha = true,
-    cmp = true,
-    neotree = true,
-    treesitter = true,
-    telescope = {
-      enabled = true,
-      -- style = "nvchad"
-    }
-  },
-})
--- vim.cmd('colorscheme catppuccin')
+-- rose pine configuration
+local transparency = true
+
+local groups = require("rose-pine.config").options.groups
+local styles = require("rose-pine.config").options.styles
+
+local highlight_groups = {
+  WinBar = { fg = "text", bg = "NONE", bold = true },
+  WinBarNC = { fg = "subtle", bg = "NONE", bold = true, inherit = false },
+  DashboardHeader = { fg = "gold" },
+  ["@property"] = { italic = true },
+  ["@parameter"] = { italic = true },
+  ["@lsp.typemod.variable.globalScope"] = { italic = true },
+
+  -- TelescopeBorder = { fg = "overlay", bg = "overlay" },
+  -- TelescopeNormal = { fg = "subtle", bg = "overlay" },
+  -- TelescopeSelection = { fg = "text", bg = "highlight_med" },
+  -- TelescopeSelectionCaret = { fg = "love", bg = "highlight_med" },
+  -- TelescopeMultiSelection = { fg = "text", bg = "highlight_high" },
+
+  TelescopeTitle = { fg = "base", bg = "love" },
+  TelescopePromptTitle = { fg = "base", bg = "pine" },
+  TelescopePreviewTitle = { fg = "base", bg = "iris" },
+
+  TelescopePromptNormal = { fg = "text", bg = "overlay" },
+  TelescopePromptBorder = { bg = "overlay" },
+
+  NeogurtIme = { fg = "text", bg = "pine", blend = 25 },
+}
+
+if transparency then
+  highlight_groups = vim.tbl_extend("force", highlight_groups, {
+    DiagnosticVirtualTextError = { fg = groups.error },
+    DiagnosticVirtualTextHint = { fg = groups.hint },
+    DiagnosticVirtualTextInfo = { fg = groups.info },
+    DiagnosticVirtualTextOk = { fg = groups.ok },
+    DiagnosticVirtualTextWarn = { fg = groups.warn },
+
+    -- DiagnosticUnderlineError = { fg = "NONE", underdouble = true },
+    -- DiagnosticUnderlineWarn = { fg = "NONE", underdouble = true },
+
+    -- FloatBorder = { fg = "muted", bg = "NONE" },
+    -- FloatTitle = { fg = "foam", bg = "NONE", bold = styles.bold },
+    Folded = { fg = "text", bg = "NONE" },
+    -- NormalFloat = { bg = "NONE" },
+    Normal = { fg = "text", bg = "NONE" },
+    NormalNC = { fg = "text", bg = "NONE" },
+    -- Pmenu = { fg = "subtle", bg = "NONE" },
+    -- PmenuKind = { fg = "foam", bg = "NONE" },
+    SignColumn = { fg = "text", bg = "NONE" },
+    StatusLine = { fg = "subtle", bg = "NONE" },
+    StatusLineNC = { fg = "muted", bg = "NONE" },
+    TabLine = { bg = "NONE", fg = "subtle" },
+    TabLineFill = { bg = "NONE" },
+    TabLineSel = { fg = "text", bg = "NONE", bold = styles.bold },
+  });
+end
 
 require("rose-pine").setup({
   variant = "auto",      -- auto, main, moon, or dawn
   dark_variant = "main", -- main, moon, or dawn
+  dim_inactive_windows = false,
+  -- extend_background_behind_borders = false,
+  enable = {
+    legacy_highlights = false,
+    migrations = false,
+    terminal = true,
+  },
   styles = {
     bold = true,
-    italic = true,
-    transparency = true,
+    italic = false,
+    -- transparency = true,
   },
-  highlight_groups = {
-    DashboardHeader = { fg = "gold" },
-  },
+  highlight_groups = highlight_groups
 })
-
 
 if vim.o.background == "light" then
   vim.cmd("colorscheme rose-pine")
 else
   vim.cmd("colorscheme onedark")
 end
+
+-- local normal_hl = vim.api.nvim_get_hl(0, { name = "Normal", link = false })
+-- vim.api.nvim_set_hl(0, "NeogurtIme", { fg = normal_hl.fg, bg = normal_hl.bg, sp = "green", underline = true })
+-- vim.api.nvim_set_hl(0, "NeogurtIme", { fg = "red", bg = "black"})
+

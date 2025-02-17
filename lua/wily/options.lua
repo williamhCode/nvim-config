@@ -84,7 +84,6 @@ vim.diagnostic.config({
 })
 
 vim.filetype.add({ extension = { wgsl = "wgsl" } })
-vim.cmd([[autocmd BufEnter *.s :setlocal filetype=asm]])
 
 -- neovide option
 -- if vim.g.neovide then

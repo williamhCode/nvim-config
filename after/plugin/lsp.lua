@@ -6,7 +6,7 @@ lsp.servers({
   "lua_ls",
   -- "pyright",
   "clangd",
-  "jdtls",
+  "jdtls@v1.43.0",
   -- "omnisharp_mono",
   -- "omnisharp",
   "bashls",
@@ -15,8 +15,8 @@ lsp.servers({
   -- "rust_analyzer",
   -- "marksman",
   -- "wgsl_analyzer",
-  "asm_lsp",
-  "html",
+  -- "asm_lsp",
+  -- "html",
 })
 
 lsp.on_attach(function(client, bufnr)
@@ -76,11 +76,12 @@ lsp.nvim_workspace()
 lsp.configure("jdtls", {
   settings = {
     java = {
-      signatureHelp = {
-        enabled = true
-      },
-      -- ["format.settings.url"] = "/Users/williamhou/.config/jdtls-format-settings.xml",
-      -- ["format.settings.profile"] = "MyProfile",
+      project = {
+        referencedLibraries = {
+          "lib/**/*.jar",
+          "/homes/cs408/Spring2025/junit_launch.jar",
+        },
+      }
     }
   }
 })

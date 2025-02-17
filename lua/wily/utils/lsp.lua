@@ -34,6 +34,10 @@ M.setup = function()
   -- capabilities.offsetEncoding = "utf-8"
 
   for _, server in pairs(settings.servers) do
+    -- strip server name until @
+    server = string.match(server, "([^@]+)")
+    -- print(server)
+
     local server_config = settings.configs[server] or {}
 
     local capabilities = vim.deepcopy(capabilities)
