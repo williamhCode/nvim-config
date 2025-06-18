@@ -70,8 +70,7 @@ lsp.on_attach(function(client, bufnr)
   end
   map("n", "gd", vim.lsp.buf.declaration, opts)
   map("n", "gh", vim.lsp.buf.hover, opts)
-  map("n", "gs", vim.lsp.buf.signature_help, opts)
-  -- map("i", "<C-s>", vim.lsp.buf.signature_help, opts)
+  -- map("n", "gs", vim.lsp.buf.signature_help, opts)
 end)
 
 -- server setups

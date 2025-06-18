@@ -55,10 +55,11 @@ require("lazy").setup({
     { "williamboman/mason-lspconfig.nvim" },
 
     -- Debugger Support
-    { "mfussenegger/nvim-dap" },
     {
-      "rcarriga/nvim-dap-ui",
-      dependencies = { "nvim-neotest/nvim-nio" }
+      "mfussenegger/nvim-dap",
+      dependencies = {
+        { "igorlfs/nvim-dap-view" },
+      },
     },
     { "jay-babu/mason-nvim-dap.nvim" },
 

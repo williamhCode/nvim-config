@@ -26,19 +26,50 @@ require("mason-nvim-dap").setup({
   },
 })
 
-local dap, dapui = require("dap"), require("dapui")
-dapui.setup()
-dap.listeners.after.event_initialized["dapui_config"] = function()
-  dapui.open()
-end
-dap.listeners.before.event_terminated["dapui_config"] = function()
-  dapui.close()
-end
-dap.listeners.before.event_exited["dapui_config"] = function()
-  dapui.close()
-end
+-- https://github.com/igorlfs/nvim-dap-view?tab=readme-ov-file#configuration
+require("dap-view").setup({
+  winbar = {
+    show = true,
+    sections = { "watches", "exceptions", "breakpoints", "threads", "repl" },
+    default_section = "watches",
+  },
+  windows = {
+    height = 12,
+    terminal = {
+      position = "left",
+      start_hidden = false,
+    },
+  }
+})
 
+local dap, dv = require("dap"), require("dap-view")
+dap.listeners.before.attach["dap-view-config"] = function()
+  dv.open()
+end
+dap.listeners.before.launch["dap-view-config"] = function()
+  dv.open()
+end
+dap.listeners.before.event_terminated["dap-view-config"] = function()
+  dv.close()
+end
+dap.listeners.before.event_exited["dap-view-config"] = function()
+  dv.close()
+end
 
 local map = vim.keymap.set
-map("n", "<leader>ds", "<cmd>DapContinue<CR>")
-map("n", "<leader>de", "<cmd>DapTerminate<CR>")
+map("n", "<leader>dc", "<cmd>DapContinue<CR>")
+map("n", "<leader>dt", "<cmd>DapTerminate<CR>")
+map("n", "<leader>dr", "<cmd>DapRestart<CR>")
+
+-- local Hydra = require("hydra")
+
+-- Hydra({
+--   mode = "n",
+--   body = "<leader>d",
+--   heads = {
+--     { "c", "<cmd>DapContinue<cr>" },
+--     { "t", "<cmd>DapTerminate<cr>" },
+--     { "r", "<cmd>DapRestart<cr>" },
+--   }
+-- })
+

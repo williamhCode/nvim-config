@@ -173,16 +173,16 @@ autocmd("ModeChanged", {
 })
 
 -- neovide meta fix
-autocmd("InsertEnter", {
-  callback = function()
-    vim.g.neovide_input_ime = true
-  end,
-})
-autocmd("InsertLeave", {
-  callback = function()
-    vim.g.neovide_input_ime = false
-  end,
-})
+-- autocmd("InsertEnter", {
+--   callback = function()
+--     vim.g.neovide_input_ime = true
+--   end,
+-- })
+-- autocmd("InsertLeave", {
+--   callback = function()
+--     vim.g.neovide_input_ime = false
+--   end,
+-- })
 
 -- fix lualine changing showtabline
 vim.cmd[[autocmd BufEnter * :set showtabline=1]]

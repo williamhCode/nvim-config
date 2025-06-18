@@ -25,7 +25,7 @@ require("toggleterm").setup({
 
   float_opts = {
     border = "solid",
-    -- winblend = 10
+    winblend = 10
   },
 
   winbar = {

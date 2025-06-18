@@ -22,9 +22,9 @@ opt.sidescrolloff = 10
 opt.splitright = true
 opt.splitbelow = true
 
--- opt.pumblend = 10
+opt.pumblend = 10
 opt.pumheight = 12
--- opt.winblend = 10
+opt.winblend = 10
 
 opt.ignorecase = true
 opt.smartcase = true
@@ -84,6 +84,7 @@ vim.diagnostic.config({
 })
 
 vim.filetype.add({ extension = { wgsl = "wgsl" } })
+vim.filetype.add({ extension = { slang = "slang" } })
 
 -- neovide option
 if vim.g.neovide then
@@ -100,8 +101,9 @@ if vim.g.neovide then
   vim.g.neovide_floating_blur_amount_y = 0.0
 
   -- inputs
-  vim.g.neovide_input_macos_option_key_is_meta = "only_left"
+  -- vim.g.neovide_input_macos_option_key_is_meta = "only_left"
   -- vim.g.neovide_input_ime = false
+  vim.g.neovide_scroll_animation_length = 0.15
 end
 
 if vim.g.neogurt then
@@ -112,29 +114,38 @@ if vim.g.neogurt then
     bg_color = 0x282c34
   end
 
-  vim.g.neogurt_opts = {
-    vsync = true,
-    high_dpi = true,
-    borderless = true,
+  vim.g.neogurt_cmd("option_set", {
+    titlebar = "transparent",
+    show_title = true,
     blur = 20,
+    gamma = 1.7,
+    vsync = true,
+    fps = 60,
 
     margin_top = 0,
     margin_bottom = 5,
     margin_left = 5,
     margin_right = 5,
 
-    mac_opt_is_meta = true,
+    macos_option_is_meta = "only_left",
     cursor_idle_time = 10,
     scroll_speed = 1,
 
     bg_color = bg_color,
     opacity = 0.92,
+  })
 
-    gamma = 1.7,
-
-    max_fps = 60,
-  }
+  opt.linespace = 0
+  opt.guifont = "JetBrains Mono Medium,PingFang TC,Symbols Nerd Font,Apple Color Emoji:h15"
+  -- opt.guifont = "Andale Mono,PingFang TC,Symbols Nerd Font,Apple Color Emoji:h15"
 end
 
-opt.linespace = 0
-opt.guifont = "JetBrains Mono Medium,PingFang TC,Symbols Nerd Font:h15"
+-- env vars
+vim.env.co = vim.fn.expand("~/Documents/Coding")
+vim.env.pco = vim.fn.expand("~/Documents/Coding/Personal-coding")
+
+vim.env.pu = vim.fn.expand("~/Documents/Purdue University")
+vim.env.puc = vim.fn.expand("~/Documents/Purdue University/3-2")
+
+vim.g.mkdp_auto_close = 0
+

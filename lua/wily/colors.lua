@@ -211,6 +211,7 @@ require("onedarkpro").setup({
 })
 
 -- rose pine configuration
+-- https://rosepinetheme.com/palette/ingredients/
 local transparency = true
 
 local groups = require("rose-pine.config").options.groups
@@ -223,6 +224,8 @@ local highlight_groups = {
   ["@property"] = { italic = true },
   ["@parameter"] = { italic = true },
   ["@lsp.typemod.variable.globalScope"] = { italic = true },
+  -- variable initialization with () gets treated as functions by treesitter
+  ["@lsp.typemod.variable.definition.cpp"] = { fg = "text" },
 
   -- TelescopeBorder = { fg = "overlay", bg = "overlay" },
   -- TelescopeNormal = { fg = "subtle", bg = "overlay" },
@@ -236,6 +239,9 @@ local highlight_groups = {
 
   TelescopePromptNormal = { fg = "text", bg = "overlay" },
   TelescopePromptBorder = { bg = "overlay" },
+
+  NeogurtImeNormal = { fg = "text", bg = "pine", blend = 25 },
+  NeogurtImeSelected = { fg = "text", bg = "pine", blend = 25, underline = true, sp = "iris" },
 }
 
 if transparency then
@@ -246,8 +252,8 @@ if transparency then
     DiagnosticVirtualTextOk = { fg = groups.ok },
     DiagnosticVirtualTextWarn = { fg = groups.warn },
 
-    -- DiagnosticUnderlineError = { fg = "NONE", underdouble = true },
-    -- DiagnosticUnderlineWarn = { fg = "NONE", underdouble = true },
+    DiagnosticUnderlineError = { fg = "NONE", undercurl = true },
+    DiagnosticUnderlineWarn = { fg = "NONE", undercurl = true },
 
     -- FloatBorder = { fg = "muted", bg = "NONE" },
     -- FloatTitle = { fg = "foam", bg = "NONE", bold = styles.bold },
@@ -289,3 +295,6 @@ if vim.o.background == "light" then
 else
   vim.cmd("colorscheme onedark")
 end
+
+local normal_hl = vim.api.nvim_get_hl(0, { name = "Normal", link = false })
+vim.api.nvim_set_hl(0, "NeogurtImeNormal", { fg = normal_hl.fg, bg = normal_hl.bg, sp = "green", underline = true })

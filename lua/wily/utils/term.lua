@@ -80,7 +80,7 @@ M.spawn_cmd = function(cmd)
 
   vim.cmd("cclose")
   if Current_cmd_term then
-    Current_cmd_term:close()
+    Current_cmd_term:shutdown()
   end
 
   Current_cmd_term = Terminal:new({

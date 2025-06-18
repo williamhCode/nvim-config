@@ -157,8 +157,8 @@ Hydra({
   mode = "n",
   body = "z",
   heads = {
-    { "h", "5zh" },
-    { "l", "5zl" },
+    { "h", "3zh" },
+    { "l", "3zl" },
     { "H", "zH" },
     { "L", "zL" },
   }
@@ -219,16 +219,16 @@ Hydra({
     { "w", function()
       if vim.o.wrap ~= true then
         vim.o.wrap = true
-        vim.keymap.set("n", "k", function()
+        vim.keymap.set({"n", "x"}, "k", function()
           return vim.v.count > 0 and "k" or "gk"
         end, { expr = true, desc = "k or gk" })
-        vim.keymap.set("n", "j", function()
+        vim.keymap.set({"n", "x"}, "j", function()
           return vim.v.count > 0 and "j" or "gj"
         end, { expr = true, desc = "j or gj" })
       else
         vim.o.wrap = false
-        vim.keymap.del("n", "k")
-        vim.keymap.del("n", "j")
+        vim.keymap.del({"n", "x"}, "k")
+        vim.keymap.del({"n", "x"}, "j")
       end
     end, { desc = "wrap", exit = true } },
     { "v", function()
@@ -247,6 +247,7 @@ Hydra({
 
     { "<leader>o", nil, { desc = false, exit = true } },
     { "<Esc>", nil, { desc = false, exit = true } },
+    { "q", nil, { desc = false, exit = true } },
   }
 })
 
@@ -319,12 +320,9 @@ if vim.g.neogurt then
         local dir = fmod(choice.dir, ":p")
         local name = fmod(dir, ":h:h:t") .. "/" .. fmod(dir, ":h:t")
 
+        vim.g.neogurt_cmd("session_new", { dir = dir, name = name })
         if startup then
-          local currId = vim.g.neogurt_cmd("session_info").id
-          vim.g.neogurt_cmd("session_new", { dir = dir, name = name })
-          vim.g.neogurt_cmd("session_kill", { id = currId })
-        else
-          vim.g.neogurt_cmd("session_new", { dir = dir, name = name })
+          vim.g.neogurt_cmd("session_kill")
         end
       end
     end)
@@ -357,12 +355,9 @@ if vim.g.neogurt then
         local dir = fmod(choice, ":p")
         local name = fmod(dir, ":h:h:t") .. "/" .. fmod(dir, ":h:t")
 
+      vim.g.neogurt_cmd("session_new", { dir = dir, name = name })
       if startup then
-        local currId = vim.g.neogurt_cmd("session_info").id
-        vim.g.neogurt_cmd("session_new", { dir = dir, name = name })
-        vim.g.neogurt_cmd("session_kill", { id = currId })
-      else
-        vim.g.neogurt_cmd("session_new", { dir = dir, name = name })
+        vim.g.neogurt_cmd("session_kill")
       end
     end)
   end

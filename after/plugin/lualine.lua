@@ -3,7 +3,7 @@ local no_filename = {
   "neo-tree",
   "TelescopePrompt",
   "mason",
-  "lazy"
+  "lazy",
 }
 
 local path = vim.env.HOME .. "/.local/share/nvim/lazy/lualine.nvim/lua/lualine/?.lua"
@@ -65,12 +65,16 @@ require("lualine").setup({
         "DiffviewFiles",
         "DiffviewFileHistory",
         "NeogitStatus",
+
         "dap-repl",
         "dapui_breakpoints",
         "dapui_console",
         "dapui_scopes",
         "dapui_stacks",
         "dapui_watches",
+
+        "dap-view",
+        "dap-view-term",
       },
     },
   },
@@ -118,14 +122,14 @@ require("lualine").setup({
     lualine_a = {
       {
         "tabs",
-        mode = 2,
-        -- 0: Shows tab_nr
-        -- 1: Shows tab_name
-        -- 2: Shows tab_nr + tab_name
+        max_length = 1000,
+        mode = 2, -- 0: Shows tab_nr
+                  -- 1: Shows tab_name
+                  -- 2: Shows tab_nr + tab_name
         path = 0, -- 0: just shows the filename
-        -- 1: shows the relative path and shorten $HOME to ~
-        -- 2: shows the full path
-        -- 3: shows the full path and shorten $HOME to ~
+                  -- 1: shows the relative path and shorten $HOME to ~
+                  -- 2: shows the full path
+                  -- 3: shows the full path and shorten $HOME to ~
       },
     },
   },
