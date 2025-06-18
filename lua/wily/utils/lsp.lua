@@ -19,10 +19,6 @@ M.configure = function(server, config)
   settings.configs[server] = config
 end
 
-M.nvim_workspace = function()
-  require("neodev").setup()
-end
-
 M.setup = function()
   require("mason").setup()
   require("mason-lspconfig").setup({

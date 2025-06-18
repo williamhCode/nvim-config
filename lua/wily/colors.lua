@@ -211,8 +211,7 @@ require("onedarkpro").setup({
 })
 
 -- rose pine configuration
--- https://rosepinetheme.com/palette/ingredients/
-local transparency = true
+local transparency = false
 
 local groups = require("rose-pine.config").options.groups
 local styles = require("rose-pine.config").options.styles

@@ -71,7 +71,17 @@ require("lazy").setup({
 
     -- Lsp Extras
     -- { "Issafalcon/lsp-overloads.nvim" }, -- Signature Help
-    { "folke/neodev.nvim" },             -- Nvim Workspace
+    {
+      "folke/lazydev.nvim",
+      ft = "lua", -- only load on lua files
+      opts = {
+        library = {
+          -- See the configuration section for more details
+          -- Load luvit types when the `vim.uv` word is found
+          { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        },
+      },
+    },
     { "j-hui/fidget.nvim", },            -- Lsp Progress
 
     -- Autocompletion
@@ -185,7 +195,7 @@ require("lazy").setup({
     { "mbbill/undotree" },
     { "nvimtools/hydra.nvim" },
     { "klen/nvim-config-local" },
-    { "wakatime/vim-wakatime" },
+    -- { "wakatime/vim-wakatime" },
   },
   {
     dev = {
