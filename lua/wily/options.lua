@@ -3,8 +3,8 @@ vim.g.maplocalleader = " "
 
 local opt = vim.opt
 
-opt.background = "light"
--- opt.background = "dark"
+-- opt.background = "light"
+opt.background = "dark"
 
 opt.shiftwidth = 4
 opt.tabstop = 4
@@ -22,9 +22,9 @@ opt.sidescrolloff = 10
 opt.splitright = true
 opt.splitbelow = true
 
-opt.pumblend = 10
+opt.pumblend = 0
 opt.pumheight = 12
-opt.winblend = 10
+opt.winblend = 0
 
 opt.ignorecase = true
 opt.smartcase = true
